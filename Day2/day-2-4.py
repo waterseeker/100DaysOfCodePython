@@ -3,7 +3,7 @@
 #Format the result to 2 decimal places = 33.60
 #Tip: There are 2 ways to round a number. You might have to do some Googling to solve this.💪
 print("Welcome to the tip calculator.")
-total_bill = input("What was the total bill? ")
+total_bill = input("What was the total bill? $")
 tip_percentage = input("What percentage tip would you like to give? ")
 number_of_diners = input("How many people to split the bill? ")
 
