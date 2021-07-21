@@ -71,13 +71,13 @@ user_bmi_as_string = str(user_bmi)
 if user_bmi < 18.5:
     interpretation = "you are underweight."
     print(f"Your BMI is {user_bmi_as_string}, {interpretation}")
-elif user_bmi > 18.5 and user_bmi < 25:
+elif user_bmi < 25:
     interpretation = "you have a normal weight."
     print(f"Your BMI is {user_bmi_as_string}, {interpretation}")
-elif user_bmi > 25 and user_bmi < 30:
+elif user_bmi < 30:
     interpretation = "you are slightly overweight."
     print(f"Your BMI is {user_bmi_as_string}, {interpretation}")
-elif user_bmi > 30 and user_bmi < 35:
+elif user_bmi < 35:
     interpretation = "you are obese."
     print(f"Your BMI is {user_bmi_as_string}, {interpretation}")
 else:
