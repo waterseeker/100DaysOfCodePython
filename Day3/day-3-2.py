@@ -57,3 +57,29 @@
 # 1. Try to use the **exponent** operator in your code.
 # 2. Remember to **round** your result to the nearest whole number. 
 # 3. Make sure you include the words in **bold** from the interpretations. 
+
+# 🚨 Don't change the code below 👇
+height = float(input("enter your height in m: "))
+weight = float(input("enter your weight in kg: "))
+# 🚨 Don't change the code above 👆
+
+#Write your code below this line 👇
+height_as_float = float(height)
+weight_as_int = int(weight)
+user_bmi = round(weight_as_int / height_as_float ** 2)
+user_bmi_as_string = str(user_bmi)
+if user_bmi < 18.5:
+    interpretation = "you are underweight."
+    print(f"Your BMI is {user_bmi_as_string}, {interpretation}")
+elif user_bmi > 18.5 and user_bmi < 25:
+    interpretation = "you have a normal weight."
+    print(f"Your BMI is {user_bmi_as_string}, {interpretation}")
+elif user_bmi > 25 and user_bmi < 30:
+    interpretation = "you are slightly overweight."
+    print(f"Your BMI is {user_bmi_as_string}, {interpretation}")
+elif user_bmi > 30 and user_bmi < 35:
+    interpretation = "you are obese."
+    print(f"Your BMI is {user_bmi_as_string}, {interpretation}")
+else:
+    interpretation = "you are clinically obese."
+    print(f"Your BMI is {user_bmi_as_string}, {interpretation}")
