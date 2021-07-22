@@ -91,3 +91,20 @@ name2 = input("What is their name? \n")
 # 🚨 Don't change the code above 👆
 
 #Write your code below this line 👇
+name1_as_lowercase = name1.lower()
+name2_as_lowercase = name2.lower()
+names = name1_as_lowercase + name2_as_lowercase
+first_digit = 0
+second_digit = 0
+for letter in "true":
+    first_digit += names.count(letter)
+for letter in "love":
+    second_digit += names.count(letter)
+love_score = first_digit * 10 + second_digit
+love_score_as_string = str(love_score)
+if love_score < 10 or love_score > 90:
+    print(f"Your score is {love_score_as_string}, you go together like coke and mentos.")
+elif love_score > 40 and love_score < 50:
+    print(f"Your score is {love_score_as_string}, you are alright together.")
+else:
+    print(f"Your score is {love_score_as_string}.")
