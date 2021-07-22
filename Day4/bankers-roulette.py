@@ -20,3 +20,6 @@ names = names_string.split(", ")
 # 🚨 Don't change the code above 👆
 
 #Write your code below this line 👇
+import random
+payers_index = random.randint(0,len(names)) - 1
+print(f"{names[payers_index]} is going to buy the meal today!")
