@@ -23,3 +23,6 @@ names = names_string.split(", ")
 import random
 payers_index = random.randint(0,len(names)) - 1
 print(f"{names[payers_index]} is going to buy the meal today!")
+
+# another way using random.choice()
+# print(f"{random.choice(names)} is going to buy the meal today!")
