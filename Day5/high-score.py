@@ -26,3 +26,10 @@ print(student_scores)
 # 🚨 Don't change the code above 👆
 
 #Write your code below this row 👇
+# don't use max() or min()
+max_value = 0
+for score in student_scores:
+    if score > max_value:
+        max_value = score
+
+print(f"The highest score in the class is: {max_value}")
