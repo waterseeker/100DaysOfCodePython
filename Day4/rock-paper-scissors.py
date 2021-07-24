@@ -35,6 +35,7 @@ print("Welcome to Rock, Paper, Scissors!")
 while True:
     player_input = input("What do you choose? Type 0 for Rock, 1 for Paper, or 2 for Scissors.")
     possible_choices = ["0", "1", "2"]
+    keep_playing_choices = ["y", "n"]
     if player_input not in possible_choices:
         print("Sorry, that's not a valid choice. Please enter 0, 1, or 2.")
         continue
@@ -60,8 +61,15 @@ while True:
             else:
                 print("You win.")
         elif player_choice == 2:
-            if computer_choice == 1:
+            if computer_choice == 0:
                 print("You lose.")
             else:
                 print("You win.")
+        keep_playing = input("Would you like to try again? Y or N?")
+        while keep_playing.lower() not in keep_playing_choices:
+            keep_playing = input("That's not a valid choice. Y or N?")
+        if keep_playing.lower() == "y":
+            continue
+        elif keep_playing.lower() == "n":
+            break
         break
