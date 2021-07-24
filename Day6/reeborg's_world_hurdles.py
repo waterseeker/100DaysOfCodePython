@@ -14,5 +14,8 @@ def jump():
     turn_right()
     move()
     turn_left()
-for n in range(0, 6):
+def move_and_jump():
+    move()
+    jump()
+for n in range(6):
     move_and_jump()
