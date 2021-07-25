@@ -1,5 +1,5 @@
-# this challenge is to solve the hurdle 1 challenge at:
-# https://reeborg.ca/reeborg.html?lang=en&mode=python&menu=worlds%2Fmenus%2Freeborg_intro_en.json&name=Hurdle%201&url=worlds%2Ftutorial_en%2Fhurdle1.json
+# this challenge is to solve the hurdle 2 challenge at:
+# https://reeborg.ca/reeborg.html?lang=en&mode=python&menu=worlds%2Fmenus%2Freeborg_intro_en.json&name=Hurdle%202&url=worlds%2Ftutorial_en%2Fhurdle2.json
 # this is a game that already has some built-in functions and you use those to make more complex functions 
 # to complete the challenges
 def turn_right():
@@ -17,5 +17,5 @@ def jump():
 def move_and_jump():
     move()
     jump()
-for n in range(6):
+while at_goal() == False:
     move_and_jump()
