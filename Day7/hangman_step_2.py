@@ -23,6 +23,11 @@ guess = input("Guess a letter: ").lower()
 for index, letter in enumerate(chosen_word):
     if letter == guess:
         display[index] = letter 
+# you could also do something like...
+# for position in range(len(chosen_word)):
+#     letter = chosen_word[position]
+#     if letter == guess:
+#         display[position] = letter
 
 #TODO-3: - Print 'display' and you should see the guessed letter in the correct 
 # position and every other letter replace with "_".
