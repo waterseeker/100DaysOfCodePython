@@ -14,5 +14,5 @@ while not at_goal():
     elif right_is_clear():
         turn_right()
         move()
-    elif not right_is_clear():
+    else:
         turn_left()
