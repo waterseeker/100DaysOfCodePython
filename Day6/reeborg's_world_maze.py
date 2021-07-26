@@ -11,6 +11,8 @@ while not is_facing_north():
 while not at_goal():
     if wall_on_right() and not wall_in_front():
         move()
+    elif front_is_clear():
+        move()
     elif right_is_clear():
         turn_right()
         move()
