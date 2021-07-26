@@ -18,8 +18,7 @@ while True:
 
 #TODO-3 - Check if the letter the user guessed (guess) is one of the 
 # letters in the chosen_word.
-split_word = list(chosen_word)
-for character in split_word:
+for character in chosen_word:
     if character == guess:
         print("Right")
     else:
