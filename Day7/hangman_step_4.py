@@ -60,7 +60,7 @@ stages = ['''
 ''']
 
 end_of_game = False
-word_list = ["ardvark", "baboon", "camel"]
+word_list = ["aardvark", "baboon", "camel"]
 chosen_word = random.choice(word_list)
 word_length = len(chosen_word)
 
@@ -94,7 +94,7 @@ while not end_of_game:
         lives -= 1
         if lives == 0:
             print("You lose.")
-            end_of_game == True
+            end_of_game = True
     #Join all the elements in the list and turn it into a String.
     print(f"{' '.join(display)}")
 
@@ -106,5 +106,5 @@ while not end_of_game:
     # current number of 'lives' the user has remaining.
     print(stages[lives])
     if lives == 0:
-        end_of_game == True
+        end_of_game = True
     print(f'lives: {lives}')
