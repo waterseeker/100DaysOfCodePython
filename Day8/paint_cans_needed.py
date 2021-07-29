@@ -17,7 +17,7 @@
 # **result should be rounded up** to **2** cans. 
 
 # IMPORTANT: Notice the name of the function and parameters must match those 
-# on line 44 for the code to work.
+# on line 47 for the code to work.
 
 # Example Input
 # test_h = 3
@@ -27,7 +27,10 @@
 # You'll need 6 cans of paint.
 
 #Write your code below this line 👇
-
+import math
+def paint_calc(height, width, cover):
+    number_of_cans = math.ceil((height * width) / cover)
+    print(f"You'll need {number_of_cans} cans of paint.")
 
 
 
