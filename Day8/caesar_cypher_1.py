@@ -4,11 +4,11 @@ direction = input("Type 'encode' to encrypt, type 'decode' to decrypt:\n")
 text = input("Type your message:\n").lower()
 shift = int(input("Type the shift number:\n"))
 
-def encrypt(text, shift):
+def encrypt(plain_text, shift_amount):
     encrypted_message = ''
     maximum_character_index = len(alphabet)
-    for character in text:
-        shifted_character_index = alphabet.index(character) + shift
+    for character in plain_text:
+        shifted_character_index = alphabet.index(character) + shift_amount
         if shifted_character_index > maximum_character_index:
             shifted_character_index = shifted_character_index - maximum_character_index
         encrypted_message += alphabet[shifted_character_index]
