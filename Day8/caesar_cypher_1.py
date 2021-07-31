@@ -10,7 +10,7 @@ def encrypt(plain_text, shift_amount):
     for character in plain_text:
         shifted_character_index = alphabet.index(character) + shift_amount
         if shifted_character_index > maximum_character_index:
-            shifted_character_index = shifted_character_index - maximum_character_index
+            shifted_character_index -= maximum_character_index
         encrypted_message += alphabet[shifted_character_index]
     print(f"The encoded text is {encrypted_message}")
 
