@@ -2,10 +2,10 @@
 
 # Instructions
 
-# You are going to write a program that adds to a travel_log. You can see a 
-# travel_log which is a List that contains 2 Dictionaries. 
+# You are going to write a program that adds to a travel_log. 
+# You can see a travel_log which is a List that contains 2 Dictionaries. 
 
-# Write a function that will work with the following line of code on line 21 
+# Write a function that will work with the following line of code on line 11 
 # to add the entry for Russia to the travel_log. 
 
 # add_new_country("Russia", 2, ["Moscow", "Saint Petersburg"])
@@ -43,10 +43,10 @@ travel_log = [
 
 #TODO: Write the function that will allow new countries
 #to be added to the travel_log. 👇
-
-
-
-
+def add_new_country(country_name, times_visited, list_of_cities_visited):
+    travel_log.append({'country': country_name, 
+                        'visits': times_visited, 
+                        'cities':list_of_cities_visited})
 
 #🚨 Do not change the code below
 add_new_country("Russia", 2, ["Moscow", "Saint Petersburg"])
