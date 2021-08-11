@@ -124,6 +124,13 @@ while play_game:
                 print("You have 21. It doesn't get better than that so you stand.")
         dealer_draw(dealer_hand)
 
+# how do we know all the rounds are over?
+#   the dealer busts
+#   the player busts
+#   both the dealer and player stand
 
+# then run logic to check final scores and declare the winner
+
+# i think recursion will be the round of play except the first round where there can be a blackjack
 
     play_game = False
