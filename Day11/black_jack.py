@@ -44,9 +44,10 @@ def get_score(hand_array):
 def draw_card(hand_array):
     hand_array.append(random.choice(cards))
 
-def dealer_draw(dealer_hand):
+def dealer_draw(dealer_stands):
     if dealer_score >= 17:
         print("The dealer stands.")
+        dealer_stands = True
         print(f"Dealer's hand: {dealer_hand}")
         return
     if dealer_score < 17:
@@ -54,16 +55,52 @@ def dealer_draw(dealer_hand):
         draw_card(dealer_hand)
         print(f"Dealer's hand: {dealer_hand}")
 
+def player_draw(player_stands):
+    draw = input("Would you like to draw a card? 'y' or 'n': ")
+    if draw == 'y':
+        draw_card(player_hand)
+        print(f'Your cards: {player_hand}')
+        player_score = get_score(player_hand)
+        if player_score > 21:
+            print("You bust! The dealer wins.")
+            play_again()
+        if player_score == 21:
+            print("You have 21. It doesn't get better than that so you stand.")
+            player_stands = True
+    else:
+        player_stands = True
+
 def print_hands():
     print(f'Your cards: {player_hand}')
     print(f"Dealer's cards: {dealer_hand}")
 
-def start_again():
+def play_again():
     start_again = input("Do you want to play again? 'y' or 'n': ")
     if start_again == 'y':
         return True
     else:
         return False
+
+def reset_hands():
+    player_hand = []
+    dealer_hand = []
+
+def game_result():
+    if player_score > dealer_score:
+        print(f"Congratulations! You win with a score of {player_score}.")
+        play_again()
+    elif dealer_score > player_score:
+        print(f"The dealer wins with a score of {dealer_score}.")
+        play_again()
+
+def turn_of_play(player_stands, dealer_stands):
+    if not player_stands:
+        player_draw(player_stands)
+    if not dealer_stands:
+        dealer_draw(dealer_stands)
+    if player_stands and dealer_stands:
+        return
+    turn_of_play(player_stands, dealer_stands)
 
 start_game = input("Do you want to play a game of Blackjack? Type 'y' or 'n': ")
 if start_game == 'y':
@@ -73,6 +110,8 @@ else:
     play_game = False
 
 while play_game:
+    player_stands = False
+    dealer_stands = False
     player_hand = [random.choice(cards), random.choice(cards)]
     player_score = get_score(player_hand)
     dealer_hand = [random.choice(cards), random.choice(cards)]
@@ -80,8 +119,9 @@ while play_game:
     if player_score == 'blackjack' and dealer_score != 'blackjack':
         print_hands()
         print('Blackjack! You win!')
-        start_again()
-        if start_again:
+        play_again()
+        if play_again:
+            reset_hands()
             continue
         else:
             play_game = False
@@ -89,8 +129,9 @@ while play_game:
     elif player_score != 'blackjack' and dealer_score == 'blackjack':
         print_hands()
         print('The dealer wins with Blackjack!')
-        start_again()
-        if start_again:
+        play_again()
+        if play_again:
+            reset_hands()
             continue
         else:
             play_game = False
@@ -98,8 +139,9 @@ while play_game:
     elif player_score == 'blackjack' and dealer_score == 'blackjack':
         print_hands()
         print("It's a tie! You both have Blackjack. What are the odds?")
-        start_again()
-        if start_again:
+        play_again()
+        if play_again:
+            reset_hands()
             continue
         else:
             play_game = False
@@ -107,22 +149,9 @@ while play_game:
     else:
         print(f'Your cards: {player_hand}')
         print(f"Dealer's first card: {dealer_hand[0]}")
-        draw = input("Would you like to draw a card? 'y' or 'n': ")
-        if draw == 'y':
-            draw_card(player_hand)
-            print(f'Your cards: {player_hand}')
-            player_score = get_score(player_hand)
-            if player_score > 21:
-                print("You bust!")
-                start_again()
-                if start_again:
-                    continue
-                else:
-                    play_game = False
-                    break
-            if player_score == 21:
-                print("You have 21. It doesn't get better than that so you stand.")
-        dealer_draw(dealer_hand)
+        turn_of_play(player_stands, dealer_stands)
+        game_result()
+
 
 # how do we know all the rounds are over?
 #   the dealer busts
@@ -134,3 +163,19 @@ while play_game:
 # i think recursion will be the round of play except the first round where there can be a blackjack
 
     play_game = False
+
+
+# does the player draw?
+#   if so, do they bust?
+#       if so, game over and dealer wins
+#       if not, this is the end of the player's turn
+#   if not the player stands
+#       this is the end of the player's turn
+# does the dealer draw?
+#   if so, do they bust?
+#   if not they stand
+#       this is the end of the dealer's turn
+# once both have stood, compare scores
+# declare results
+# prompt for play again
+# if so return to first round logic where there can be a blackjack
