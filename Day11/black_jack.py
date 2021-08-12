@@ -44,7 +44,10 @@ def get_score(hand_array):
 def draw_card(hand_array):
     hand_array.append(random.choice(cards))
 
-def dealer_draw(dealer_stands):
+def dealer_draw():
+    global dealer_stands
+    global dealer_score
+    global dealer_hand
     if dealer_score >= 17:
         print("The dealer stands.")
         dealer_stands = True
@@ -54,8 +57,14 @@ def dealer_draw(dealer_stands):
         print("The dealer draws another card.")
         draw_card(dealer_hand)
         print(f"Dealer's hand: {dealer_hand}")
+    if dealer_score > 21:
+        print("The dealer busts!")
+        play_again()
 
-def player_draw(player_stands):
+def player_draw():
+    global player_stands
+    global player_score
+    global player_hand
     draw = input("Would you like to draw a card? 'y' or 'n': ")
     if draw == 'y':
         draw_card(player_hand)
@@ -64,6 +73,7 @@ def player_draw(player_stands):
         if player_score > 21:
             print("You bust! The dealer wins.")
             play_again()
+            return
         if player_score == 21:
             print("You have 21. It doesn't get better than that so you stand.")
             player_stands = True
@@ -71,21 +81,28 @@ def player_draw(player_stands):
         player_stands = True
 
 def print_hands():
+    global player_hand
+    global dealer_hand
     print(f'Your cards: {player_hand}')
     print(f"Dealer's cards: {dealer_hand}")
 
 def play_again():
     start_again = input("Do you want to play again? 'y' or 'n': ")
     if start_again == 'y':
+        reset_hands()
         return True
     else:
         return False
 
 def reset_hands():
+    global player_hand
+    global dealer_hand
     player_hand = []
     dealer_hand = []
 
 def game_result():
+    global player_score
+    global dealer_score
     if player_score > dealer_score:
         print(f"Congratulations! You win with a score of {player_score}.")
         play_again()
@@ -93,14 +110,16 @@ def game_result():
         print(f"The dealer wins with a score of {dealer_score}.")
         play_again()
 
-def turn_of_play(player_stands, dealer_stands):
+def turn_of_play():
+    global player_stands
+    global dealer_stands
     if not player_stands:
-        player_draw(player_stands)
+        player_draw()
     if not dealer_stands:
-        dealer_draw(dealer_stands)
+        dealer_draw()
     if player_stands and dealer_stands:
         return
-    turn_of_play(player_stands, dealer_stands)
+    turn_of_play()
 
 start_game = input("Do you want to play a game of Blackjack? Type 'y' or 'n': ")
 if start_game == 'y':
@@ -121,7 +140,6 @@ while play_game:
         print('Blackjack! You win!')
         play_again()
         if play_again:
-            reset_hands()
             continue
         else:
             play_game = False
@@ -131,7 +149,6 @@ while play_game:
         print('The dealer wins with Blackjack!')
         play_again()
         if play_again:
-            reset_hands()
             continue
         else:
             play_game = False
@@ -141,7 +158,6 @@ while play_game:
         print("It's a tie! You both have Blackjack. What are the odds?")
         play_again()
         if play_again:
-            reset_hands()
             continue
         else:
             play_game = False
@@ -149,7 +165,7 @@ while play_game:
     else:
         print(f'Your cards: {player_hand}')
         print(f"Dealer's first card: {dealer_hand[0]}")
-        turn_of_play(player_stands, dealer_stands)
+        turn_of_play()
         game_result()
 
 
