@@ -105,10 +105,10 @@ def game_result():
     global dealer_score
     if player_score > dealer_score:
         print(f"Congratulations! You win with a score of {player_score}.")
-        play_again()
     elif dealer_score > player_score:
         print(f"The dealer wins with a score of {dealer_score}.")
-        play_again()
+    else:
+        print(f"It's a tie with you and the dealer both having {player_score}.")
 
 def turn_of_play():
     global player_stands
@@ -167,31 +167,11 @@ while play_game:
         print(f"Dealer's first card: {dealer_hand[0]}")
         turn_of_play()
         game_result()
-
-
-# how do we know all the rounds are over?
-#   the dealer busts
-#   the player busts
-#   both the dealer and player stand
-
-# then run logic to check final scores and declare the winner
-
-# i think recursion will be the round of play except the first round where there can be a blackjack
+        play_again()
+        if play_again:
+            continue
+        else:
+            play_game = False
+            break
 
     play_game = False
-
-
-# does the player draw?
-#   if so, do they bust?
-#       if so, game over and dealer wins
-#       if not, this is the end of the player's turn
-#   if not the player stands
-#       this is the end of the player's turn
-# does the dealer draw?
-#   if so, do they bust?
-#   if not they stand
-#       this is the end of the dealer's turn
-# once both have stood, compare scores
-# declare results
-# prompt for play again
-# if so return to first round logic where there can be a blackjack
