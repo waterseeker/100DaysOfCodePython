@@ -20,7 +20,6 @@
 #   http://blackjack-final.appbrewery.repl.run
 
 # TODO
-# clear the console after a game and show the logo
 # change game flow so player finishes completely before the computer draws.
 
 from art import logo
@@ -64,14 +63,16 @@ def dealer_draw():
     global dealer_score
     global dealer_hand
     if dealer_score >= 17:
-        print("The dealer stands.")
+        print(f"The dealer stands with {dealer_score}.")
         dealer_stands = True
         print(f"Dealer's hand: {dealer_hand}")
         return
     elif dealer_score < 17:
         print("The dealer draws another card.")
         draw_card(dealer_hand)
+        dealer_score = get_score(dealer_hand)
         print(f"Dealer's hand: {dealer_hand}")
+        dealer_draw()
     elif dealer_score > 21:
         print("The dealer busts!")
         play_again()
@@ -83,20 +84,23 @@ def player_draw():
     global player_stands
     global player_score
     global player_hand
-    draw = input("Would you like to draw a card? 'y' or 'n': ")
+    draw = input(f"You have {player_score}. Would you like to draw a card? 'y' or 'n': ")
     if draw == 'y':
         draw_card(player_hand)
         print(f'Your cards: {player_hand}')
         player_score = get_score(player_hand)
         if player_score > 21:
-            print("You bust! The dealer wins.")
+            print("{player_score}. You bust! The dealer wins.")
             play_again()
             return
         elif player_score == 21:
             print("You have 21. It doesn't get better than that so you stand.")
             player_stands = True
+        else:
+            player_draw()
     else:
         player_stands = True
+        print(f"You stand with {player_score}.")
 
 def print_hands():
     """Displays the player's and dealer's hands."""
@@ -109,9 +113,9 @@ def play_again():
     """Asks the player if they would like to play again. Clears the console and restarts game loop if so. """
     start_again = input("Do you want to play again? 'y' or 'n': ")
     if start_again == 'y':
+        play_game = True
         reset_hands()
         clear_console()
-        print(logo)
         return True
     else:
         return False
@@ -153,11 +157,11 @@ def clear_console():
 start_game = input("Do you want to play a game of Blackjack? Type 'y' or 'n': ")
 if start_game == 'y':
     play_game = True
-    print(logo)
 else:
     play_game = False
 
 while play_game:
+    print(logo)
     player_stands = False
     dealer_stands = False
     player_hand = [random.choice(cards), random.choice(cards)]
