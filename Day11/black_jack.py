@@ -26,16 +26,21 @@
 from art import logo
 import random
 from collections import Counter
+from os import system
 
 cards = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
 
 def get_score(hand_array):
     """Takes in an array, checks for blackjack. 
     Returns either the hand total or 'blackjack'"""
-    # is it blackjack?
-    if len(hand_array) == 2:
-        if sum(hand_array) == 21:
-            return 'blackjack'
+    # checks to see if it's blackjack
+    if len(hand_array) == 2 and sum(hand_array) == 21:
+        return 'blackjack'
+    # No matter the number of aces in a hand, only 1 could ever be worth 11
+    # since 2 worth 11 would be an automatic bust (11 + 11 = 22)
+    # finds the number of aces in the hand and calculates the score with one of
+    # them being an 11 as long as that doesn't cause a bust, else they're all worth
+    # 1 point each.
     number_of_aces = Counter(hand_array)[11]
     non_ace_total = sum(card for card in hand_array if card != 11)
     ace_value = 0
@@ -63,11 +68,11 @@ def dealer_draw():
         dealer_stands = True
         print(f"Dealer's hand: {dealer_hand}")
         return
-    if dealer_score < 17:
+    elif dealer_score < 17:
         print("The dealer draws another card.")
         draw_card(dealer_hand)
         print(f"Dealer's hand: {dealer_hand}")
-    if dealer_score > 21:
+    elif dealer_score > 21:
         print("The dealer busts!")
         play_again()
 
@@ -87,7 +92,7 @@ def player_draw():
             print("You bust! The dealer wins.")
             play_again()
             return
-        if player_score == 21:
+        elif player_score == 21:
             print("You have 21. It doesn't get better than that so you stand.")
             player_stands = True
     else:
@@ -105,6 +110,8 @@ def play_again():
     start_again = input("Do you want to play again? 'y' or 'n': ")
     if start_again == 'y':
         reset_hands()
+        clear_console()
+        print(logo)
         return True
     else:
         return False
@@ -138,6 +145,10 @@ def turn_of_play():
     if player_stands and dealer_stands:
         return
     turn_of_play()
+
+def clear_console():
+    """Clears the console."""
+    _ = system('clear')
 
 start_game = input("Do you want to play a game of Blackjack? Type 'y' or 'n': ")
 if start_game == 'y':
