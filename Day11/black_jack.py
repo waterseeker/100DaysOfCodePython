@@ -19,6 +19,10 @@
 #Then try out the completed Blackjack project here: 
 #   http://blackjack-final.appbrewery.repl.run
 
+# clear the console after a game and show the logo
+# change game flow so player finishes completely before the computer draws.
+# add docstrings to the functions
+
 from art import logo
 import random
 from collections import Counter
