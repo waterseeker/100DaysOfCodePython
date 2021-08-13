@@ -19,9 +19,9 @@
 #Then try out the completed Blackjack project here: 
 #   http://blackjack-final.appbrewery.repl.run
 
+# TODO
 # clear the console after a game and show the logo
 # change game flow so player finishes completely before the computer draws.
-# add docstrings to the functions
 
 from art import logo
 import random
@@ -30,6 +30,8 @@ from collections import Counter
 cards = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
 
 def get_score(hand_array):
+    """Takes in an array, checks for blackjack. 
+    Returns either the hand total or 'blackjack'"""
     # is it blackjack?
     if len(hand_array) == 2:
         if sum(hand_array) == 21:
@@ -46,9 +48,13 @@ def get_score(hand_array):
     return hand_total
 
 def draw_card(hand_array):
+    """takes in a hand array of cards. 
+    adds a random card from the cards array to the hand that is passed into the function"""
     hand_array.append(random.choice(cards))
 
 def dealer_draw():
+    """Determines whether or not the dealer is going to draw. 
+    Draws a card and adds it to the dealer's hand until the dealer stands or busts."""
     global dealer_stands
     global dealer_score
     global dealer_hand
@@ -66,6 +72,9 @@ def dealer_draw():
         play_again()
 
 def player_draw():
+    """Asks the player if they want to draw a card. 
+    If so, adds a random card from the cards array to the player's hand.
+    If the player busts, ends the game."""
     global player_stands
     global player_score
     global player_hand
@@ -85,12 +94,14 @@ def player_draw():
         player_stands = True
 
 def print_hands():
+    """Displays the player's and dealer's hands."""
     global player_hand
     global dealer_hand
     print(f'Your cards: {player_hand}')
     print(f"Dealer's cards: {dealer_hand}")
 
 def play_again():
+    """Asks the player if they would like to play again. Clears the console and restarts game loop if so. """
     start_again = input("Do you want to play again? 'y' or 'n': ")
     if start_again == 'y':
         reset_hands()
@@ -99,12 +110,14 @@ def play_again():
         return False
 
 def reset_hands():
+    """Clears the player's and dealer's hands."""
     global player_hand
     global dealer_hand
     player_hand = []
     dealer_hand = []
 
 def game_result():
+    """Displays the results of the game in the case of no bust."""
     global player_score
     global dealer_score
     if player_score > dealer_score:
@@ -115,6 +128,7 @@ def game_result():
         print(f"It's a tie with you and the dealer both having {player_score}.")
 
 def turn_of_play():
+    """Represents one round of play where both the dealer and the player get the chance to draw cards."""
     global player_stands
     global dealer_stands
     if not player_stands:
