@@ -46,8 +46,17 @@ def get_score(hand_array):
     if number_of_aces > 0:
         if non_ace_total + 11 + (number_of_aces - 1) <= 21:
             ace_value = 11 + (number_of_aces - 1)
+            # replace all but 1 ace in hand with 1s
+            for _ in range(number_of_aces - 1):
+                for index, card in enumerate(hand_array):
+                    if card == 11:
+                        hand_array[index] = 1
         else:
             ace_value = number_of_aces
+            # replace all aces in hand with 1s
+            for index, card in enumerate(hand_array):
+                if card == 11:
+                    hand_array[index] = 1
     hand_total = non_ace_total + ace_value
     return hand_total
 
@@ -65,7 +74,6 @@ def dealer_draw():
     if dealer_score >= 17:
         print(f"The dealer stands with {dealer_score}.")
         dealer_stands = True
-        print(f"Dealer's hand: {dealer_hand}")
         return
     elif dealer_score < 17:
         print("The dealer draws another card.")
@@ -90,7 +98,7 @@ def player_draw():
         print(f'Your cards: {player_hand}')
         player_score = get_score(player_hand)
         if player_score > 21:
-            print("{player_score}. You bust! The dealer wins.")
+            print(f"{player_score}. You bust! The dealer wins.")
             play_again()
             return
         elif player_score == 21:
@@ -114,18 +122,20 @@ def play_again():
     start_again = input("Do you want to play again? 'y' or 'n': ")
     if start_again == 'y':
         play_game = True
-        reset_hands()
-        clear_console()
+        reset_game()
         return True
     else:
         return False
 
-def reset_hands():
-    """Clears the player's and dealer's hands."""
+def reset_game():
+    """Clears the player's and dealer's hands, scores, and the console."""
     global player_hand
     global dealer_hand
     player_hand = []
     dealer_hand = []
+    player_score = 0
+    dealer_score = 0
+    clear_console()
 
 def game_result():
     """Displays the results of the game in the case of no bust."""
