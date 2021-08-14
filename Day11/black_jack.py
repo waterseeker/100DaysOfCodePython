@@ -21,6 +21,7 @@
 
 # TODO
 # change game flow so player finishes completely before the computer draws.
+# take game round logic out of method and put recursion in for player draw and computer draw
 
 from art import logo
 import random
