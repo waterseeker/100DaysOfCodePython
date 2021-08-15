@@ -19,10 +19,6 @@
 #Then try out the completed Blackjack project here: 
 #   http://blackjack-final.appbrewery.repl.run
 
-# TODO
-# change game flow so player finishes completely before the computer draws.
-# take game round logic out of method and put recursion in for player draw and computer draw
-
 from art import logo
 import random
 from collections import Counter
