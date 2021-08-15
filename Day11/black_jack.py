@@ -29,6 +29,8 @@ from collections import Counter
 from os import system
 
 cards = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
+player_busts = False
+dealer_busts = False
 
 def get_score(hand_array):
     """Takes in an array, checks for blackjack. 
@@ -72,19 +74,22 @@ def dealer_draw():
     global dealer_stands
     global dealer_score
     global dealer_hand
-    if dealer_score >= 17:
-        print(f"The dealer stands with {dealer_score}.")
-        dealer_stands = True
-        return
+    global dealer_busts
+
+    if dealer_score > 21:
+        print("The dealer busts!")
+        dealer_busts = True
+        play_again()
     elif dealer_score < 17:
         print("The dealer draws another card.")
         draw_card(dealer_hand)
         dealer_score = get_score(dealer_hand)
         print(f"Dealer's hand: {dealer_hand}")
         dealer_draw()
-    elif dealer_score > 21:
-        print("The dealer busts!")
-        play_again()
+    elif dealer_score >= 17 and dealer_score < 21:
+        print(f"The dealer stands with {dealer_score}.")
+        dealer_stands = True
+        return
 
 def player_draw():
     """Asks the player if they want to draw a card. 
@@ -93,6 +98,7 @@ def player_draw():
     global player_stands
     global player_score
     global player_hand
+    global player_busts
     draw = input(f"You have {player_score}. Would you like to draw a card? 'y' or 'n': ")
     if draw == 'y':
         draw_card(player_hand)
@@ -100,6 +106,7 @@ def player_draw():
         player_score = get_score(player_hand)
         if player_score > 21:
             print(f"{player_score}. You bust! The dealer wins.")
+            player_busts = True
             play_again()
             return
         elif player_score == 21:
@@ -149,17 +156,16 @@ def game_result():
     else:
         print(f"It's a tie with you and the dealer both having {player_score}.")
 
-def turn_of_play():
-    """Represents one round of play where both the dealer and the player get the chance to draw cards."""
+def play_blackjack():
+    """The main game loop where the player and dealer get to draw until they either stand or bust."""
     global player_stands
     global dealer_stands
-    if not player_stands:
+    if not player_stands and not player_busts:
         player_draw()
-    if not dealer_stands:
+    if not dealer_stands and not player_busts:
         dealer_draw()
     if player_stands and dealer_stands:
         return
-    turn_of_play()
 
 def clear_console():
     """Clears the console."""
@@ -175,6 +181,8 @@ while play_game:
     print(logo)
     player_stands = False
     dealer_stands = False
+    player_busts = False
+    dealer_busts = False
     player_hand = [random.choice(cards), random.choice(cards)]
     player_score = get_score(player_hand)
     dealer_hand = [random.choice(cards), random.choice(cards)]
@@ -209,9 +217,9 @@ while play_game:
     else:
         print(f'Your cards: {player_hand}')
         print(f"Dealer's first card: {dealer_hand[0]}")
-        turn_of_play()
-        game_result()
-        play_again()
+        play_blackjack()
+        if not player_busts and not dealer_busts:
+            game_result()
         if play_again:
             continue
         else:
