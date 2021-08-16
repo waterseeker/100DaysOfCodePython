@@ -118,6 +118,12 @@ else:
 
 while play_game:
     # print logo
+    player_hand = []
+    dealer_hand = []
+    player_score = 0
+    dealer_score = 0
+    player_busts = False
+    dealer_busts = False
     clear_console()
     print(logo)
 
@@ -137,17 +143,25 @@ while play_game:
         start_new_game = play_again()
         if start_new_game:
             continue
+        else:
+            play_game = False
+            break
     elif dealer_blackjack and not player_blackjack:
         print('The dealer wins with Blackjack!')
         start_new_game = play_again()
         if start_new_game:
             continue
+        else:
+            play_game = False
+            break
     elif player_blackjack and dealer_blackjack:
         print("It's a tie! You both have Blackjack. What are the odds?")
         start_new_game = play_again()
         if start_new_game:
             continue
-
+        else:
+            play_game = False
+            break
     # player draws until they either stand or bust
     player_turn()
     #   if player bust, print results and prompt player to play again
@@ -155,6 +169,9 @@ while play_game:
         start_new_game = play_again()
         if start_new_game:
             continue
+        else:
+            play_game = False
+            break
     # if the player didn't bust, dealer draws until they either stand or bust
     else:
         dealer_turn()
@@ -163,4 +180,7 @@ while play_game:
         start_new_game = play_again()
         if start_new_game:
             continue
+        else:
+            play_game = False
+            break
     play_game = False
