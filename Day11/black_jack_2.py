@@ -108,7 +108,16 @@ def dealer_turn():
         print(f"The dealer stands with {dealer_score}.")
         dealer_stands = True
         return
-
+def game_result():
+    """Displays the results of the game in the case of no bust."""
+    global player_score
+    global dealer_score
+    if player_score > dealer_score:
+        print(f"Congratulations! You win with a score of {player_score}.")
+    elif dealer_score > player_score:
+        print(f"The dealer wins with a score of {dealer_score}.")
+    else:
+        print(f"It's a tie with you and the dealer both having {player_score}.")
 # prompt player to see if they want to play
 start_game = input("Do you want to play a game of Blackjack? Type 'y' or 'n': ")
 if start_game == 'y':
@@ -177,6 +186,14 @@ while play_game:
         dealer_turn()
     #   if dealer busts, print results and prompt player to play again
     if dealer_busts == True:
+        start_new_game = play_again()
+        if start_new_game:
+            continue
+        else:
+            play_game = False
+            break
+    if player_stands and dealer_stands:
+        game_result()
         start_new_game = play_again()
         if start_new_game:
             continue
