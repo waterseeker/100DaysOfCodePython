@@ -7,9 +7,11 @@ cards = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
 player_stands = False
 player_hand = []
 player_busts = False
+player_score = 0
 dealer_stands = False
 dealer_hand = []
 dealer_busts = False
+dealer_score = 0
 
 def get_score(hand_array):
     """Takes in a hand array of cards and returns the sum.
@@ -54,10 +56,14 @@ def play_again():
 def clear_console():
     """Clears the console."""
     _ = system('clear')
-def player_draw():
+def draw_card(hand_array):
+    """takes in a hand array of cards. 
+    adds a random card from the cards array to the hand that is passed into the function"""
+    hand_array.append(random.choice(cards))
+def player_turn():
     """Asks the player if they want to draw a card. 
     If so, adds a random card from the cards array to the player's hand.
-    If the player busts, ends the game."""
+    Repeats until either the player busts or stands."""
     global player_stands
     global player_score
     global player_hand
@@ -70,17 +76,38 @@ def player_draw():
         if player_score > 21:
             print(f"{player_score}. You bust! The dealer wins.")
             player_busts = True
-            play_again()
             return
         elif player_score == 21:
             print("You have 21. It doesn't get better than that so you stand.")
             player_stands = True
+            return
         else:
-            player_draw()
+            player_turn()
     else:
         player_stands = True
         print(f"You stand with {player_score}.")
+def dealer_turn():
+    """Determines whether or not the dealer is going to draw. 
+    Draws a card and adds it to the dealer's hand until the dealer stands or busts."""
+    global dealer_stands
+    global dealer_score
+    global dealer_hand
+    global dealer_busts
 
+    if dealer_score > 21:
+        print("The dealer busts!")
+        dealer_busts = True
+        return
+    elif dealer_score < 17:
+        print("The dealer draws another card.")
+        draw_card(dealer_hand)
+        dealer_score = get_score(dealer_hand)
+        print(f"Dealer's hand: {dealer_hand}")
+        dealer_turn()
+    elif dealer_score >= 17 and dealer_score < 21:
+        print(f"The dealer stands with {dealer_score}.")
+        dealer_stands = True
+        return
 
 # prompt player to see if they want to play
 start_game = input("Do you want to play a game of Blackjack? Type 'y' or 'n': ")
@@ -122,7 +149,18 @@ while play_game:
             continue
 
     # player draws until they either stand or bust
-    
+    player_turn()
     #   if player bust, print results and prompt player to play again
-    # dealer draws until they either stand or bust
+    if player_busts == True:
+        start_new_game = play_again()
+        if start_new_game:
+            continue
+    # if the player didn't bust, dealer draws until they either stand or bust
+    else:
+        dealer_turn()
     #   if dealer busts, print results and prompt player to play again
+    if dealer_busts == True:
+        start_new_game = play_again()
+        if start_new_game:
+            continue
+    play_game = False
