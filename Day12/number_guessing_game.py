@@ -1,8 +1,10 @@
 import random
+from art import logo
 
+print(logo)
 print('Welcome to the Number Guessing Game!')
 print("I'm thinking of a whole number between 1 and 100.")
-answer = random.randint(0,100)
+answer = random.randint(1,100)
 playing_game = True
 while True:
     difficulty = input("Choose a difficulty. Type 'easy' or 'hard': ")
