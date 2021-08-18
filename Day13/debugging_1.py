@@ -22,6 +22,25 @@ my_function()
 # dice_imgs = ["❶", "❷", "❸", "❹", "❺", "❻"]
 # dice_num = randint(1, 6)
 # print(dice_imgs[dice_num])
+# # Describe Problem
+#   If you run this many times, occasionally you'll get an error 
+#       IndexError: list index out of range.
+#   This is because of 0 based indexing. randint(1, 6) will return numbers from 1 to 6
+#       with both numbers being inclusive. I.E. (1, 2, 3, 4, 5, 6).
+#   The dice_imgs list holds 6 entries, but the indexes start at 0.
+#   So the indexes are (0, 1, 2, 3, 4, 5). There is no 6 index.
+# # Reproduce the Bug
+#   You can reproduce this buy by trying to print index 6 from dice_imgs.
+#   print(dice_imgs[6])
+#   So when randint returns a 6, it is throwing the list index out of range error.
+# # # Solve Problem
+#   One way to solve this is to change randint(1, 6) to randint(0, 5)
+from random import randint
+dice_imgs = ["❶", "❷", "❸", "❹", "❺", "❻"]
+dice_num = randint(0, 5)
+print(dice_imgs[dice_num])
+
+
 
 # # Play Computer
 # year = int(input("What's your year of birth?"))
