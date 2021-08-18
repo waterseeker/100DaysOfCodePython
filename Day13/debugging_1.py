@@ -1,15 +1,20 @@
 ############DEBUGGING#####################
 
 # # Describe Problem
-def my_function():
-  for i in range(1, 20):
-    if i == 20:
-      print("You got it")
-my_function()
+# def my_function():
+#   for i in range(1, 20):
+#     if i == 20:
+#       print("You got it")
+# my_function()
 # The desired result is to get the print statement to run. 
 # It's not running because the range function's second parameter is non-inclusive.
 # So, i never == 20. The loop stops at 19.
-
+# # Solve Problem
+def my_function():
+  for i in range(1, 21):
+    if i == 20:
+      print("You got it")
+my_function()
 
 
 # # Reproduce the Bug
