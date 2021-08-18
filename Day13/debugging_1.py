@@ -58,17 +58,45 @@
 #     print('Test')
 # # # Solve Problem
 # You can solve this by including 1994 in the Gen Z condition.
-year = int(input("What's your year of birth?"))
-if year > 1980 and year < 1994:
-  print("You are a millenial.")
-elif year >= 1994:
-  print("You are a Gen Z.")
+# year = int(input("What's your year of birth?"))
+# if year > 1980 and year < 1994:
+#   print("You are a millenial.")
+# elif year >= 1994:
+#   print("You are a Gen Z.")
 # ------------------------------------------------------------------------------
 
 # # Fix the Errors
 # age = input("How old are you?")
 # if age > 18:
 # print("You can drive at age {age}.")
+# # Describe Problem
+#   There is an 'expected an indented block' error in this code.
+#   This is because the print statement should be nested inside the if block.
+# # Reproduce the Bug
+# x = 1
+# if x == 1:
+# print('something')
+# # # Solve Problem
+#   You can solve the 'expected an indented block' error in the code by 
+#       indenting the print statement.
+# age = input("How old are you?")
+# if age > 18:
+#     print("You can drive at age {age}.")
+#   However, when you run this code you get another error.
+#       TypeError: '>' not supported between instances of 'str' and 'int'
+#   This is because the input is not being case to an int.
+#   You can solve this by casting the input to an int.
+# age = int(input("How old are you?"))
+# if age > 18:
+#     print("You can drive at age {age}.")
+#   There is then another problem with the code. That is the expected output
+#       of the print statement should include the age variable. 
+#   However, the print statement is not using an f string syntax so the variable
+#       name is getting printed out "{age}" instead of the input.
+#   You can fix this by changing the print statement to us an f string.
+# age = int(input("How old are you?"))
+# if age > 18:
+#     print(f"You can drive at age {age}.")
 # ------------------------------------------------------------------------------
 
 
