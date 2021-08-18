@@ -10,12 +10,12 @@
 # It's not running because the range function's second parameter is non-inclusive.
 # So, i never == 20. The loop stops at 19.
 # # Solve Problem
-def my_function():
-  for i in range(1, 21):
-    if i == 20:
-      print("You got it")
-my_function()
-
+# def my_function():
+#   for i in range(1, 21):
+#     if i == 20:
+#       print("You got it")
+# my_function()
+# ------------------------------------------------------------------------------
 
 # # Reproduce the Bug
 # from random import randint
@@ -35,12 +35,11 @@ my_function()
 #   So when randint returns a 6, it is throwing the list index out of range error.
 # # # Solve Problem
 #   One way to solve this is to change randint(1, 6) to randint(0, 5)
-from random import randint
-dice_imgs = ["❶", "❷", "❸", "❹", "❺", "❻"]
-dice_num = randint(0, 5)
-print(dice_imgs[dice_num])
-
-
+# from random import randint
+# dice_imgs = ["❶", "❷", "❸", "❹", "❺", "❻"]
+# dice_num = randint(0, 5)
+# print(dice_imgs[dice_num])
+# ------------------------------------------------------------------------------
 
 # # Play Computer
 # year = int(input("What's your year of birth?"))
@@ -48,11 +47,30 @@ print(dice_imgs[dice_num])
 #   print("You are a millenial.")
 # elif year > 1994:
 #   print("You are a Gen Z.")
+# # Describe Problem
+#   When the user enters 1994, for example, there is nothing printed out to the console.
+#   The desired behavior is to have the program print "You are a Gen Z."
+#   This is because there is no condition where the input is == 1994, only 
+#       if it's greater than or less than 1994.
+# # Reproduce the Bug
+# x = 2
+# if x > 1 and x < 2:
+#     print('Test')
+# # # Solve Problem
+# You can solve this by including 1994 in the Gen Z condition.
+year = int(input("What's your year of birth?"))
+if year > 1980 and year < 1994:
+  print("You are a millenial.")
+elif year >= 1994:
+  print("You are a Gen Z.")
+# ------------------------------------------------------------------------------
 
 # # Fix the Errors
 # age = input("How old are you?")
 # if age > 18:
 # print("You can drive at age {age}.")
+# ------------------------------------------------------------------------------
+
 
 # #Print is Your Friend
 # pages = 0
@@ -61,6 +79,7 @@ print(dice_imgs[dice_num])
 # word_per_page == int(input("Number of words per page: "))
 # total_words = pages * word_per_page
 # print(total_words)
+# ------------------------------------------------------------------------------
 
 # #Use a Debugger
 # def mutate(a_list):
