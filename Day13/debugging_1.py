@@ -107,6 +107,24 @@
 # word_per_page == int(input("Number of words per page: "))
 # total_words = pages * word_per_page
 # print(total_words)
+# # Describe Problem
+#   No matter what you input here, the result is 0.
+#   This is because the value of word_per_page is always 0
+# # Reproduce the Bug
+# pages = 0
+# word_per_page = 0
+# pages = int(input("Number of pages: "))
+# word_per_page == int(input("Number of words per page: "))
+# print(word_per_page)
+# # Solve Problem
+#   You can fix this but changing == to = on the line that is supposed to be
+#       assigning the user's input to word_per_page
+pages = 0
+word_per_page = 0
+pages = int(input("Number of pages: "))
+word_per_page = int(input("Number of words per page: "))
+total_words = pages * word_per_page
+print(total_words)
 # ------------------------------------------------------------------------------
 
 # #Use a Debugger
