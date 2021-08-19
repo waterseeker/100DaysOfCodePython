@@ -119,12 +119,12 @@
 # # Solve Problem
 #   You can fix this but changing == to = on the line that is supposed to be
 #       assigning the user's input to word_per_page
-pages = 0
-word_per_page = 0
-pages = int(input("Number of pages: "))
-word_per_page = int(input("Number of words per page: "))
-total_words = pages * word_per_page
-print(total_words)
+# pages = 0
+# word_per_page = 0
+# pages = int(input("Number of pages: "))
+# word_per_page = int(input("Number of words per page: "))
+# total_words = pages * word_per_page
+# print(total_words)
 # ------------------------------------------------------------------------------
 
 # #Use a Debugger
@@ -136,3 +136,25 @@ print(total_words)
 #   print(b_list)
 
 # mutate([1,2,3,5,8,13])
+# # Describe the problem
+#   Expected output is [2, 4, 6, 10, 16, 26] but actual output is: [26]
+#   This is because the append call is not nested in the for loop, so new_item
+#       is only getting appended to the list once, and it has the last value
+#       from the for loop. In this case, 26 (13 * 2)
+# # Reproduce the problem.
+# a_list = ["1", "2", "3"]
+# b_list = []
+# for entry in a_list:
+#     new_entry = "test" + entry
+# b_list.append(new_entry)
+# print(b_list)
+# # Solve the problem.
+#   You can fix this by putting the append call inside the for loop.
+def mutate(a_list):
+  b_list = []
+  for item in a_list:
+    new_item = item * 2
+    b_list.append(new_item)
+  print(b_list)
+
+mutate([1,2,3,5,8,13])
