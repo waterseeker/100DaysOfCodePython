@@ -1,24 +1,29 @@
 from art import logo, vs
 from game_data import data
 from random import choice
+from os import system
 
 score = 0
 data_length = len(data)
 def getData(data):
+    """returns a random element from passed in list"""
     return choice(data)
+def clear_console():
+    """Clears the console."""
+    _ = system('clear')
 entry_A = getData(data)
 entry_B = getData(data)
 entry_A['choice'] = 'A'
 entry_B['choice'] = 'B'
 choices = [entry_A, entry_B]
 play_game = True
-print(logo)
 
 while play_game:
     if entry_A['follower_count'] == entry_B['follower_count']:
         entry_B = getData(data)
         continue
     else:
+        print(logo)
         print(f'Compare A: {entry_A["name"]}, a {entry_A["description"]}, from {entry_A["country"]}.')
         print(vs)
         print(f'Against B: {entry_B["name"]}, a {entry_B["description"]}, from {entry_B["country"]}.')
@@ -37,6 +42,7 @@ while play_game:
                     entry_A = answer
                     entry_B = getData(data)
                     choices = [entry_A, entry_B]
+                    clear_console()
                     break
                 else:  
                     print(f"Sorry, that's wrong. Final score: {score}")
