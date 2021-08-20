@@ -17,13 +17,13 @@ entry_A['choice'] = 'A'
 entry_B['choice'] = 'B'
 choices = [entry_A, entry_B]
 play_game = True
+print(logo)
 
 while play_game:
     if entry_A['follower_count'] == entry_B['follower_count']:
         entry_B = getData(data)
         continue
     else:
-        print(logo)
         print(f'Compare A: {entry_A["name"]}, a {entry_A["description"]}, from {entry_A["country"]}.')
         print(vs)
         print(f'Against B: {entry_B["name"]}, a {entry_B["description"]}, from {entry_B["country"]}.')
@@ -38,6 +38,7 @@ while play_game:
                 if user_choice == answer['choice']:
                     score += 1
                     clear_console()
+                    print(logo)
                     print(f"You're right! Current score: {score}")
                     entry_A = entry_B
                     entry_A['choice'] = 'A'
