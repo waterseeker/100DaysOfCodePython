@@ -37,12 +37,13 @@ while play_game:
             else:
                 if user_choice == answer['choice']:
                     score += 1
-                    print(f"You're right! Current score: {score}")
-                    answer['choice'] = 'A'
-                    entry_A = answer
-                    entry_B = getData(data)
-                    choices = [entry_A, entry_B]
                     clear_console()
+                    print(f"You're right! Current score: {score}")
+                    entry_A = entry_B
+                    entry_A['choice'] = 'A'
+                    entry_B = getData(data)
+                    entry_B['choice'] = 'B'
+                    choices = [entry_A, entry_B]
                     break
                 else:  
                     print(f"Sorry, that's wrong. Final score: {score}")
