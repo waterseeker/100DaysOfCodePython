@@ -1,5 +1,7 @@
 {
     "cSpell.words": [
         "isalpha"
-    ]
+    ],
+    "python.linting.pycodestyleEnabled": true,
+    "python.linting.enabled": true
 }

@@ -1,4 +1,4 @@
-############DEBUGGING#####################
+# ###########DEBUGGING#####################
 
 # # Describe Problem
 # def my_function():
@@ -6,8 +6,9 @@
 #     if i == 20:
 #       print("You got it")
 # my_function()
-# The desired result is to get the print statement to run. 
-# It's not running because the range function's second parameter is non-inclusive.
+# The desired result is to get the print statement to run.
+# It's not running because the range function's second parameter is
+#   non-inclusive.
 # So, i never == 20. The loop stops at 19.
 # # Solve Problem
 # def my_function():
@@ -23,16 +24,18 @@
 # dice_num = randint(1, 6)
 # print(dice_imgs[dice_num])
 # # Describe Problem
-#   If you run this many times, occasionally you'll get an error 
+#   If you run this many times, occasionally you'll get an error
 #       IndexError: list index out of range.
-#   This is because of 0 based indexing. randint(1, 6) will return numbers from 1 to 6
-#       with both numbers being inclusive. I.E. (1, 2, 3, 4, 5, 6).
+#   This is because of 0 based indexing. randint(1, 6) will return numbers
+#       from 1 to 6 with both numbers being inclusive.
+#       I.E. (1, 2, 3, 4, 5, 6).
 #   The dice_imgs list holds 6 entries, but the indexes start at 0.
 #   So the indexes are (0, 1, 2, 3, 4, 5). There is no 6 index.
 # # Reproduce the Bug
 #   You can reproduce this buy by trying to print index 6 from dice_imgs.
 #   print(dice_imgs[6])
-#   So when randint returns a 6, it is throwing the list index out of range error.
+#   So when randint returns a 6, it is throwing the list index out of
+#       range error.
 # # # Solve Problem
 #   One way to solve this is to change randint(1, 6) to randint(0, 5)
 # from random import randint
@@ -48,9 +51,10 @@
 # elif year > 1994:
 #   print("You are a Gen Z.")
 # # Describe Problem
-#   When the user enters 1994, for example, there is nothing printed out to the console.
+#   When the user enters 1994, for example, there is nothing printed out to
+#       the console.
 #   The desired behavior is to have the program print "You are a Gen Z."
-#   This is because there is no condition where the input is == 1994, only 
+#   This is because there is no condition where the input is == 1994, only
 #       if it's greater than or less than 1994.
 # # Reproduce the Bug
 # x = 2
@@ -77,7 +81,7 @@
 # if x == 1:
 # print('something')
 # # # Solve Problem
-#   You can solve the 'expected an indented block' error in the code by 
+#   You can solve the 'expected an indented block' error in the code by
 #       indenting the print statement.
 # age = input("How old are you?")
 # if age > 18:
@@ -90,9 +94,9 @@
 # if age > 18:
 #     print("You can drive at age {age}.")
 #   There is then another problem with the code. That is the expected output
-#       of the print statement should include the age variable. 
-#   However, the print statement is not using an f string syntax so the variable
-#       name is getting printed out "{age}" instead of the input.
+#       of the print statement should include the age variable.
+#   However, the print statement is not using an f string syntax so the
+#       variable name is getting printed out "{age}" instead of the input.
 #   You can fix this by changing the print statement to us an f string.
 # age = int(input("How old are you?"))
 # if age > 18:
@@ -151,10 +155,11 @@
 # # Solve the problem.
 #   You can fix this by putting the append call inside the for loop.
 def mutate(a_list):
-  b_list = []
-  for item in a_list:
-    new_item = item * 2
-    b_list.append(new_item)
-  print(b_list)
+    b_list = []
+    for item in a_list:
+        new_item = item * 2
+        b_list.append(new_item)
+    print(b_list)
 
-mutate([1,2,3,5,8,13])
+
+mutate([1, 2, 3, 5, 8, 13])
