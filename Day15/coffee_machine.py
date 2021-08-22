@@ -31,18 +31,24 @@ resources = {
 }
 
 coffee_emoji = '☕'
+play_game = True
 
-
-# // TODO 1 - Prompt user by asking
-#   "What would you like? (espresso/latte/cappuccino)"
+while play_game:
+    while True:
+        drink_choice = input(
+            " What would you like? (espresso/latte/cappuccino): ").lower()
+        if drink_choice.lower() == 'off':
+            play_game = False
+            break
+        elif drink_choice not in MENU.keys():
+            print("Sorry, that's not a valid choice. Try again.")
+            continue
+        else:
+            break
 #   a. Check the user's input to decide what to do next.
 #   b. The prompt should show every time action has completed, e.g. once the
 #       drink is dispensed. The prompt should show again to serve the next
 #       customer.
-# // TODO 2 - Turn off the Coffee Machine by entering "off" to the prompt.
-#   a. For maintainers of the coffee machine, they can use "off" as the secret
-#       word to turn off the machine. Your code should end execution when this
-#       happens.
 # // TODO 3 - Print report.
 #   a. When the user enters "report" to the prompt, a report should be
 #       generated that shows the current resource values e.g.
@@ -56,6 +62,8 @@ coffee_emoji = '☕'
 #   b. E.g. if Latte requires 200ml water but there is only 100ml left
 #       in the machine, it should not continue to make the drink but
 #       print "Sorry there is not enough water."
+#           1. This does not end the program.
+#           2. The prompt for picking a drink prints after the sorry message.
 #   c. The same should happen if another resource is depleted,
 #       e.g. milk or coffee.
 # // TODO 5 - Process coins.
@@ -65,6 +73,11 @@ coffee_emoji = '☕'
 #       and pennies = $0.01
 #   c. Calculate the monetary value of the coins inserted. E.g. 1 quarter,
 #       2 dimes, 1 nickel, 2 pennies = 0.25 + 2 * .10 + .05 + .01 * 2 = $0.52
+#   d. Prompt the user: (each of these on a new line)
+#       "how many quarters?: "
+#       "how many dimes?: "
+#       "how many nickles?: "
+#       "how many pennies?: "
 # // TODO 6 - Check transaction successful?
 #   a. Check that the user has inserted enough money to purchase the drink
 #       they selected. E.g. Latte cost $2.50, but they only inserted $0.52
@@ -84,17 +97,18 @@ coffee_emoji = '☕'
 #   a. If the transaction is successful and there are enough resources to make
 #       the drink the user selected, then the ingredients to make the drink
 #       should be deducted from the coffee machine resources.
-# 
+#
 #       E.g. report before purchasing latte:
 #       Water: 300ml
 #       Milk: 200ml
 #       Coffee: 100g
 #       Money: $0
-# 
+#
 #       report after purchasing latte:
 #       Water: 100ml
 #       Milk: 50ml
 #       Coffee: 76g
 #       Money: $2.5
-#   b. Once all resources have been deducted, tell the user "Here is your
-#       latte. Enjoy!". If latte was their choice of drink.
+#   b. Once all resources have been deducted, tell the user
+#       "Here is your latte ☕️. Enjoy!".
+#       If latte was their choice of drink.
