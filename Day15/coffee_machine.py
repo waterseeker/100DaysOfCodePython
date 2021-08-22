@@ -50,7 +50,27 @@ while play_game:
             print("Sorry, that's not a valid choice. Try again.")
             continue
         else:
-            break
+            if resources["water"] - (MENU[user_input]
+                                         ["ingredients"]
+                                         ["water"]) >= 0:
+                resources["water"] -= (MENU[user_input]
+                                           ["ingredients"]
+                                           ["water"])
+            if resources["coffee"] - (MENU[user_input]
+                                          ["ingredients"]
+                                          ["coffee"]) >= 0:
+                resources["coffee"] -= (MENU[user_input]
+                                            ["ingredients"]
+                                            ["coffee"])
+            if "milk" in MENU[user_input]["ingredients"]:
+                if resources["milk"] - (MENU[user_input]
+                                            ["ingredients"]
+                                            ["milk"]) >= 0:
+                    resources["milk"] -= (MENU[user_input]
+                                              ["ingredients"]
+                                              ["milk"])
+            print(resources)
+            continue
 #   a. Check the user's input to decide what to do next.
 #   b. The prompt should show every time action has completed, e.g. once the
 #       drink is dispensed. The prompt should show again to serve the next
