@@ -28,6 +28,7 @@ resources = {
     "water": 300,
     "milk": 200,
     "coffee": 100,
+    "money": 0
 }
 
 coffee_emoji = '☕'
@@ -35,12 +36,17 @@ play_game = True
 
 while play_game:
     while True:
-        drink_choice = input(
+        user_input = input(
             " What would you like? (espresso/latte/cappuccino): ").lower()
-        if drink_choice.lower() == 'off':
+        if user_input == 'off':
             play_game = False
             break
-        elif drink_choice not in MENU.keys():
+        elif user_input == 'report':
+            print(f"Water: {resources['water']}ml")
+            print(f"Milk: {resources['milk']}ml")
+            print(f"Coffee: {resources['coffee']}g")
+            print(f"Money: ${resources['money']}")
+        elif user_input not in MENU.keys():
             print("Sorry, that's not a valid choice. Try again.")
             continue
         else:
@@ -49,13 +55,6 @@ while play_game:
 #   b. The prompt should show every time action has completed, e.g. once the
 #       drink is dispensed. The prompt should show again to serve the next
 #       customer.
-# // TODO 3 - Print report.
-#   a. When the user enters "report" to the prompt, a report should be
-#       generated that shows the current resource values e.g.
-#       Water: 100ml
-#       Milk: 50ml
-#       Coffee: 76g
-#       Money: $2.5
 # // TODO 4 - Check resources sufficient?
 #   a. When the user chooses a drink, the program should check if there are
 #       enough resources to make that drink.
