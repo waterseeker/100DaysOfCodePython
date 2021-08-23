@@ -50,22 +50,36 @@ while play_game:
             print("Sorry, that's not a valid choice. Try again.")
             continue
         else:
+            enough_resources = {"water": True,
+                                "coffee": True,
+                                "milk": True}
             if resources["water"] - (MENU[user_input]
                                          ["ingredients"]
-                                         ["water"]) >= 0:
-                resources["water"] -= (MENU[user_input]
-                                           ["ingredients"]
-                                           ["water"])
+                                         ["water"]) < 0:
+                enough_resources["water"] = False
+                print("Sorry there is not enough water.")
+                break
             if resources["coffee"] - (MENU[user_input]
                                           ["ingredients"]
-                                          ["coffee"]) >= 0:
-                resources["coffee"] -= (MENU[user_input]
-                                            ["ingredients"]
-                                            ["coffee"])
+                                          ["coffee"]) < 0:
+                enough_resources["coffee"] = False
+                print("Sorry there is not enough coffee.")
+                break
             if "milk" in MENU[user_input]["ingredients"]:
                 if resources["milk"] - (MENU[user_input]
                                             ["ingredients"]
-                                            ["milk"]) >= 0:
+                                            ["milk"]) < 0:
+                    enough_resources["milk"] = False
+                    print("Sorry there is not enough milk.")
+                    break
+            if False not in enough_resources.values():
+                resources["water"] -= (MENU[user_input]
+                                           ["ingredients"]
+                                           ["water"])
+                resources["coffee"] -= (MENU[user_input]
+                                            ["ingredients"]
+                                            ["coffee"])
+                if "milk" in MENU[user_input]["ingredients"]:
                     resources["milk"] -= (MENU[user_input]
                                               ["ingredients"]
                                               ["milk"])
@@ -75,16 +89,6 @@ while play_game:
 #   b. The prompt should show every time action has completed, e.g. once the
 #       drink is dispensed. The prompt should show again to serve the next
 #       customer.
-# // TODO 4 - Check resources sufficient?
-#   a. When the user chooses a drink, the program should check if there are
-#       enough resources to make that drink.
-#   b. E.g. if Latte requires 200ml water but there is only 100ml left
-#       in the machine, it should not continue to make the drink but
-#       print "Sorry there is not enough water."
-#           1. This does not end the program.
-#           2. The prompt for picking a drink prints after the sorry message.
-#   c. The same should happen if another resource is depleted,
-#       e.g. milk or coffee.
 # // TODO 5 - Process coins.
 #   a. If there are sufficient resources to make the drink selected,
 #       then the program should prompt the user to insert coins.
