@@ -7,5 +7,5 @@ timmy.color("green")
 timmy.forward(100)
 
 my_screen = Screen()
-print(my_screen.canyheight)
+print(my_screen.canvheight)
 my_screen.exitonclick()
