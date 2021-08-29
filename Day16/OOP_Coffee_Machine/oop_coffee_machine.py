@@ -24,6 +24,7 @@ while play_game:
         else:
             enough_resources = coffee_machine.is_resource_sufficient(drink)
             if enough_resources is True:
+                # TODO use money_machine here
                 while True:
                     try:
                         number_of_quarters = int(input("how many quarters?: "))
