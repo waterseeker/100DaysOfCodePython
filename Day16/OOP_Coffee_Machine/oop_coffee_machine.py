@@ -25,39 +25,8 @@ while play_game:
             enough_resources = coffee_machine.is_resource_sufficient(drink)
             if enough_resources is True:
                 # TODO use money_machine here
-                while True:
-                    try:
-                        number_of_quarters = int(input("how many quarters?: "))
-                        break
-                    except ValueError:
-                        print("Sorry, you have to input a number.")
-                        continue
-                while True:
-                    try:
-                        number_of_dimes = int(input("how many dimes?: "))
-                        break
-                    except ValueError:
-                        print("Sorry, you have to input a number.")
-                        continue
-                while True:
-                    try:
-                        number_of_nickels = int(input("how many nickles?: "))
-                        break
-                    except ValueError:
-                        print("Sorry, you have to input a number.")
-                        continue
-                while True:
-                    try:
-                        number_of_pennies = int(input("how many pennies?: "))
-                        break
-                    except ValueError:
-                        print("Sorry, you have to input a number.")
-                        continue
-                drink_price = MENU[user_input]["cost"]
-                total_coins_input = (number_of_quarters * 0.25 +
-                                     number_of_dimes * 0.10 +
-                                     number_of_nickels * 0.05 +
-                                     number_of_pennies * 0.01)
+                total_coins_input = cashier.process_coins()
+                drink_price = drink.cost
                 if total_coins_input < drink_price:
                     print("Sorry that's not enough money. Money refunded.")
                     break
