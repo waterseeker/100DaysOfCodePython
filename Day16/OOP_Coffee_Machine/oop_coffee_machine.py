@@ -27,6 +27,11 @@ while play_game:
                 # TODO use money_machine here
                 total_coins_input = cashier.process_coins()
                 drink_price = drink.cost
+                sufficient_funds = cashier.make_payment(drink_price)
+                # if sufficient_funds:
+                #   use resources
+                #   give change if needed
+                #   print drink delivery message
                 if total_coins_input < drink_price:
                     print("Sorry that's not enough money. Money refunded.")
                     break
