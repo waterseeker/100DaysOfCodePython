@@ -17,9 +17,6 @@ while play_game:
             break
         elif user_input == 'report':
             coffee_machine.report()
-        elif drink is None:
-            print("Sorry, that's not a valid choice. Try again.")
-            continue
         else:
             drink = drink_menu.find_drink(user_input)
             enough_resources = coffee_machine.is_resource_sufficient(drink)
