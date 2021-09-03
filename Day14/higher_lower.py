@@ -5,12 +5,18 @@ from os import system
 
 score = 0
 data_length = len(data)
+
+
 def getData(data):
     """returns a random element from passed in list"""
     return choice(data)
+
+
 def clear_console():
     """Clears the console."""
     _ = system('clear')
+
+
 entry_A = getData(data)
 entry_B = getData(data)
 entry_A['choice'] = 'A'
@@ -28,7 +34,8 @@ while play_game:
         print(vs)
         print(f'Against B: {entry_B["name"]}, a {entry_B["description"]}, from {entry_B["country"]}.')
         most_followers = max(x['follower_count'] for x in choices)
-        answer = [x for x in choices if x['follower_count'] == most_followers][0]
+        answer = ([x for x in choices if x['follower_count']
+                  == most_followers][0])
         while True:
             user_choice = input("Who has more followers? Type 'A' or 'B': ").upper()
             if user_choice != 'A' and user_choice != 'B':
