@@ -1,12 +1,12 @@
-## Debug Odd or Even
+# Debug Odd or Even
 
 # Instructions
 
-# - Read this the code in main.py 
-# - Spot the problems 🐞. 
-# - Modify the code to fix the program. 
+# - Read this the code in main.py
+# - Spot the problems 🐞.
+# - Modify the code to fix the program.
 
-# Fix the code so that it works and passes the tests when you submit. 
+# Fix the code so that it works and passes the tests when you submit.
 
 # number = int(input("Which number do you want to check?"))
 
@@ -25,6 +25,6 @@
 number = int(input("Which number do you want to check?"))
 
 if number % 2 == 0:
-  print("This is an even number.")
+    print("This is an even number.")
 else:
-  print("This is an odd number.")
+    print("This is an odd number.")
