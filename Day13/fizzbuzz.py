@@ -18,7 +18,8 @@
 # > `When the number is divisible by 5, then instead of printing the number
 #        it should print "Buzz".`
 
-# >       `And if the number is divisible by both 3 and 5 e.g. 15 then instead of the number it should print "FizzBuzz"`
+# >       `And if the number is divisible by both 3 and 5 e.g. 15 then instead
+#              of the number it should print "FizzBuzz"`
 
 # # Hint
 
@@ -35,11 +36,12 @@
 #     print([number])
 
 # # Describe the bug.
-# #1. For 3, the program is returning 'FizzBuzzz' and it should be returning 'Fizz'
+# #1. For 3, the program is returning 'FizzBuzzz' and it should be returning
+#         'Fizz'
 #   This is because the OR statement should be an AND statement.
 #   Also, the program is printing out the numbers like this '[2]'.
-#   This is because of the print statement being passed [number] instead of just
-#       number.
+#   This is because of the print statement being passed [number] instead of
+#       just number.
 # # Reproduce the bug.
 # x = 3
 # if x % 3 == 0 or x % 5 == 0:
