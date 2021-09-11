@@ -13,14 +13,15 @@ dealer_hand = []
 dealer_busts = False
 dealer_score = 0
 
+
 def get_score(hand_array):
     """Takes in a hand array of cards and returns the sum.
         Changes the values of aces from 1 to 11 for best score.'"""
     # No matter the number of aces in a hand, only 1 could ever be worth 11
     # since 2 worth 11 would be an automatic bust (11 + 11 = 22)
     # finds the number of aces in the hand and calculates the score with one of
-    # them being an 11 as long as that doesn't cause a bust, else they're all worth
-    # 1 point each.
+    # them being an 11 as long as that doesn't cause a bust, else they're all
+    # worth 1 point each.
     number_of_aces = Counter(hand_array)[11]
     non_ace_total = sum(card for card in hand_array if card != 11)
     ace_value = 0
@@ -40,12 +41,16 @@ def get_score(hand_array):
                     hand_array[index] = 1
     hand_total = non_ace_total + ace_value
     return hand_total
+
+
 def is_blackjack(hand_array):
     """Returns True if there is blackjack in the hand_array."""
     if len(hand_array) == 2 and sum(hand_array) == 21:
         return True
+
+
 def play_again():
-    """Asks the player if they would like to play again. 
+    """Asks the player if they would like to play again.
     Clears the console and restarts game loop if so. """
     start_again = input("Do you want to play again? 'y' or 'n': ")
     if start_again == 'y':
@@ -53,22 +58,30 @@ def play_again():
         return True
     else:
         return False
+
+
 def clear_console():
     """Clears the console."""
     _ = system('clear')
+
+
 def draw_card(hand_array):
-    """takes in a hand array of cards. 
-    adds a random card from the cards array to the hand that is passed into the function"""
+    """takes in a hand array of cards.
+    adds a random card from the cards array to the hand that is passed into
+    the function"""
     hand_array.append(random.choice(cards))
+
+
 def player_turn():
-    """Asks the player if they want to draw a card. 
+    """Asks the player if they want to draw a card.
     If so, adds a random card from the cards array to the player's hand.
     Repeats until either the player busts or stands."""
     global player_stands
     global player_score
     global player_hand
     global player_busts
-    draw = input(f"You have {player_score}. Would you like to draw a card? 'y' or 'n': ")
+    draw = input(f"You have {player_score}. Would you like to draw a card? \
+                 'y' or 'n': ")
     if draw == 'y':
         draw_card(player_hand)
         print(f'Your cards: {player_hand}')
@@ -86,9 +99,12 @@ def player_turn():
     else:
         player_stands = True
         print(f"You stand with {player_score}.")
+
+
 def dealer_turn():
-    """Determines whether or not the dealer is going to draw. 
-    Draws a card and adds it to the dealer's hand until the dealer stands or busts."""
+    """Determines whether or not the dealer is going to draw.
+    Draws a card and adds it to the dealer's hand until the dealer stands or
+    busts."""
     global dealer_stands
     global dealer_score
     global dealer_hand
@@ -108,6 +124,8 @@ def dealer_turn():
         print(f"The dealer stands with {dealer_score}.")
         dealer_stands = True
         return
+
+
 def game_result():
     """Displays the results of the game in the case of no bust."""
     global player_score
@@ -117,9 +135,13 @@ def game_result():
     elif dealer_score > player_score:
         print(f"The dealer wins with a score of {dealer_score}.")
     else:
-        print(f"It's a tie with you and the dealer both having {player_score}.")
+        print(f"It's a tie with you and the dealer both having \
+              {player_score}.")
+
+
 # prompt player to see if they want to play
-start_game = input("Do you want to play a game of Blackjack? Type 'y' or 'n': ")
+start_game = input("Do you want to play a game of Blackjack? Type 'y' or \
+                   'n': ")
 if start_game == 'y':
     play_game = True
 else:
@@ -136,7 +158,8 @@ while play_game:
     clear_console()
     print(logo)
 
-    # print initial hands, show both cards from player and only the first one from the dealer
+    # print initial hands, show both cards from player and only the first one
+    #     from the dealer
     player_hand = [random.choice(cards), random.choice(cards)]
     player_score = get_score(player_hand)
     dealer_hand = [random.choice(cards), random.choice(cards)]
@@ -174,7 +197,7 @@ while play_game:
     # player draws until they either stand or bust
     player_turn()
     #   if player bust, print results and prompt player to play again
-    if player_busts == True:
+    if player_busts:
         start_new_game = play_again()
         if start_new_game:
             continue
@@ -185,7 +208,7 @@ while play_game:
     else:
         dealer_turn()
     #   if dealer busts, print results and prompt player to play again
-    if dealer_busts == True:
+    if dealer_busts:
         start_new_game = play_again()
         if start_new_game:
             continue
