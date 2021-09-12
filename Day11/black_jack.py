@@ -1,3 +1,5 @@
+#Wayne went to the ER today 9/12/21
+
 from art import logo
 import random
 from collections import Counter
