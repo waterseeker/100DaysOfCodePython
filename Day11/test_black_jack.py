@@ -1,6 +1,8 @@
 from collections import Counter
 
 cards = [11, 11, 11, 11, 11, 11]
+
+
 def get_score(hand_array):
     # is it blackjack?
     if len(hand_array) == 2:
@@ -15,5 +17,6 @@ def get_score(hand_array):
             ace_value = number_of_aces
     hand_total = non_ace_total + ace_value
     return hand_total
+
 
 print(get_score(cards))
