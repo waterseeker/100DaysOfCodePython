@@ -1,28 +1,34 @@
-#Calculator
+# Calculator
 from art import logo
 
-#Add
+
+# Add
 def add(n1, n2):
     return n1 + n2
 
-#Subtract
+
+# Subtract
 def subtract(n1, n2):
     return n1 - n2
 
-#Multiply
+
+# Multiply
 def multiply(n1, n2):
     return n1 * n2
-    
-#Divide
+
+
+# Divide
 def divide(n1, n2):
     return n1 / n2
-    
+
+
 operations = {
     '+': add,
     '-': subtract,
     '*': multiply,
     '/': divide,
 }
+
 
 def calculator():
     print(logo)
@@ -40,11 +46,13 @@ def calculator():
         answer = math_function(num1, num2)
         print(f"{num1} {operation_symbol} {num2} = {answer}")
 
-        if input(f'Type "y" to continue calculating with {answer} or type "n" to start a new calculation.: ') == 'y':
+        if input(f'Type "y" to continue calculating with {answer} or type "n" \
+                 to start a new calculation.: ') == 'y':
             num1 = answer
             continue
         else:
             should_continue = False
             calculator()
+
 
 calculator()
