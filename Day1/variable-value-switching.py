@@ -1,4 +1,4 @@
-# Write a program that switches the values stored in the variables a and b. 
+# Write a program that switches the values stored in the variables a and b.
 
 # 🚨 Don't change the code below 👇
 a = input("a: ")
