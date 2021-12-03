@@ -1,0 +1,3 @@
+Using the logic flowchart in height-check.png, code a program that asks the
+user's height and then tells them whether they can ride the rollercoaster or not
+based on their height. 

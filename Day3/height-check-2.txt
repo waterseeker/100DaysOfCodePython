@@ -1,0 +1,2 @@
+Continuing from height-check-1, add logic checking the user's age if they meet
+the minimum height requirement. The additional logic is in height-check-2.png

@@ -1,0 +1,2 @@
+Continuing from height-check-2, add logic according to the chart in
+height-check-3.png
