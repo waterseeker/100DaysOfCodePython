@@ -5,16 +5,16 @@ name2 = input("What is their name? \n")
 # 🚨 Don't change the code above 👆
 
 # Write your code below this line 👇
-name1 = name1.lower()
-name2 = name2.lower()
-t_occurs = name1.count("t") + name2.count("t")
-r_occurs = name1.count("r") + name2.count("r")
-u_occurs = name1.count("u") + name2.count("u")
-e_occurs = name1.count("e") + name2.count("e")
+combined_names = name1 + name2
+lowercase_names = combined_names.lower()
+t_occurs = lowercase_names.count("t")
+r_occurs = lowercase_names.count("r")
+u_occurs = lowercase_names.count("u")
+e_occurs = lowercase_names.count("e")
 first_digit = t_occurs + r_occurs + u_occurs + e_occurs
-l_occurs = name1.count("l") + name2.count("l")
-o_occurs = name1.count("o") + name2.count("o")
-v_occurs = name1.count("v") + name2.count("v")
+l_occurs = lowercase_names.count("l")
+o_occurs = lowercase_names.count("o")
+v_occurs = lowercase_names.count("v")
 second_digit = l_occurs + o_occurs + v_occurs + e_occurs
 love_score = first_digit * 10 + second_digit
 
