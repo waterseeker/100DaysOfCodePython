@@ -27,20 +27,22 @@ print("Your mission is to find the treasure.")
 
 # Write your code below this line 👇
 
+
 # Game stage functions
 def first_path_choice(playing_game):
     '''Controls the first decision in the adventure.'''
 
     print("You are on a tiny beach that is surrounded by ridiculously high, un\
-        scalable cliffs. After looking around for a while, you notice a large \
-        crack at the base of one of the cliffs. You manage to wriggle your way\
-        through. Once on the other side, you are surrounded by a lush jungle. \
-        There is a path. You can venture left or right.")
+scalable cliffs. After looking around for a while, you notice a large crack at\
+the base of one of the cliffs. You manage to wriggle your way through. Once on\
+the other side, you are surrounded by a lush jungle. There is a path. You can \
+venture left or right.")
     choice = input("Which way do you want to go? Left or right? ")
     cleaned_choice = choice.lower().strip()
     while True:
         if cleaned_choice != "left" and cleaned_choice != "right":
-            print("Sorry, that's not a valid choice. Please choose left or right.")
+            print("Sorry, that's not a valid choice. Please choose left or \
+        right.")
             choice = input("Would you like to go left, or right? ")
             cleaned_choice = choice.lower().strip()
             continue
@@ -49,23 +51,25 @@ def first_path_choice(playing_game):
             playing_game = True
             return playing_game
         elif cleaned_choice == "right":
-            print("You trip on a vine, stumble, and fall into a pit. Turns out to \
-                be filled with poisonous snakes. So there's that.")
+            print("You trip on a vine, stumble, and fall into a pit. Turns out\
+             to be filled with poisonous snakes. So there's that.")
             playing_game = False
             return playing_game
+
 
 def second_path_choice(playing_game):
     '''Controls the second decision in the adventure.'''
     if not playing_game:
         return
-    print("After following the left path for a while you arrive at a wide rive\
-            r. You can try to cross the river now, or make camp for the aftern\
-            oon and try after a nap.")
+    print("After following the left path for a while you arrive at a wide \
+river. You can try to cross the river now, or make camp for the afternoon and \
+try after a nap.")
     choice = input("Wait or cross? ")
     cleaned_choice = choice.lower().strip()
     while True:
         if cleaned_choice != "wait" and cleaned_choice != "cross":
-            print(f"Huh? What is {cleaned_choice}? Please choose cross or wait.")
+            print(f"Huh? What is {cleaned_choice}? Please choose cross or \
+        wait.")
             choice = input("Would you like to go cross or wait? ")
             cleaned_choice = choice.lower().strip()
             continue
@@ -82,6 +86,7 @@ def second_path_choice(playing_game):
                     vicious river trout! Who would have guessed?")
             playing_game = False
             return playing_game
+
 
 # Gameplay
 playing_game = True

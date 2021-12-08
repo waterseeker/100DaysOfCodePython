@@ -1,7 +1,8 @@
 print("welcome to the game.")
 wants_to_play_is_valid = False
 while not wants_to_play_is_valid:
-    wants_to_play = input("would you like to play? Please enter yes or no. ").lower()
+    wants_to_play = (input("would you like to play? Please enter yes or no. ")
+                     .lower())
     if wants_to_play != "yes" and wants_to_play != "no":
         print("invalid. please choose yes or no.")
         continue
