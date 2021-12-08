@@ -15,7 +15,7 @@ while not wants_to_play_is_valid:
         while playing_game:
             first_choice_is_valid = False
             while not first_choice_is_valid:
-                first_choice = input("l or r?")
+                first_choice = input("l or r? ")
                 if first_choice != "l" and first_choice != "r":
                     print("invalid, choose l or r.")
                     continue

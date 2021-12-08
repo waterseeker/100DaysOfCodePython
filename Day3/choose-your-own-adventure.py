@@ -26,14 +26,19 @@ print("Your mission is to find the treasure.")
 # https://www.draw.io/?lightbox=1&highlight=0000ff&edit=_blank&layers=1&nav=1&title=Treasure%20Island%20Conditional.drawio#Uhttps%3A%2F%2Fdrive.google.com%2Fuc%3Fid%3D1oDe4ehjWZipYRsVfeAx2HyB7LCQ8_Fvi%26export%3Ddownload
 
 # Write your code below this line 👇
-playing_game = True
-while playing_game:
-    first_choice_is_valid = False
+
+# Decision functions
+def left_or_right(playing_game):
+    '''Controls the first decision in the adventure.'''
     print("You are on a tiny beach that is surrounded by ridiculously high, un\
         scalable cliffs. After looking around for a while, you notice a large \
         crack at the base of one of the cliffs. You manage to wriggle your way\
         through. Once on the other side, you are surrounded by a lush jungle. \
         There is a path. You can venture left or right.")
+playing_game = True
+while playing_game:
+    first_choice_is_valid = False
+
     first_choice = input("Which way do you want to go? Left or right? ")
     cleaned_first_choice = first_choice.lower()
     if cleaned_first_choice is not "left" and cleaned_first_choice is not "right":
