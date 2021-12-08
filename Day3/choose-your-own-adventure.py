@@ -28,24 +28,21 @@ print("Your mission is to find the treasure.")
 # Write your code below this line 👇
 playing_game = True
 while playing_game:
+    first_choice_is_valid = False
     print("You are on a tiny beach that is surrounded by ridiculously high, un\
         scalable cliffs. After looking around for a while, you notice a large \
         crack at the base of one of the cliffs. You manage to wriggle your way\
         through. Once on the other side, you are surrounded by a lush jungle. \
         There is a path. You can venture left or right.")
-    first_choice_is_valid = False
-    while not first_choice_is_valid:
-        first_choice = input("Which way do you want to go? Left or right? ")
-        cleaned_first_choice = first_choice.lower()
-        if (cleaned_first_choice == "left" or 
-                cleaned_first_choice == "right"):
-            first_choice_is_valid = True
-            break
+    first_choice = input("Which way do you want to go? Left or right? ")
+    cleaned_first_choice = first_choice.lower()
+    if cleaned_first_choice is not "left" and cleaned_first_choice is not "right":
         print("Sorry, that's not a valid choice. Please choose left or right.")
-        continue
+
     if cleaned_first_choice == "left":
         print("You come to a small river. ")
     elif cleaned_first_choice == "right":
         print("You trip on a vine, stumble, and fall into a pit. Turns out to \
             be filled with poisonous snakes. So there's that. GAME OVER.")
         break
+print("GAME OVER")
