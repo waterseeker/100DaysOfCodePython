@@ -6,6 +6,7 @@ print(student_scores)
 # 🚨 Don't change the code above 👆
 
 # Write your code below this row 👇
+# don't use the max() function
 highest_score = 0
 for score in student_scores:
     if int(score) > highest_score:
