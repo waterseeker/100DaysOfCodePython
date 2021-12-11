@@ -29,19 +29,24 @@ scissors = '''
 
 # Write your code below this line 👇
 possible_choices = ["rock", "paper", "scissors"]
+choice_pictures = [rock, paper, scissors]
 possible_numerical_inputs = [0, 1, 2]
 print("Welcome to Rock, Paper, Scissors!")
 choice_is_valid = True
 while True:
-    player_choice = int(input("What do you choose? Type 0 for Rock, 1 for \
-Paper or 2 for Scissors. "))
+    try:
+        player_choice = int(input("What do you choose? Type 0 for Rock, 1 for \
+Paper or 2 for Scissors.\n"))
+    except ValueError:
+        print("Sorry, that's not a valid move.")
+        continue
     if player_choice not in possible_numerical_inputs:
         choice_is_valid = False
     else:
         choice_is_valid = True
     while choice_is_valid is False:
         player_choice = input(f"Sorry, {player_choice} is not a valid move. \
-Please type 0 for Rock, 1 for Paper or 2 for Scissors. ")
+Please type 0 for Rock, 1 for Paper or 2 for Scissors.\n")
         continue
     computer_choice = random.choice(possible_numerical_inputs)
     if player_choice == computer_choice:
@@ -54,5 +59,5 @@ Please type 0 for Rock, 1 for Paper or 2 for Scissors. ")
     elif player_choice == 2 and computer_choice == 0:
         print(f"{scissors} vs. {rock}\n You lose!")
     else:
-        print(f"{possible_choices[player_choice]} vs. \
-{possible_choices[computer_choice]}\n You win!")
+        print(f"{choice_pictures[player_choice]} vs. \
+{choice_pictures[computer_choice]}\nYou win!")
