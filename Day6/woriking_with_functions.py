@@ -30,3 +30,17 @@ my_function()
 #         move()
 #     else:
 #         jump_hurdle()
+
+# reeborg's world maze challenge
+# def turn_right():
+#     turn_left()
+#     turn_left()
+#     turn_left()
+
+# while not at_goal():
+#     if front_is_clear():
+#         move()
+#     elif not wall_on_right():
+#         turn_right()
+#     else:
+#         turn_left()
