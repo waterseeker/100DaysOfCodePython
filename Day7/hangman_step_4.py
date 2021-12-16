@@ -104,5 +104,3 @@ while True:
     if "_" not in display:
         print("You win!")
         break
-
-

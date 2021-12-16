@@ -1,11 +1,15 @@
 # Step 4
 
 import random
+import hangman_art
+import hangman_words
 # TODO-1: - Update the word list to use the 'word_list' from hangman_words.py
-chosen_word = random.choice(word_list)
+chosen_word = hangman_words.word_list
 lives = 6
 # TODO-3: - Import the logo from hangman_art.py and print it at the start of
 # the game.
+logo = hangman_art.logo
+print(logo)
 # Testing code
 print(f'Pssst, the solution is {chosen_word}.')
 
@@ -17,7 +21,9 @@ while True:
     if guess not in chosen_word:
         # TODO-5: - If the letter is not in the chosen_word, print out the
         # letter and let them know it's not in the word.
+        print(f"Sorry, {guess} is not in the word. You lose a life.")
         lives -= 1
+        print(f"You have {lives} lives remaning.")
         if lives == 0:
             print(display)
             print(hangman_art.stages[lives])
