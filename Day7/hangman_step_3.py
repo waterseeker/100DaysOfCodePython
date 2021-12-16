@@ -13,15 +13,20 @@ display = ['_' for x in chosen_word]
 # only stop once the user has guessed all the letters in the chosen_word and
 # 'display' has no more blanks ("_"). Then you can tell the user they've won.
 
-guess = input("Guess a letter: ").lower()
+while True:
+    guess = input("Guess a letter: ").lower()
 
-# Check guessed letter
-index = 0
-for letter in chosen_word:
-    if letter == guess:
-        display[index] = guess
-        index += 1
-    else:
-        index += 1
+    # Check guessed letter
+    index = 0
+    for letter in chosen_word:
+        if letter == guess:
+            display[index] = guess
+            index += 1
+        else:
+            index += 1
 
-print(display)
+    print(display)
+
+    if "_" not in display:
+        print("You win!")
+        break
