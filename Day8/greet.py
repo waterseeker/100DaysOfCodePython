@@ -30,3 +30,7 @@ def greet_with(name, location):
 
 
 greet_with("Smitty", "Somewhere")
+
+
+# Call greet_with using keyword arguments instead of positional arguments.
+greet_with(location="Somewhere", name="Smitty")
