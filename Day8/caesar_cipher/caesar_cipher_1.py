@@ -6,18 +6,18 @@ text = input("Type your message:\n").lower()
 shift = int(input("Type the shift number:\n"))
 
 
-def encrypt(text, shift):
-    list_of_characters = list(text)
+def encrypt(plain_text, shift_amount):
+    list_of_characters = list(plain_text)
     counter = 0
     for character in list_of_characters:
         if character.isalpha():
             original_index = alphabet.index(character)
-            new_index = original_index + shift
+            new_index = original_index + shift_amount
             if new_index > 25:
                 new_index = new_index % 25
             list_of_characters[counter] = alphabet[new_index]
         counter += 1
-    print(''.join(list_of_characters))
+    print(f"The encrypted text is {''.join(list_of_characters)}")
 
 
 encrypt(text, shift)
