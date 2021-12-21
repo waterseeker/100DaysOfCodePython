@@ -2,22 +2,19 @@ import os
 from art import logo
 
 
-def clear():
-    lambda: os.system("clear")
-
-
 def next_bidder(is_bidding):
     run_again = input("Is there another bidder?\n").lower()
     while is_bidding:
         if run_again == "yes":
-            clear()
+            os.system('clear')
             return
         elif run_again == "no":
-            is_bidding = False
-            return
+            global bidding
+            bidding = False
+            break
         else:
             print(f"Sorry, I don't understand {run_again}. You have to choose \
-    yes or no.")
+yes or no.")
             next_bidder(is_bidding)
 
 
@@ -35,4 +32,4 @@ for user in bids:
     if bids[user] > highest_bid:
         highest_bid = bids[user]
         highest_bidder = user
-print(highest_bid, highest_bidder)
+print(f"The winner is {highest_bidder} with a bid of ${highest_bid}")
