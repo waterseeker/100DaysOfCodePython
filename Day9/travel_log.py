@@ -16,8 +16,8 @@ travel_log = [
 # to be added to the travel_log. 👇
 
 
-def add_new_country(country, times_visited, cities_visited):
-    travel_log.append({"country": country,
+def add_new_country(country_visited, times_visited, cities_visited):
+    travel_log.append({"country": country_visited,
                        "visits": times_visited,
                        "cities": cities_visited})
 
