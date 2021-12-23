@@ -4,7 +4,7 @@ from art import logo
 
 def bidding():
     user_name = input("What is your name?\n")
-    user_bid = int(input("What is your bid?\n"))
+    user_bid = int(input("What is your bid?\n$"))
     bids[user_name] = user_bid
     while True:
         run_again = input("Is there another bidder?\n").lower()
