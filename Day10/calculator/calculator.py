@@ -11,7 +11,15 @@
 # calculation:
 
 # get first number input
-# check that it's a number
+first_number = float(input("What's the first number?\n"))
+# check that it's a number (make this a function)
+try:
+    if float(i).is_integer():
+        print("integer")
+    else:
+        print("float")
+except ValueError:
+    print("not integer or float")
 #   if not, error message
 #   if so, continue
 # get the operator
