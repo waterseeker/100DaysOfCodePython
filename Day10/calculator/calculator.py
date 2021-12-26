@@ -45,8 +45,8 @@ def get_operator(user_input):
     if input_length == 1:
         # Operator is:
         #  +, -, *, or /
-        re_operator = re.compile(r"(+-*/)")
-        if re_operator.match(user_input):
+        operator_found = re.search("[-+*\/]", user_input)
+        if operator_found:
             print("Match")
         else:
             print("No Match")
