@@ -26,11 +26,11 @@ def get_number(user_input):
     #  - The dot must always be followed number numbers
     re_float = re.compile(r"(^\d+\.\d+$|^\.\d+$)")
     if re_int.match(user_input):
-        first_number = int(user_input)
-        return first_number
+        input_number = int(user_input)
+        return input_number
     elif re_float.match(user_input):
-        first_number = float(user_input)
-        return first_number
+        input_number = float(user_input)
+        return input_number
     else:
         print("Sorry, that's not a number. Try again.")
         user_input = input("What's the first number?\n")
@@ -47,9 +47,7 @@ def get_operator(user_input):
         #  +, -, *, or /
         operator_found = re.search("[-+*\/]", user_input)
         if operator_found:
-            print("Match")
-        else:
-            print("No Match")
+            return user_input
     else:
         print("Sorry, that's not a valid operator. Please choose +, -, *, or \
 /")
@@ -57,25 +55,28 @@ def get_operator(user_input):
         get_operator(user_input)
 
 
-user_input = input("Pick an operation.\n")
-get_operator(user_input)
+def process_equation(first_number, operator, second_number):
+    """Returns an equation with solution."""
+    if operator == "+":
+        solution = (first_number + second_number)
+    elif operator == "-":
+        solution = (first_number - second_number)
+    if operator == "*":
+        solution = (first_number * second_number)
+    if operator == "/":
+        solution = (first_number / second_number)
+    return f"{str(first_number)} {operator} {str(second_number)} = {str(solution)}"
 
-# if len(x) == 1 and get_operator(x):
-#     print("Yep")
-# else:
-#     print("nah")
 
-# user_input = input("What's the first number?\n")
-# first_number = get_number(user_input)
-# get the operator (make this a function)
-# check operator is valid
-#   if not, error message
-#   if so, continue
-# get second number
-# check second number is valid
-#   if not, error message
-#   if so, continue
-# print out equation with the answer
+first_number_input = input("What's the first number?\n")
+first_number = get_number(first_number_input)
+operator_input = input("Pick an operation.\n")
+operator = get_operator(operator_input)
+second_number_input = input("What's the second number?\n")
+second_number = get_number(second_number_input)
+print(process_equation(first_number, operator, second_number))
+input("Type 'y' to continue calculating with 15.0, or type 'n' to start a new\
+ calculation:")
 # get input to continue with answer or not
 #   if not, exit program
 #   if so, return to selecting operation and continue from there
