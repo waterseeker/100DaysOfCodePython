@@ -56,7 +56,7 @@ def get_operator(user_input):
 
 
 def process_equation(first_number, operator, second_number):
-    """Returns an equation with solution."""
+    """Returns a solution."""
     if operator == "+":
         solution = (first_number + second_number)
     elif operator == "-":
@@ -93,15 +93,13 @@ def run_again(first_number):
             continue
 
 
-first_number_input = input("What's the first number?\n")
-first_number = get_number(first_number_input)
-operator_input = input("Pick an operation.\n")
-operator = get_operator(operator_input)
-second_number_input = input("What's the second number?\n")
-second_number = get_number(second_number_input)
-solution = process_equation(first_number, operator, second_number)
-print(f"{str(first_number)} {operator} {str(second_number)} = {str(solution)}")
-run_again(solution)
-# get input to continue with answer or not
-#   if not, exit program
-#   if so, return to selecting operation and continue from there
+while True:
+    first_number_input = input("What's the first number?\n")
+    first_number = get_number(first_number_input)
+    operator_input = input("Pick an operation.\n")
+    operator = get_operator(operator_input)
+    second_number_input = input("What's the second number?\n")
+    second_number = get_number(second_number_input)
+    solution = process_equation(first_number, operator, second_number)
+    print(f"{str(first_number)} {operator} {str(second_number)} = {str(solution)}")
+    run_again(solution)
