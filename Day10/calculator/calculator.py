@@ -65,7 +65,32 @@ def process_equation(first_number, operator, second_number):
         solution = (first_number * second_number)
     if operator == "/":
         solution = (first_number / second_number)
-    return f"{str(first_number)} {operator} {str(second_number)} = {str(solution)}"
+    return solution
+
+
+def run_again(first_number):
+    """Takes in a number, gets operator and second number, runs equation and
+       prints out the solution.
+    """
+    while True:
+        user_input = input(f"Type 'y' to continue calculating with \
+{first_number}, or type 'n' to start a new calculation.\n")
+        if user_input == "y":
+            operator_input = input("Pick an operation.\n")
+            operator = get_operator(operator_input)
+            second_number_input = input("What's the second number?\n")
+            second_number = get_number(second_number_input)
+            solution = process_equation(first_number, operator, second_number)
+            print(f"{str(first_number)} {operator} {str(second_number)} = \
+    {str(solution)}")
+            return run_again(solution)
+        elif user_input == "n":
+            first_number_input = input("What's the first number?\n")
+            first_number = get_number(first_number_input)
+            return run_again(first_number)
+        else:
+            print("Sorry, I don't know what that means. Please choose y or n.")
+            continue
 
 
 first_number_input = input("What's the first number?\n")
@@ -74,9 +99,9 @@ operator_input = input("Pick an operation.\n")
 operator = get_operator(operator_input)
 second_number_input = input("What's the second number?\n")
 second_number = get_number(second_number_input)
-print(process_equation(first_number, operator, second_number))
-input("Type 'y' to continue calculating with 15.0, or type 'n' to start a new\
- calculation:")
+solution = process_equation(first_number, operator, second_number)
+print(f"{str(first_number)} {operator} {str(second_number)} = {str(solution)}")
+run_again(solution)
 # get input to continue with answer or not
 #   if not, exit program
 #   if so, return to selecting operation and continue from there
