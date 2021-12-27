@@ -45,7 +45,7 @@ Paper or 2 for Scissors.\n"))
     else:
         choice_is_valid = True
     while choice_is_valid is False:
-        player_choice = input(f"Sorry, {player_choice} is not a valid move. \
+        player_choice = input(f"Sorry, that's is not a valid move. \
 Please type 0 for Rock, 1 for Paper or 2 for Scissors.\n")
         continue
     computer_choice = random.choice(possible_numerical_inputs)
