@@ -68,8 +68,7 @@ try after a nap.")
     cleaned_choice = choice.lower().strip()
     while True:
         if cleaned_choice != "wait" and cleaned_choice != "cross":
-            print(f"Huh? What is {cleaned_choice}? Please choose cross or \
-        wait.")
+            print(f"Huh? Please choose cross or wait.")
             choice = input("Would you like to go cross or wait? ")
             cleaned_choice = choice.lower().strip()
             continue
