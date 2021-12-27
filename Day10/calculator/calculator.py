@@ -101,5 +101,6 @@ while True:
     second_number_input = input("What's the second number?\n")
     second_number = get_number(second_number_input)
     solution = process_equation(first_number, operator, second_number)
-    print(f"{str(first_number)} {operator} {str(second_number)} = {str(solution)}")
+    print(f"{str(first_number)} {operator} {str(second_number)} = \
+{str(solution)}")
     run_again(solution)
