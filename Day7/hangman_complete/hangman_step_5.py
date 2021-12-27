@@ -23,14 +23,14 @@ while True:
     # If the user has entered a letter they've already guessed, print the
     # letter and let them know.
     if guess in guesses:
-        print(f"You've already guessed {guess}. Try again.")
+        print(f"You've already guessed that letter. Try again.")
         continue
     elif guess not in guesses:
         guesses.append(guess)
     if guess not in chosen_word:
         # If the letter is not in the chosen_word, print out the letter and
         # let them know it's not in the word.
-        print(f"Sorry, {guess} is not in the word. You lose a life.")
+        print(f"Sorry, that letter is not in the word. You lose a life.")
         lives -= 1
         print(f"You have {lives} lives remaning.")
         if lives == 0:
