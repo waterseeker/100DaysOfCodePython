@@ -11,6 +11,6 @@ guess = input("Please choose a letter:\n").lower()
 # TODO-3 - Check if the letter the user guessed (guess) is one of the
 # letters in the chosen_word.
 if guess in random_word:
-    print(f"{guess} is in {random_word}.")
+    print(f"That letter is in {random_word}.")
 else:
-    print(f"{guess} is not in {random_word}.")
+    print(f"That letter is not in {random_word}.")

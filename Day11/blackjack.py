@@ -10,3 +10,24 @@
 # The cards in the list have equal probability of being drawn.
 # Cards are not removed from the deck as they are drawn.
 # The computer is the dealer.
+from art import logo
+
+
+def start_game():
+    """Returns True if player enters y, False if n, and calls itself if the
+       input is neither."""
+    play_game = input("Do you want to play a game of blackjack?\n")
+    if play_game == 'y':
+        return True
+    elif play_game == 'n':
+        return False
+    else:
+        print("Sorry, I don't know what that means. Please choose 'y' or 'n'.")
+        start_game()
+
+
+play_game = start_game()
+while play_game:
+    print(logo)
+    # setting play_game to False to break the loop
+    play_game = False
