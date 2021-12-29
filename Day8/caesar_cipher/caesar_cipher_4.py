@@ -36,6 +36,6 @@ decrypt:\n")
     elif run_again == "no":
         run_program_again = False
     else:
-        print(f"Sorry, I don't understand {run_again}. \
-You have to enter either yes or no.")
+        print(f"Sorry, I don't understand. You have to enter either yes or \
+no.")
         continue

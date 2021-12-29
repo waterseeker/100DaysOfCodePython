@@ -31,4 +31,4 @@ if direction == 'encode':
 elif direction == 'decode':
     decrypt(cipher_text=text, shift_amount=shift)
 else:
-    print(f"Sorry, I don't know what {direction} is.")
+    print(f"Sorry, I don't know what that means.")
