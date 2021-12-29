@@ -66,6 +66,9 @@ def show_hands():
     print(f"Computer's first card: {dealers_hand[0]}")
 
 
+def show_final_hands():
+    
+
 play_game = start_game()
 while play_game:
     print(logo)
@@ -75,6 +78,14 @@ while play_game:
     draw_card(players_hand)
     show_hands()
     if score_hand(dealers_hand) == 21 and score_hand(players_hand) != 21:
-        print("Dealer has blackjack!\n You lose :(")
+        show_final_hands()
+        print("You lose. The dealer has Blackjack 😱")
+        continue
+    if score_hand(dealers_hand) == 21 and score_hand(players_hand) == 21:
+        show_final_hands()
+        print("It's a draw. You both have Blackjack 😱")
+        continue
+    else:
+        play_round()
     # setting play_game to False to break the loop
     play_game = False
