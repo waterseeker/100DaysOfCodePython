@@ -16,6 +16,10 @@ import random
 cards = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
 players_hand = []
 dealers_hand = []
+player_busts = False
+dealer_busts = False
+player_stands = False
+dealer_stands = False
 
 
 def start_game():
@@ -35,15 +39,28 @@ def draw_card(hand):
     """Adds 1 card to the hand."""
     hand.append(random.choice(cards))
 
+# You've most likely got a method that evaluates a blackjack hand value.
+# Always value aces at one point. If a hand contains an ace, compute a hard
+# value (all aces are ones, +10) and a soft value (all aces ones).
 
-def show_player_hand():
-    """Prints out the player's hand."""
-    print(f"Your cards: {players_hand}, current score: {sum(players_hand)}")
+# If the hard value is not a bust, return the hard value. If the hard value is
+# a bust, return the soft value.
 
 
-def show_dealer_hand():
-    """Prints out the dealer's hand. Keeps the second card hidden unless it's
-       the end of the game."""
+def evaluate_hand(hand):
+    """Takes in a hand array and returns the sum, 'blackjack' if it's blackjack
+       and 'bust' if it's a bust."""
+    # all aces are ones, +10
+    value_with_ace_as_11 = sum(hand)
+    # all aces are ones
+    value_with_ace_as_1 = sum(hand)
+    return value_with_11
+
+
+def show_hands():
+    """Prints out the player's hand and the first card of the dealer's hand."""
+    print(f"Your cards: {players_hand}, current score: \
+{evaluate_hand(players_hand)}")
     print(f"Computer's first card: {dealers_hand[0]}")
 
 
