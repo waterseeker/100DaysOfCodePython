@@ -50,12 +50,14 @@ def score_hand(hand):
     if 11 in hand:
         score_with_ace_as_11 = sum([card if card != 11 else 1
                                     for card in hand]) + 10
-    else:
-        score_with_ace_as_11 = 0
     # all aces are ones
     score_with_ace_as_1 = sum([card if card != 11 else 1 for card in hand])
     scores = [score_with_ace_as_11, score_with_ace_as_1]
-    if score_with_ace_as_11 > 21 and score_with_ace_as_1 > 21:
+    if score_with_ace_as_11 < 21 and score_with_ace_as_1 > 21:
+        return score_with_ace_as_11
+    elif score_with_ace_as_11 > 21 and score_with_ace_as_1 < 21:
+        return score_with_ace_as_1
+    elif score_with_ace_as_11 > 21 and score_with_ace_as_1 > 21:
         return min(scores)
     else:
         return max(scores)
@@ -125,10 +127,11 @@ def play_game():
     global player_stands
     global dealer_stands
     while not player_stands:
-        player_draws = input("Would you like to draw a card?")
+        player_draws = input("Would you like to draw a card?\n")
         if player_draws == 'y':
             draw_card(players_hand)
             calculate_scores()
+            show_hands()
             if player_score > 21:
                 player_stands = True
             else:
@@ -162,7 +165,7 @@ while playing_game:
     while not player_stands:
         play_game()
     show_final_hands()
-    show_game_result()
+    show_game_result(player_score, dealer_score)
     play_again = start_game()
     if play_again:
         continue
