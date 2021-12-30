@@ -16,6 +16,8 @@ import random
 cards = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
 players_hand = []
 dealers_hand = []
+player_score = 0
+dealer_score = 0
 player_busts = False
 dealer_busts = False
 player_stands = False
@@ -67,25 +69,102 @@ def show_hands():
 
 
 def show_final_hands():
-    
+    print(f"Your final hand {players_hand}, final score: \
+{score_hand(players_hand)}")
+    print(f"Computer's final hand {dealers_hand}, final score: \
+{score_hand(dealers_hand)}")
 
-play_game = start_game()
-while play_game:
+
+def show_game_result(player_score, dealer_score):
+    """Displays win or lose messages."""
+    # player busts
+    if player_score > 21 and dealer_score < 21:
+        return print("You went over. You lose.")
+    # dealer busts
+    if dealer_score > 21 and player_score < 21:
+        return print("Computer went over. You win.")
+    # tie
+    if dealer_score == player_score:
+        return print("It's a tie.")
+    # player wins
+    if player_score > dealer_score:
+        return print("You win.")
+    # dealer wins
+    if dealer_score > player_score:
+        return print("You lose.")
+
+
+def calculate_scores():
+    """Calculates the scores of the player and the dealer."""
+    global player_score
+    global dealer_score
+    player_score = score_hand(players_hand)
+    dealer_score = score_hand(dealers_hand)
+
+
+def check_for_blackjack():
+    """Checks if the player or computer has blackjack.
+    If either have blackjack, sets their stand flag to True."""
+    global player_stands
+    global dealer_stands
+    if player_score == 21 and dealer_score == 21:
+        player_stands = True
+        dealer_stands = True
+        return print("You both have blackjack! It's a tie.")
+    elif player_score == 21:
+        player_stands = True
+        dealer_stands = True
+        return print("Blackjack! You win!")
+    elif dealer_score == 21:
+        player_stands = True
+        dealer_stands = True
+        return print("Dealer has Blackjack! You lose!")
+
+
+def play_game():
+    global player_stands
+    global dealer_stands
+    while not player_stands:
+        player_draws = input("Would you like to draw a card?")
+        if player_draws == 'y':
+            draw_card(players_hand)
+            calculate_scores()
+            if player_score > 21:
+                player_stands = True
+            else:
+                continue
+        elif player_draws == 'n':
+            player_stands = True
+        else:
+            print("I don't understand that. You have to type y or n.")
+            continue
+    while not dealer_stands:
+        if dealer_score >= 17:
+            dealer_stands = True
+        else:
+            draw_card(dealers_hand)
+            calculate_scores()
+            if dealer_score < 17:
+                continue
+            else:
+                dealer_stands = True
+
+
+playing_game = start_game()
+while playing_game:
     print(logo)
     draw_card(dealers_hand)
     draw_card(dealers_hand)
     draw_card(players_hand)
     draw_card(players_hand)
     show_hands()
-    if score_hand(dealers_hand) == 21 and score_hand(players_hand) != 21:
-        show_final_hands()
-        print("You lose. The dealer has Blackjack 😱")
-        continue
-    if score_hand(dealers_hand) == 21 and score_hand(players_hand) == 21:
-        show_final_hands()
-        print("It's a draw. You both have Blackjack 😱")
+    check_for_blackjack()
+    while not player_stands:
+        play_game()
+    show_final_hands()
+    show_game_result()
+    play_again = start_game()
+    if play_again:
         continue
     else:
-        play_round()
-    # setting play_game to False to break the loop
-    play_game = False
+        break
