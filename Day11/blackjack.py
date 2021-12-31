@@ -46,21 +46,26 @@ def score_hand(hand):
     """Takes in a hand array and returns the best score possible with the
        given cards."""
 
-    # all aces are ones, then add 10 for one to count as 11
+    scores = []
     if 11 in hand:
+        # all aces are ones, then add 10 for one to count as 11
         score_with_ace_as_11 = sum([card if card != 11 else 1
                                     for card in hand]) + 10
-    # all aces are ones
-    score_with_ace_as_1 = sum([card if card != 11 else 1 for card in hand])
-    scores = [score_with_ace_as_11, score_with_ace_as_1]
-    if score_with_ace_as_11 < 21 and score_with_ace_as_1 > 21:
-        return score_with_ace_as_11
-    elif score_with_ace_as_11 > 21 and score_with_ace_as_1 < 21:
-        return score_with_ace_as_1
-    elif score_with_ace_as_11 > 21 and score_with_ace_as_1 > 21:
-        return min(scores)
+        scores.append(score_with_ace_as_11)
+        # all aces are ones
+        score_with_ace_as_1 = sum([card if card != 11 else 1
+                                   for card in hand])
+        scores.append(score_with_ace_as_1)
     else:
-        return max(scores)
+        score_with_no_aces = sum([card for card in hand])
+        scores.append(score_with_no_aces)
+    if 21 in scores:
+        return 21
+    else:
+        filtered_scores = filter(lambda score: score < 21, scores)
+        filtered_score_list = list(filtered_scores)
+        filtered_score_list.sort()
+        return scores[-1]
 
 
 def show_hands():
@@ -112,15 +117,21 @@ def check_for_blackjack():
     if player_score == 21 and dealer_score == 21:
         player_stands = True
         dealer_stands = True
-        return print("You both have blackjack! It's a tie.")
+        print("You both have blackjack! It's a tie.")
+        reset_game()
+        play_game()
     elif player_score == 21:
         player_stands = True
         dealer_stands = True
-        return print("Blackjack! You win!")
+        print("Blackjack! You win!")
+        reset_game()
+        play_game()
     elif dealer_score == 21:
         player_stands = True
         dealer_stands = True
-        return print("Dealer has Blackjack! You lose!")
+        print("Dealer has Blackjack! You lose!")
+        reset_game()
+        play_game()
 
 
 def play_game():
@@ -153,6 +164,27 @@ def play_game():
                 dealer_stands = True
 
 
+def reset_game():
+    """Resets all of the game flags to their starting values."""
+    global players_hand
+    global dealers_hand
+    global player_score
+    global dealer_score
+    global player_busts
+    global dealer_busts
+    global player_stands
+    global dealer_stands
+
+    players_hand = []
+    dealers_hand = []
+    player_score = 0
+    dealer_score = 0
+    player_busts = False
+    dealer_busts = False
+    player_stands = False
+    dealer_stands = False
+
+
 playing_game = start_game()
 while playing_game:
     print(logo)
@@ -166,6 +198,7 @@ while playing_game:
         play_game()
     show_final_hands()
     show_game_result(player_score, dealer_score)
+    reset_game()
     play_again = start_game()
     if play_again:
         continue
