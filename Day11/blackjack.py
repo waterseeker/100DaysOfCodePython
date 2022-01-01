@@ -34,7 +34,7 @@ def start_game():
         return False
     else:
         print("Sorry, I don't know what that means. Please choose 'y' or 'n'.")
-        start_game()
+        return start_game()
 
 
 def draw_card(hand):
@@ -114,24 +114,20 @@ def check_for_blackjack():
     If either have blackjack, sets their stand flag to True."""
     global player_stands
     global dealer_stands
+    global player_score
+    global dealer_score
     if player_score == 21 and dealer_score == 21:
         player_stands = True
         dealer_stands = True
         print("You both have blackjack! It's a tie.")
-        reset_game()
-        play_game()
     elif player_score == 21:
         player_stands = True
         dealer_stands = True
         print("Blackjack! You win!")
-        reset_game()
-        play_game()
     elif dealer_score == 21:
         player_stands = True
         dealer_stands = True
         print("Dealer has Blackjack! You lose!")
-        reset_game()
-        play_game()
 
 
 def play_game():
@@ -143,6 +139,7 @@ def play_game():
             draw_card(players_hand)
             calculate_scores()
             show_hands()
+            check_for_blackjack()
             if player_score > 21:
                 player_stands = True
             else:
@@ -186,6 +183,7 @@ def reset_game():
 
 
 playing_game = start_game()
+
 while playing_game:
     print(logo)
     draw_card(dealers_hand)
@@ -193,6 +191,7 @@ while playing_game:
     draw_card(players_hand)
     draw_card(players_hand)
     show_hands()
+    calculate_scores()
     check_for_blackjack()
     while not player_stands:
         play_game()
