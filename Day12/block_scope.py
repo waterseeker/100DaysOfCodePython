@@ -5,7 +5,7 @@ if 3 > 2:
 
 # or basically any indented block of code, then it has the scope of it's
 # block. i.e. the 'if' line in this example, which would be global scope
-# so we have access to x here. 
+# so we have access to x here.
 
 print(x)
 
