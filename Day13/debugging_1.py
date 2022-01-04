@@ -20,10 +20,32 @@ def fixed_my_function():
 
 fixed_my_function()
 
-# # Reproduce the Bug
+# Reproduce the Bug
+# This code is erroring out sometimes.
+# That is because the index for a list is 0-based. So whenever dice_num is 6,
+# there is no element at index 6 in the list.
 # from random import randint
 # dice_imgs = ["❶", "❷", "❸", "❹", "❺", "❻"]
 # dice_num = randint(1, 6)
+# print(dice_imgs[dice_num])
+# To reproduce this bug, you could hard-code the value of dice_num to 6
+# and see that it is erroring out every time you run this.
+
+# This errors out every time
+# from random import randint
+# dice_imgs = ["❶", "❷", "❸", "❹", "❺", "❻"]
+# dice_num = 6
+# print(dice_imgs[dice_num])
+
+# # To fix this, you can subtract 1 from the dice_num
+# from random import randint
+# dice_imgs = ["❶", "❷", "❸", "❹", "❺", "❻"]
+# dice_num = randint(1, 6) - 1
+# print(dice_imgs[dice_num])
+# # or you could change the randint call to be from 0 to 5
+# from random import randint
+# dice_imgs = ["❶", "❷", "❸", "❹", "❺", "❻"]
+# dice_num = randint(0, 5)
 # print(dice_imgs[dice_num])
 
 # # Play Computer
