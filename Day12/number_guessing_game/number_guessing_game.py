@@ -13,6 +13,9 @@
 from art import logo
 import random
 
+EASY_LEVEL_TURNS = 10
+HARD_LEVEL_TURNS = 5
+
 
 def set_difficulty():
     """Asks the user to pick a difficulty, sets the difficulty variable. Calls
@@ -20,20 +23,12 @@ def set_difficulty():
     user_difficulty = input("Would you like to try easy or hard mode?\n")
     cleaned_user_difficulty = user_difficulty.lower().strip()
     if cleaned_user_difficulty == "easy":
-        return cleaned_user_difficulty
+        return EASY_LEVEL_TURNS
     elif cleaned_user_difficulty == "hard":
-        return cleaned_user_difficulty
+        return HARD_LEVEL_TURNS
     else:
         print("Sorry, you have to choose 'easy' or 'hard'.")
         return set_difficulty()
-
-
-def set_guesses(game_difficulty):
-    """Sets nubmer of guesses according to difficulty level."""
-    if game_difficulty == 'easy':
-        return 10
-    else:
-        return 5
 
 
 def set_answer():
@@ -95,12 +90,14 @@ def play_game():
     """Runs the game loop."""
     # print logo
     print(logo)
+
     # ask what difficulty to play on
-    difficulty = set_difficulty()
     # set number of guesses according to difficulty
-    guesses_left = set_guesses(difficulty)
+    guesses_left = set_difficulty()
+
     # generate a random number from 1 to 100
     game_answer = set_answer()
+
     # play round
     play_round(guesses_left, game_answer)
 
