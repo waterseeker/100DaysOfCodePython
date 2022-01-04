@@ -57,17 +57,52 @@ number from 1 to 100.")
             return get_player_guess()
 
 
-# print logo
-print(logo)
-# ask what difficulty to play on
-difficulty = set_difficulty()
-# set number of guesses according to difficulty
-guesses_left = set_guesses(difficulty)
-# generate a random number from 1 to 100
-answer = set_answer()
-# player guesses
-get_player_guess()
-# tell player if they are above, below, or guesses the number
-# adjust number of guesses
-# if guesses == 0 end game and ask if they want to play again
-#   otherwise run the guess loop again.
+def play_again():
+    """Restarts the game"""
+    restart_game = input("Would you like to play again? y or n.\n")\
+        .lower().strip()
+    if restart_game == "y":
+        play_game()
+    elif restart_game == "n":
+        return
+    else:
+        print("I don't understand that. Please enter 'y' or 'n'.")
+        return(play_again())
+
+
+def play_round(number_of_guesses, answer):
+    """Runs the logic for a round of play. Calls itself if guesses_left is not
+       0."""
+    if number_of_guesses != 0:
+        guess = get_player_guess()
+        if guess == answer:
+            print("That's it! You guessed correctly.")
+            return play_again()
+        elif guess > answer:
+            print("Too high. Try again.")
+            number_of_guesses -= 1
+            return play_round(number_of_guesses, answer)
+        else:
+            print("Too low. Try again.")
+            number_of_guesses -= 1
+            return play_round(number_of_guesses, answer)
+    else:
+        print(f"You are out of guesses. The number was {answer}. You lose.")
+        return play_again()
+
+
+def play_game():
+    """Runs the game loop."""
+    # print logo
+    print(logo)
+    # ask what difficulty to play on
+    difficulty = set_difficulty()
+    # set number of guesses according to difficulty
+    guesses_left = set_guesses(difficulty)
+    # generate a random number from 1 to 100
+    game_answer = set_answer()
+    # play round
+    play_round(guesses_left, game_answer)
+
+
+play_game()
