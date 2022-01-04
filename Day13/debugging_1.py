@@ -1,11 +1,24 @@
 # ###########DEBUGGING#####################
 
 # # Describe Problem
-# def my_function():
-#   for i in range(1, 20):
-#     if i == 20:
-#       print("You got it")
-# my_function()
+
+
+def my_function():
+    for i in range(1, 20):
+        # i will never == 20 because the second parameter of the range function
+        # is exclusive. This range call will only return 1-19.
+        if i == 20:
+            print("You got it")
+
+
+# to fix this, just add 1 to the second parameter of range()
+def fixed_my_function():
+    for i in range(1, 21):
+        if i == 20:
+            print("You got it.")
+
+
+fixed_my_function()
 
 # # Reproduce the Bug
 # from random import randint
