@@ -71,7 +71,7 @@ def play_round(number_of_guesses, answer):
     if number_of_guesses != 0:
         guess = get_player_guess()
         if guess == answer:
-            print("That's it! You guessed correctly.")
+            print(f"That's it! The answer was {answer} You guessed correctly.")
             return play_again()
         elif guess > answer:
             print("Too high. Try again.")
