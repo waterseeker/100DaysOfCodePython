@@ -76,10 +76,12 @@ def play_round(number_of_guesses, answer):
         elif guess > answer:
             print("Too high. Try again.")
             number_of_guesses -= 1
+            print(f"You have {number_of_guesses} guesses remaining.")
             return play_round(number_of_guesses, answer)
         else:
             print("Too low. Try again.")
             number_of_guesses -= 1
+            print(f"You have {number_of_guesses} guesses remaining.")
             return play_round(number_of_guesses, answer)
     else:
         print(f"You are out of guesses. The number was {answer}. You lose.")
