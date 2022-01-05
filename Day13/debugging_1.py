@@ -78,7 +78,7 @@ fixed_my_function()
 # Using the print statement, you see that total_words is always = 0. That's
 # because of the == operator on the words_per_page line. It's not an
 # assignment so the value of words_per_page is always 0, which makes the
-# total_words also always be 0. 
+# total_words also always be 0.
 # You can fix this by changing the == to =
 # pages = 0
 # word_per_page = 0
@@ -99,9 +99,9 @@ fixed_my_function()
 
 
 # mutate([1, 2, 3, 5, 8, 13])
-# This isn't working right because the .append() is not happening on every 
-# iteration of the for loop. It's been put outside the scope of the for loop, 
-# so it's only running one time, after the for loop has finished. 
+# This isn't working right because the .append() is not happening on every
+# iteration of the for loop. It's been put outside the scope of the for loop,
+# so it's only running one time, after the for loop has finished.
 # You can fix this by indenting the .append() call into the scope of the for
 # loop.
 
