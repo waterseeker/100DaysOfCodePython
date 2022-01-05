@@ -51,9 +51,17 @@ fixed_my_function()
 # # Play Computer
 # year = int(input("What's your year of birth?"))
 # if year > 1980 and year < 1994:
-#   print("You are a millenial.")
+#     print("You are a millennial.")
 # elif year > 1994:
-#   print("You are a Gen Z.")
+#     print("You are a Gen Z.")
+# The bug is that nothing happens if you input 1994
+# That's because there is never a check if the user input is = 1994
+# You can fix that by changing one of the conditions to include 1994
+year = int(input("What's your year of birth?"))
+if year > 1980 and year < 1994:
+    print("You are a millennial.")
+elif year >= 1994:
+    print("You are a Gen Z.")
 
 # # Fix the Errors
 # age = input("How old are you?")
