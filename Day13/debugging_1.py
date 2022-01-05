@@ -57,16 +57,16 @@ fixed_my_function()
 # The bug is that nothing happens if you input 1994
 # That's because there is never a check if the user input is = 1994
 # You can fix that by changing one of the conditions to include 1994
-year = int(input("What's your year of birth?"))
-if year > 1980 and year < 1994:
-    print("You are a millennial.")
-elif year >= 1994:
-    print("You are a Gen Z.")
+# year = int(input("What's your year of birth?"))
+# if year > 1980 and year < 1994:
+#     print("You are a millennial.")
+# elif year >= 1994:
+#     print("You are a Gen Z.")
 
 # # Fix the Errors
-# age = input("How old are you?")
+# age = int(input("How old are you?"))
 # if age > 18:
-# print("You can drive at age {age}.")
+#     print(f"You can drive at age {age}.")
 
 # #Print is Your Friend
 # pages = 0
@@ -75,13 +75,43 @@ elif year >= 1994:
 # word_per_page == int(input("Number of words per page: "))
 # total_words = pages * word_per_page
 # print(total_words)
+# Using the print statement, you see that total_words is always = 0. That's
+# because of the == operator on the words_per_page line. It's not an
+# assignment so the value of words_per_page is always 0, which makes the
+# total_words also always be 0. 
+# You can fix this by changing the == to =
+# pages = 0
+# word_per_page = 0
+# pages = int(input("Number of pages: "))
+# word_per_page = int(input("Number of words per page: "))
+# total_words = pages * word_per_page
+# print(total_words)
 
 # #Use a Debugger
-# def mutate(a_list):
-#   b_list = []
-#   for item in a_list:
-#     new_item = item * 2
-#   b_list.append(new_item)
-#   print(b_list)
 
-# mutate([1,2,3,5,8,13])
+
+# def mutate(a_list):
+#     b_list = []
+#     for item in a_list:
+#         new_item = item * 2
+#     b_list.append(new_item)
+#     print(b_list)
+
+
+# mutate([1, 2, 3, 5, 8, 13])
+# This isn't working right because the .append() is not happening on every 
+# iteration of the for loop. It's been put outside the scope of the for loop, 
+# so it's only running one time, after the for loop has finished. 
+# You can fix this by indenting the .append() call into the scope of the for
+# loop.
+
+
+def mutate(a_list):
+    b_list = []
+    for item in a_list:
+        new_item = item * 2
+        b_list.append(new_item)
+    print(b_list)
+
+
+mutate([1, 2, 3, 5, 8, 13])
