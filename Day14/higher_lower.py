@@ -44,11 +44,62 @@ def get_highest_number_of_followers(entry_list):
     return highest_followers
 
 
-def get_answer(entry_list):
+def get_answer(entry_list, highest_followers):
     answer = ([entry for entry in entry_list
-              if int(entry['follower_count']) == highest_number_of_followers]
+              if int(entry['follower_count']) == highest_followers]
               [0])
     return answer
+
+
+def get_user_answer():
+    user_answer = (input("Who has more followers? Type 'A' or 'B':\n")
+                   .upper()
+                   .strip())
+    if user_answer != 'A' and user_answer != 'B':
+        print("Choose 'A' or 'B'.")
+        return get_user_answer()
+    else:
+        return user_answer
+
+
+def ask_user_to_play_again():
+    play_again = (input("Would you like to play again? 'Y' or 'N'.\n")
+                  .upper()
+                  .strip())
+    if play_again == 'Y' or play_again == 'N':
+        return play_again
+    else:
+        print("Please select 'Y' or 'N'.")
+        return ask_user_to_play_again()
+
+
+def play_another_round(entry_a):
+    entries = get_next_entry(entry_a)
+    label_entries(entries)
+    highest_number_of_followers = (
+        get_highest_number_of_followers(entries))
+    answer = get_answer(entries, highest_number_of_followers)
+
+    # Print first entry info.
+    print(f"Compare A: {entries[0]['name']}, a {entries[0]['description']}, \
+            from {entries[0]['country']}.")
+
+    # vs Art
+    print(vs)
+
+    # Print second entry info.
+    print(f"Against B: {entries[1]['name']}, a {entries[1]['description']}, \
+            from {entries[1]['country']}.")
+    user_answer = get_user_answer()
+    if user_answer == answer['label']:
+        return play_another_round(answer)
+    else:
+        print("You guessed wrong. GAME OVER")
+        play_again = ask_user_to_play_again()
+        if play_again == 'Y':
+            play_another_round(get_random_entry())
+        else:
+            return
 
 
 # print higher lower logo art on game start
@@ -70,47 +121,26 @@ highest_number_of_followers = get_highest_number_of_followers(entries)
 
 answer = get_answer(entries)
 
-# "Compare A: Christiana Ronaldo, a Footballer, from Portugal"
+# Print entry_a info
 print(f"Compare A: {entry_a['name']}, a {entry_a['description']}, \
 from {entry_a['country']}.")
 
 # vs Art
 print(vs)
 
-# "Against B: Vin Diesel, a Actor, from United States.
+# Print entry_b info.
 print(f"Against B: {entry_b['name']}, a {entry_b['description']}, \
 from {entry_b['country']}.")
 
-# Who has more followers? Type'A' or 'B':
 while playing_game:
-    user_answer = (input("Who has more followers? Type 'A' or 'B':\n")
-                   .upper()
-                   .strip())
-    if user_answer != 'A' and user_answer != 'B':
-        print("Choose 'A' or 'B'.")
-        continue
+    user_answer = get_user_answer()
+    if user_answer == answer['label']:
+        play_another_round(answer)
     else:
-        if user_answer == answer['label']:
-            # TODO make play another round method
-            entries = get_next_entry(entry_a)
-            label_entries(entries)
-            entries = [entry_a, entry_b]
-            highest_number_of_followers = (
-                get_highest_number_of_followers(entries))
-            answer = get_answer(entries)
-            continue
+        print("You guessed wrong. GAME OVER")
+        play_again = ask_user_to_play_again()
+        if play_again == 'Y':
+            play_another_round(answer)
         else:
-            # end game
-            print("You guessed wrong. GAME OVER")
-            # TODO ask if the player wants to run the game again
-            play_again = (input("Would you like to play again? 'Y' or 'N'.\n")
-                          .upper()
-                          .strip())
-            if play_again == 'Y':
-                continue
-            elif play_again == 'N':
-                playing_game = False
-                continue
-            else:
-                print("Please select 'Y' or 'N'.")
-                continue
+            playing_game = False
+            continue
