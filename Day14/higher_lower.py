@@ -26,7 +26,7 @@ def get_next_entry(entry_1):
 def label_entries(list_of_entries):
     # Assign 'A' and 'B' labels to the entries
     list_of_entries[0]['label'] = 'A'
-    list_of_entries[0]['label'] = 'B'
+    list_of_entries[1]['label'] = 'B'
     return list_of_entries
 
 
@@ -82,14 +82,14 @@ def play_another_round(entry_a):
 
     # Print first entry info.
     print(f"Compare A: {entries[0]['name']}, a {entries[0]['description']}, \
-            from {entries[0]['country']}.")
+from {entries[0]['country']}.")
 
     # vs Art
     print(vs)
 
     # Print second entry info.
     print(f"Against B: {entries[1]['name']}, a {entries[1]['description']}, \
-            from {entries[1]['country']}.")
+from {entries[1]['country']}.")
     user_answer = get_user_answer()
     if user_answer == answer['label']:
         return play_another_round(answer)
@@ -119,7 +119,7 @@ label_entries(entries)
 # determine which entry has the highest follower count
 highest_number_of_followers = get_highest_number_of_followers(entries)
 
-answer = get_answer(entries)
+answer = get_answer(entries, highest_number_of_followers)
 
 # Print entry_a info
 print(f"Compare A: {entry_a['name']}, a {entry_a['description']}, \
@@ -132,6 +132,7 @@ print(vs)
 print(f"Against B: {entry_b['name']}, a {entry_b['description']}, \
 from {entry_b['country']}.")
 
+playing_game = True
 while playing_game:
     user_answer = get_user_answer()
     if user_answer == answer['label']:
@@ -140,7 +141,7 @@ while playing_game:
         print("You guessed wrong. GAME OVER")
         play_again = ask_user_to_play_again()
         if play_again == 'Y':
-            play_another_round(answer)
+            play_another_round(get_random_entry())
         else:
             playing_game = False
             continue
