@@ -16,10 +16,10 @@ def get_random_entry():
     return random.choice(data)
 
 
-def get_next_entry(entry_1):
+def get_next_matchup(entry_1):
     entry_a = entry_1
     entry_b = get_random_entry()
-    get_rid_of_duplicates_and_ties(entry_a, entry_b)
+    entry_b = get_rid_of_duplicates_and_ties(entry_a, entry_b)
     return [entry_a, entry_b]
 
 
@@ -74,7 +74,7 @@ def ask_user_to_play_again():
 
 
 def play_another_round(entry_a):
-    entries = get_next_entry(entry_a)
+    entries = get_next_matchup(entry_a)
     label_entries(entries)
     highest_number_of_followers = (
         get_highest_number_of_followers(entries))
@@ -92,14 +92,15 @@ from {entries[0]['country']}.")
 from {entries[1]['country']}.")
     user_answer = get_user_answer()
     if user_answer == answer['label']:
+        print("Correct!")
         return play_another_round(answer)
     else:
         print("You guessed wrong. GAME OVER")
         play_again = ask_user_to_play_again()
         if play_again == 'Y':
-            play_another_round(get_random_entry())
+            return play_another_round(get_random_entry())
         else:
-            return
+            pass
 
 
 # print higher lower logo art on game start
@@ -136,6 +137,7 @@ playing_game = True
 while playing_game:
     user_answer = get_user_answer()
     if user_answer == answer['label']:
+        print("Correct!")
         play_another_round(answer)
     else:
         print("You guessed wrong. GAME OVER")
@@ -144,4 +146,4 @@ while playing_game:
             play_another_round(get_random_entry())
         else:
             playing_game = False
-            continue
+            break
