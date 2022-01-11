@@ -2,7 +2,7 @@ from art import logo, vs
 import random
 from game_data import data
 
-# data structure
+# entry data structure
 # {
 #     'name': 'Instagram',
 #     'follower_count': 346,
@@ -17,6 +17,9 @@ def get_random_entry():
 
 
 def get_next_matchup(entry_1=get_random_entry()):
+    """Takes in an optional entry (the answer from the previous round should
+    go here if it's not the first round. Returns a pair of entries for
+    comparison during the game round."""
     entry_a = entry_1
     entry_b = get_random_entry()
     cleaned_matchup = remove_duplicates_and_ties(entry_a, entry_b)
@@ -24,19 +27,28 @@ def get_next_matchup(entry_1=get_random_entry()):
 
 
 def label_entries(list_of_entries):
-    # Assign 'A' and 'B' labels to the entries
+    """Takes in a list and assigns a new 'label' property to the entries.
+    This is so the player input can be matched to the entries during the game.
+    This method assumes there are only 2 entries in the passed in list and
+    returns the modified list."""
     list_of_entries[0]['label'] = 'A'
     list_of_entries[1]['label'] = 'B'
     return list_of_entries
 
 
 def remove_duplicates_and_ties(first_entry, second_entry):
+    """Takes in 2 entries. If the second entry is the same as the first one,
+    or if the second entry has the same number of followers as the first one,
+    it generated a new second entry until there is no tie. Returns the 2
+    entries as a list."""
     while first_entry['follower_count'] == second_entry['follower_count']:
         second_entry = get_random_entry()
     return [first_entry, second_entry]
 
 
 def get_highest_number_of_followers(entry_list):
+    """Takes in a list, returns an int that is the highest number of followers
+    between the 2 entries."""
     highest_followers = 0
     for entry in entry_list:
         if int(entry['follower_count']) > highest_followers:
@@ -45,6 +57,8 @@ def get_highest_number_of_followers(entry_list):
 
 
 def get_answer(entry_list, highest_followers):
+    """Takes in a list and an int and returns the list entry where the
+    follower_count is equal to the int."""
     answer = ([entry for entry in entry_list
               if int(entry['follower_count']) == highest_followers]
               [0])
@@ -52,6 +66,9 @@ def get_answer(entry_list, highest_followers):
 
 
 def get_user_answer():
+    """Takes in user input. Cleans it and makes sure it's valid, then returns
+    it. If the input isn't valid, the method calls itself until the user
+    inputs a valid value."""
     user_answer = (input("Who has more followers? Type 'A' or 'B':\n")
                    .upper()
                    .strip())
@@ -63,6 +80,9 @@ def get_user_answer():
 
 
 def ask_user_to_play_again():
+    """Gets user input for whether or not they want to play again. Cleans and
+    validates the input. If the input isn't valid, the method calls itself
+    until the input is valid. Returns the cleaned and valid input."""
     play_again = (input("Would you like to play again? 'Y' or 'N'.\n")
                   .upper()
                   .strip())
@@ -74,6 +94,8 @@ def ask_user_to_play_again():
 
 
 def play_another_round(entry_a):
+    """Takes in an entry (the answer from the previous round. Runs game round
+    logic in loops until the user wants to quit."""
     entries = get_next_matchup(entry_a)
     label_entries(entries)
     highest_number_of_followers = (
@@ -106,32 +128,6 @@ from {entries[1]['country']}.")
 # print higher lower logo art on game start
 print(logo)
 
-# # get entries
-# entry_a = get_random_entry()
-# entry_b = get_random_entry()
-
-# # make sure there isn't a tie, and that the choices aren't the same item.
-# remove_duplicates_and_ties(entry_a, entry_b)
-
-# # add 'A' and 'B' labels to entries for comparison to user input later.
-# entries = [entry_a, entry_b]
-# label_entries(entries)
-
-# # determine which entry has the highest follower count
-# highest_number_of_followers = get_highest_number_of_followers(entries)
-
-# answer = get_answer(entries, highest_number_of_followers)
-
-# # Print entry_a info
-# print(f"Compare A: {entry_a['name']}, a {entry_a['description']}, \
-# from {entry_a['country']}.")
-
-# # vs Art
-# print(vs)
-
-# # Print entry_b info.
-# print(f"Against B: {entry_b['name']}, a {entry_b['description']}, \
-# from {entry_b['country']}.")
 playing_game = True
 while playing_game:
     # get set of entries
@@ -142,7 +138,6 @@ while playing_game:
         entries = get_next_matchup()
     # make sure no ties or duplicates
     entry_a = entries[0]
-    # TODO something is setting entries[1] to a list instead of a list item
     entry_b = entries[1]
     cleaned_entries = remove_duplicates_and_ties(entry_a, entry_b)
     # label entries for comparison against 'a' and 'b' input from player later
@@ -157,14 +152,17 @@ while playing_game:
     # print vs art
     print(vs)
     # print line for second entry
-    print(f"Against B: {labeled_entries[1]['name']}, a {labeled_entries[1]['description']}, \
+    print(f"Against B: {labeled_entries[1]['name']}, \
+a {labeled_entries[1]['description']}, \
 from {labeled_entries[1]['country']}.")
     # get player answer
     # make sure it's a or b, recursion if not
     user_answer = get_user_answer()
     # check player input against answer
-    # if correct, recursion with the answer getting passed into the new set of comparisons.
-    # make sure the answer getting passed doesn't get replaced by checking for duplicates and ties
+    # if correct, recursion with the answer getting passed into the new set
+    # of comparisons.
+    # make sure the answer getting passed doesn't get replaced by checking for
+    # duplicates and ties
     if user_answer == answer['label']:
         print("Correct!")
         continue
