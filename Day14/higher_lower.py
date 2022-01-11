@@ -93,6 +93,18 @@ def ask_user_to_play_again():
         return ask_user_to_play_again()
 
 
+def increase_score():
+    """Adds 1 to the score of the game."""
+    global score
+    return score + 1
+
+
+def reset_score():
+    """Resets the score to 0."""
+    global score
+    score = 0
+
+
 def play_another_round(entry_a):
     """Takes in an entry (the answer from the previous round. Runs game round
     logic in loops until the user wants to quit."""
@@ -114,7 +126,8 @@ from {entries[0]['country']}.")
 from {entries[1]['country']}.")
     user_answer = get_user_answer()
     if user_answer == answer['label']:
-        print("Correct!")
+        score = increase_score(score)
+        print(f"Correct! Your current score is: {score}")
         return play_another_round(answer)
     else:
         print("You guessed wrong. GAME OVER")
@@ -127,7 +140,7 @@ from {entries[1]['country']}.")
 
 # print higher lower logo art on game start
 print(logo)
-
+score = 0
 playing_game = True
 while playing_game:
     # get set of entries
@@ -164,7 +177,8 @@ from {labeled_entries[1]['country']}.")
     # make sure the answer getting passed doesn't get replaced by checking for
     # duplicates and ties
     if user_answer == answer['label']:
-        print("Correct!")
+        score += 1
+        print(f"Correct! Your current score is: {score}")
         continue
     # if wrong, display end game message
     else:
@@ -178,3 +192,4 @@ from {labeled_entries[1]['country']}.")
         # if not, end game
         else:
             playing_game = False
+# TODO Add scoring, remove unnecessary casts to int.
