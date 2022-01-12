@@ -51,8 +51,8 @@ def get_highest_number_of_followers(entry_list):
     between the 2 entries."""
     highest_followers = 0
     for entry in entry_list:
-        if int(entry['follower_count']) > highest_followers:
-            highest_followers = int(entry['follower_count'])
+        if entry['follower_count'] > highest_followers:
+            highest_followers = entry['follower_count']
     return highest_followers
 
 
@@ -60,7 +60,7 @@ def get_answer(entry_list, highest_followers):
     """Takes in a list and an int and returns the list entry where the
     follower_count is equal to the int."""
     answer = ([entry for entry in entry_list
-              if int(entry['follower_count']) == highest_followers]
+              if entry['follower_count'] == highest_followers]
               [0])
     return answer
 
@@ -126,7 +126,7 @@ from {entries[0]['country']}.")
 from {entries[1]['country']}.")
     user_answer = get_user_answer()
     if user_answer == answer['label']:
-        score = increase_score(score)
+        increase_score()
         print(f"Correct! Your current score is: {score}")
         return play_another_round(answer)
     else:
@@ -188,8 +188,8 @@ from {labeled_entries[1]['country']}.")
         if play_again == 'Y':
             # if so, recursion with all new entries
             answer = get_random_entry()
+            reset_score()
             continue
         # if not, end game
         else:
             playing_game = False
-# TODO Add scoring, remove unnecessary casts to int.
