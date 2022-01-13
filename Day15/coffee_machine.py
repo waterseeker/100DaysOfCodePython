@@ -31,13 +31,19 @@ resources = {
 }
 
 
-def get_drink_choice():
+def get_drink_choice(supply_levels):
     """Gets user input to select a drink. Returns the drink item from the
     MENU. Returns False if user inputs 'off'"""
     drink_choice = input("What would you like? (espresso/latte/cappuccino):\n")
     cleaned_drink_choice = drink_choice.strip().lower()
-    if cleaned_drink_choice == 'off':
+    if cleaned_drink_choice == "off":
         return False
+    elif cleaned_drink_choice == "report":
+        # print out report of resource balances
+        print(f"Water: {supply_levels['water']}ml")
+        print(f"Milk: {supply_levels['milk']}ml")
+        print(f"Coffee: {supply_levels['coffee']}g")
+        print(f"Money: ${supply_levels.get('money', 0.00)}")
     elif cleaned_drink_choice not in MENU:
         print("Please select espresso, latte, or cappuccino.")
         return get_drink_choice()
@@ -100,23 +106,33 @@ def process_payment(menu_item_cost, payment_amount):
         return False
     elif payment_amount == menu_item_cost:
         print("Thank you for using exact change.")
+        return True
+
     else:
         change = payment_amount - menu_item_cost
         print(f"Here is ${change} in change.")
+        return True
+
+
+def serve_drink(menu_item_name):
+    """Takes in a menu item name, prints a message to the console, serving the
+    item"""
+    print(f"Here is your {menu_item_name} ☕️. Enjoy!")
 
 
 # testing code
 while True:
-    choice = get_drink_choice()
+    choice = get_drink_choice(resources)
     if not choice:
-        break
+        continue
     drink = get_drink_item(choice)
     drink_cost = drink["cost"]
+    # check that there are enough resources to make the drink
     print("Please insert coins.")
     payment = get_payment()
-    change = process_payment(drink_cost, payment)
-    if not change:
-        break
-    # serve_drink()
-    # Here is your espresso <coffee icon>. Enjoy!
+    is_enough_payment = process_payment(drink_cost, payment)
+    if not is_enough_payment:
+        continue
+    # add money from sale to resources balance
+    serve_drink(choice)
     # Starts loop again
