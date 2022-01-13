@@ -51,6 +51,8 @@ def get_drink_item(drink_name):
 
 
 # testing code
-choice = get_drink_choice()
-drink = get_drink_item(choice)
-print(drink['ingredients']["water"])
+while True:
+    choice = get_drink_choice()
+    if not choice:
+        break
+    drink = get_drink_item(choice)
