@@ -46,7 +46,7 @@ def get_drink_choice(supply_levels):
         print(f"Money: ${supply_levels.get('money', 0.00)}")
     elif cleaned_drink_choice not in MENU:
         print("Please select espresso, latte, or cappuccino.")
-        return get_drink_choice()
+        return get_drink_choice(supply_levels)
     else:
         return cleaned_drink_choice
 
@@ -120,6 +120,32 @@ def serve_drink(menu_item_name):
     print(f"Here is your {menu_item_name} ☕️. Enjoy!")
 
 
+def adjust_resource_levels(menu_item):
+    """Takes in a menu item. Checks that there are enough resources to make
+    the item. If so, returns True and makes adjustments to the global
+    resources. If not, returns False and prints a message saying there
+    aren't enough resources."""
+    global resources
+    for k, v in menu_item["ingredients"].items():
+        if resources[k] - v < 0:
+            print("Not enough resources. Refunding money.")
+            return False
+        else:
+            resources[k] -= v
+    return True
+
+
+def add_money_to_resources(menu_item_cost):
+    """Takes in a price of a menu item and adds that to the global money
+    resources if it exists. If not, it creates it and sets the value to the
+    menu item price."""
+    global resources
+    try:
+        resources['money'] += menu_item_cost
+    except KeyError:
+        resources['money'] = menu_item_cost
+
+
 # testing code
 while True:
     choice = get_drink_choice(resources)
@@ -127,12 +153,14 @@ while True:
         continue
     drink = get_drink_item(choice)
     drink_cost = drink["cost"]
-    # check that there are enough resources to make the drink
-    print("Please insert coins.")
-    payment = get_payment()
-    is_enough_payment = process_payment(drink_cost, payment)
-    if not is_enough_payment:
+    is_enough_resources = adjust_resource_levels(drink)
+    if is_enough_resources:
+        print("Please insert coins.")
+        payment = get_payment()
+        is_enough_payment = process_payment(drink_cost, payment)
+        add_money_to_resources(drink_cost)
+        if not is_enough_payment:
+            continue
+    else:
         continue
-    # add money from sale to resources balance
     serve_drink(choice)
-    # Starts loop again
