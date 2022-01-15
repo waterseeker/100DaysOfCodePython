@@ -31,7 +31,16 @@ resources = {
 }
 
 
-def get_drink_choice(supply_levels):
+def print_report():
+    """Prints out the current supply levels."""
+    global resources
+    print(f"Water: {resources['water']}ml")
+    print(f"Milk: {resources['milk']}ml")
+    print(f"Coffee: {resources['coffee']}g")
+    print(f"Money: ${resources.get('money', 0.00)}")
+
+
+def get_drink_choice():
     """Gets user input to select a drink. Returns the drink item from the
     MENU. Returns False if user inputs 'off'"""
     drink_choice = input("What would you like? (espresso/latte/cappuccino):\n")
@@ -40,13 +49,10 @@ def get_drink_choice(supply_levels):
         return False
     elif cleaned_drink_choice == "report":
         # print out report of resource balances
-        print(f"Water: {supply_levels['water']}ml")
-        print(f"Milk: {supply_levels['milk']}ml")
-        print(f"Coffee: {supply_levels['coffee']}g")
-        print(f"Money: ${supply_levels.get('money', 0.00)}")
+        return print_report()
     elif cleaned_drink_choice not in MENU:
         print("Please select espresso, latte, or cappuccino.")
-        return get_drink_choice(supply_levels)
+        return get_drink_choice()
     else:
         return cleaned_drink_choice
 
@@ -148,7 +154,7 @@ def add_money_to_resources(menu_item_cost):
 
 # testing code
 while True:
-    choice = get_drink_choice(resources)
+    choice = get_drink_choice()
     if not choice:
         continue
     drink = get_drink_item(choice)
