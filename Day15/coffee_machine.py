@@ -46,7 +46,7 @@ def get_drink_choice():
     drink_choice = input("What would you like? (espresso/latte/cappuccino):\n")
     cleaned_drink_choice = drink_choice.strip().lower()
     if cleaned_drink_choice == "off":
-        return False
+        return cleaned_drink_choice
     elif cleaned_drink_choice == "report":
         # print out report of resource balances
         return print_report()
@@ -155,8 +155,8 @@ def add_money_to_resources(menu_item_cost):
 # testing code
 while True:
     choice = get_drink_choice()
-    if not choice:
-        continue
+    if choice == "off":
+        break
     drink = get_drink_item(choice)
     drink_cost = drink["cost"]
     is_enough_resources = adjust_resource_levels(drink)
