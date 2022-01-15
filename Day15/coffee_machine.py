@@ -152,7 +152,6 @@ def add_money_to_resources(menu_item_cost):
         resources['money'] = menu_item_cost
 
 
-# testing code
 while True:
     choice = get_drink_choice()
     if choice == "off":
