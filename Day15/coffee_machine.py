@@ -49,7 +49,7 @@ def get_drink_choice():
         return cleaned_drink_choice
     elif cleaned_drink_choice == "report":
         # print out report of resource balances
-        return print_report()
+        return cleaned_drink_choice
     elif cleaned_drink_choice not in MENU:
         print("Please select espresso, latte, or cappuccino.")
         return get_drink_choice()
@@ -152,10 +152,14 @@ def add_money_to_resources(menu_item_cost):
         resources['money'] = menu_item_cost
 
 
+# todo tell customer cost before taking money
 while True:
     choice = get_drink_choice()
     if choice == "off":
         break
+    elif choice == "report":
+        print_report()
+        continue
     drink = get_drink_item(choice)
     drink_cost = drink["cost"]
     is_enough_resources = adjust_resource_levels(drink)
