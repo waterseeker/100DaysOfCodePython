@@ -134,7 +134,7 @@ def adjust_resource_levels(menu_item):
     global resources
     for k, v in menu_item["ingredients"].items():
         if resources[k] - v < 0:
-            print("Not enough resources. Refunding money.")
+            print(f"Not enough {k}.")
             return False
         else:
             resources[k] -= v
@@ -152,7 +152,6 @@ def add_money_to_resources(menu_item_cost):
         resources['money'] = menu_item_cost
 
 
-# todo tell customer cost before taking money
 while True:
     choice = get_drink_choice()
     if choice == "off":
@@ -162,6 +161,7 @@ while True:
         continue
     drink = get_drink_item(choice)
     drink_cost = drink["cost"]
+    print("That'll be ${:.2f}".format(drink_cost))
     is_enough_resources = adjust_resource_levels(drink)
     if is_enough_resources:
         print("Please insert coins.")
