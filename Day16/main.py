@@ -3,8 +3,8 @@ from coffee_maker import CoffeeMaker
 from money_machine import MoneyMachine
 
 menu = Menu()
-coffeemaker = CoffeeMaker()
-moneymachine = MoneyMachine()
+coffee_maker = CoffeeMaker()
+money_machine = MoneyMachine()
 
 
 def get_drink_choice():
@@ -32,16 +32,16 @@ while is_operating:
         is_operating = False
         break
     elif drink_choice == "report":
-        coffeemaker.report()
-        moneymachine.report()
+        coffee_maker.report()
+        money_machine.report()
     else:
         drink = menu.find_drink(drink_choice)
         # check resources
-        enough_resources = coffeemaker.is_resource_sufficient(drink)
+        enough_resources = coffee_maker.is_resource_sufficient(drink)
         if enough_resources:
             # take money
-            enough_money = moneymachine.make_payment(drink.cost)
+            enough_money = money_machine.make_payment(drink.cost)
             if enough_money:
                 # use resources
                 # serve drink
-                coffeemaker.make_coffee(drink)
+                coffee_maker.make_coffee(drink)
