@@ -18,6 +18,6 @@ you are entitled to a state funeral.", "answer": "False"},
         "answer": "True"},
     {"text": "No piece of square dry paper can be folded in half more than 7 \
 times.", "answer": "False"},
-    {"text": "*args few ounces of chocolate can to kill a small dog.",
+    {"text": "A few ounces of chocolate can to kill a small dog.",
         "answer": "True"}
 ]
