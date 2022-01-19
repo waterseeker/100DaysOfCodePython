@@ -10,3 +10,5 @@ has_more_questions = True
 while has_more_questions:
     quiz.next_question()
     has_more_questions = quiz.still_has_questions()
+print("You've completed the quiz.")
+print(f"Your final score was: {quiz.score}/{len(question_bank)}")
