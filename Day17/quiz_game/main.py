@@ -12,3 +12,4 @@ while has_more_questions:
     has_more_questions = quiz.still_has_questions()
 print("You've completed the quiz.")
 print(f"Your final score was: {quiz.score}/{len(question_bank)}")
+# TODO change the code to account for questions not all being true/false now
