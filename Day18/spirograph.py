@@ -19,9 +19,14 @@ def random_color():
     return (r, g, b)
 
 
-facing = 0
-for _ in range(50):
-    leon.right(facing)
-    leon.color(random_color())
-    leon.circle(100)
-    facing += 10
+def draw_spirograph(size_of_gap):
+    for _ in range(int(360 / size_of_gap)):
+        leon.color(random_color())
+        leon.circle(100)
+        leon.setheading(leon.heading() + size_of_gap)
+
+
+draw_spirograph(5)
+
+screen = t.Screen()
+screen.exitonclick()
