@@ -20,12 +20,15 @@ color_list = [(191, 218, 235), (238, 209, 223), (193, 140, 161), (60, 30, 39), (
 painter = t.Turtle()
 painter.speed("fastest")
 t.colormode(255)
+y_coordinate = 0
 for _ in range(10):
     for _ in range (10):
         dot_color = random.choice(color_list)
         painter.dot(20, dot_color)
+        painter.penup()
         painter.forward(50)
-# TODO pick the pen up so there is no line between spots
-# TODO return turtle to beginning x coordinate but + 50 y to start a new row
+    y_coordinate += 50
+    painter.goto(0, y_coordinate)
+
 screen = t.Screen()
 screen.exitonclick()
