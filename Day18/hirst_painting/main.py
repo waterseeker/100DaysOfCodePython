@@ -16,10 +16,14 @@ color_list = [(191, 218, 235), (238, 209, 223), (193, 140, 161), (60, 30, 39), (
 # Challenge - use Turtle and the color list to create a spot painting
 # the painting should be 10 by 10 spots
 # each dot should be 20 in size and spaced apart by 50 paces
-
+# TODO refactor code to use the changed start point
 painter = t.Turtle()
 painter.speed("fastest")
 t.colormode(255)
+# changing the start point to make the finished painting more centered
+t.setheading(225)
+t.forward(250)
+t.setheading(0)
 y_coordinate = 0
 for _ in range(10):
     for _ in range (10):
