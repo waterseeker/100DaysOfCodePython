@@ -18,13 +18,13 @@ color_list = [(191, 218, 235), (238, 209, 223), (193, 140, 161), (60, 30, 39), (
 # each dot should be 20 in size and spaced apart by 50 paces
 # TODO refactor code to use the changed start point
 painter = t.Turtle()
+painter.hideturtle()
 painter.speed("fastest")
 t.colormode(255)
 # changing the start point to make the finished painting more centered
 painter.setheading(225)
 painter.penup()
 painter.forward(250)
-painter.pendown()
 painter.setheading(0)
 y_coordinate = -176.78
 for _ in range(10):
