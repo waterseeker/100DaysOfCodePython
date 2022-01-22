@@ -21,10 +21,12 @@ painter = t.Turtle()
 painter.speed("fastest")
 t.colormode(255)
 # changing the start point to make the finished painting more centered
-t.setheading(225)
-t.forward(250)
-t.setheading(0)
-y_coordinate = 0
+painter.setheading(225)
+painter.penup()
+painter.forward(250)
+painter.pendown()
+painter.setheading(0)
+y_coordinate = -176.78
 for _ in range(10):
     for _ in range (10):
         dot_color = random.choice(color_list)
@@ -32,7 +34,7 @@ for _ in range(10):
         painter.penup()
         painter.forward(50)
     y_coordinate += 50
-    painter.goto(0, y_coordinate)
+    painter.goto(-176.78, y_coordinate)
 
 screen = t.Screen()
 screen.exitonclick()
