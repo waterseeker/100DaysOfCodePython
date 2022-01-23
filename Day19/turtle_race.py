@@ -36,3 +36,18 @@ while is_race_running:
         turtle.forward(random_distance)
 
 screen.exitonclick()
+
+# ideas for expansion
+# add a start and finish line
+# add lines for lanes
+# add messages from an announcer during the race
+#   "And now green is in the lead! How long will they keep their position?" etc.
+# add sound effects
+# make the game repeatable
+# give the player money to bet with
+# give the turtles odds of winning
+# payouts for bets
+# player can end the game whenever with a key press
+# game ends when the player reaches 0 dollars
+# messages about the player's winnings
+#   "Holy cow! You just won a billion dollars on green! That has to be some kind of record." etc.
