@@ -1,0 +1,35 @@
+Breaking down Pong
+
+Classes:
+    Paddles
+        move up or down
+        may have a speed
+    Ball
+        has a heading
+        has a speed
+        collision detection on the paddles, and top and bottom of the screen
+    Scoreboard
+        keep the game score with one player's score on each side of the middle dashed line of the screen
+        updates when a point is scored
+        prints game messages
+    Screen
+        has dimensions
+        has a mid-point dashed line
+
+If ball is past the back side of the right paddle:
+    left player scores a point
+    scoreboard is updated
+    new ball on screen
+
+if ball is past the back side of the left paddle:
+    right player scores a point
+    scoreboard is updated
+    new bal on screen
+
+if the ball hits a paddle:
+    change the heading of the ball
+    change the speed of the ball, taking into account the speed of the paddle movement
+
+if the ball hits the top or bottom border:
+    change the heading of the ball
+
