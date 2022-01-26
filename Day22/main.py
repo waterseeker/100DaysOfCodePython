@@ -27,8 +27,12 @@ while game_is_running:
     # collision with top of screen
     if ball.ycor() > 280 or ball.ycor() < -280:
         ball.bounce_y()
-    # collision with r_paddle
+    # collision with paddles
     if ball.distance(r_paddle) < 50 and ball.xcor() > 320 or ball.distance(l_paddle) < 50 and ball.xcor() < -320:
+        ball.bounce_x()
+#     collision with left or right edge of the screen
+    if ball.xcor() > 380 or ball.xcor() < -380:
+        ball.goto(0, 0)
         ball.bounce_x()
 
 screen.exitonclick()
