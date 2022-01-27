@@ -10,6 +10,7 @@ screen.tracer(0)
 screen.listen()
 
 player = Player()
+scoreboard = Scoreboard()
 
 screen.onkey(player.move_up, "Up")
 
