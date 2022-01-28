@@ -25,3 +25,6 @@ class Player(Turtle):
 
     def reset_position(self):
         self.setposition(STARTING_POSITION)
+
+    def is_collided_with(self, b):
+        return abs(self.xcor() - b.xcor()) < 20 and abs(self.ycor() - b.ycor()) < 10

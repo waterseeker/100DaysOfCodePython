@@ -12,23 +12,22 @@ MOVE_INCREMENT = 10
 #   make them despawn once they are past the left edge of the screen
 class CarManager(Turtle):
     def __init__(self):
-        super.__init__()
+        super().__init__()
         self.hideturtle()
         self.penup()
         self.cars = []
-        self.setposition(280, random.randint(-280, 280))
+        self.setposition(280, random.randint(-250, 250))
 
-    def spawn_cars(self):
-        for _ in range(random.randint(1, 5)):
-            car = Turtle()
-            car.color(random.choice(COLORS))
-            car.penup()
-            car.shape("square")
-            car.setposition(280, random.randint(-280, 280))
+    def spawn_car(self):
+        car = Turtle()
+        car.color(random.choice(COLORS))
+        car.penup()
+        car.shape("square")
+        car.setposition(280, random.randint(-280, 280))
+        car.setheading(180)
+        car.turtlesize(stretch_len=3)
+        self.cars.append(car)
 
     def move_cars(self):
         for car in self.cars:
             car.forward(MOVE_INCREMENT)
-            # TODO remove the car from the game when it goes off of the screen.
-            # if car.xcor() < -280:
-
