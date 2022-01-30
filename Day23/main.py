@@ -24,6 +24,9 @@ screen.onkey(player.move_up, "Up")
 
 game_is_on = True
 while game_is_on:
+    if player.ycor() == FINISH_LINE_Y_COR:
+        player.reset_position()
+        scoreboard.update_level()
     maximum_number_of_cars = scoreboard.level_number + 9
     if current_number_of_cars < maximum_number_of_cars:
         for _ in range(maximum_number_of_cars - current_number_of_cars):
