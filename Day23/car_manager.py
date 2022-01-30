@@ -23,7 +23,7 @@ class CarManager(Turtle):
         car.color(random.choice(COLORS))
         car.penup()
         car.shape("square")
-        car.setposition(280, random.randint(-280, 280))
+        car.setposition(280, random.randint(-240, 240))
         car.setheading(180)
         car.turtlesize(stretch_len=3)
         self.cars.append(car)

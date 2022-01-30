@@ -1,12 +1,12 @@
 import time
 import random
-from turtle import Screen
+from turtle import Screen, Turtle
 from player import Player
 from car_manager import CarManager
 from scoreboard import Scoreboard
 
 current_number_of_cars = 0
-
+FINISH_LINE_Y_COR = 250
 screen = Screen()
 screen.setup(width=600, height=600)
 screen.tracer(0)
@@ -15,7 +15,11 @@ screen.listen()
 player = Player()
 scoreboard = Scoreboard()
 car_manager = CarManager()
-
+finish_line = Turtle()
+finish_line.penup()
+finish_line.goto(+300, FINISH_LINE_Y_COR)
+finish_line.pendown()
+finish_line.goto(-300, FINISH_LINE_Y_COR)
 screen.onkey(player.move_up, "Up")
 
 game_is_on = True
