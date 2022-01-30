@@ -5,6 +5,9 @@ from player import Player
 from car_manager import CarManager
 from scoreboard import Scoreboard
 
+# TODO make at least X space between car spawns
+# increase number of cars when level increases
+# spread out car spawns more so they're not mostly a single line of cars all starting at the same time.
 current_number_of_cars = 0
 FINISH_LINE_Y_COR = 250
 screen = Screen()
