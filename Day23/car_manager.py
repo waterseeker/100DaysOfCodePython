@@ -10,24 +10,28 @@ MOVE_INCREMENT = 10
 #  and moves them across the screen
 # cars are randomly generated along the y-axis and move from the right edge of the screen to the left edge
 #   make them despawn once they are past the left edge of the screen
-class CarManager(Turtle):
+class CarManager:
     def __init__(self):
         super().__init__()
-        self.hideturtle()
-        self.penup()
         self.cars = []
-        self.setposition(280, random.randint(-250, 250))
+        self.car_speed = STARTING_MOVE_DISTANCE
 
     def spawn_car(self):
-        car = Turtle()
-        car.color(random.choice(COLORS))
-        car.penup()
-        car.shape("square")
-        car.setposition(280, random.randint(-240, 240))
-        car.setheading(180)
-        car.turtlesize(stretch_len=3)
-        self.cars.append(car)
+        random_chance = random.randint(1, 6)
+        if random_chance == 1:
+            car = Turtle()
+            car.color(random.choice(COLORS))
+            car.penup()
+            car.shape("square")
+            random_y_position = random.randint(-240, 240)
+            car.goto(300, random_y_position)
+            car.setheading(180)
+            car.shapesize(stretch_len=2)
+            self.cars.append(car)
 
     def move_cars(self):
         for car in self.cars:
-            car.forward(MOVE_INCREMENT)
+            car.forward(self.car_speed)
+
+    def level_up(self):
+        self.car_speed += MOVE_INCREMENT

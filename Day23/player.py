@@ -21,10 +21,7 @@ class Player(Turtle):
         self.setheading(90)
 
     def move_up(self):
-        self.sety(self.ycor() + MOVE_DISTANCE)
+        self.forward(MOVE_DISTANCE)
 
     def reset_position(self):
         self.setposition(STARTING_POSITION)
-
-    def is_collided_with(self, b):
-        return abs(self.xcor() - b.xcor()) < 20 and abs(self.ycor() - b.ycor()) < 10

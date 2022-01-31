@@ -28,21 +28,15 @@ screen.onkey(player.move_up, "Up")
 game_is_on = True
 while game_is_on:
     if player.ycor() == FINISH_LINE_Y_COR:
+        car_manager.level_up()
         player.reset_position()
         scoreboard.update_level()
-    maximum_number_of_cars = scoreboard.level_number + 9
-    if current_number_of_cars < maximum_number_of_cars:
-        for _ in range(maximum_number_of_cars - current_number_of_cars):
-            car_manager.spawn_car()
-            current_number_of_cars += 1
-            wait_interval = round(random.uniform(0.05, 2.00), 2)
-            time.sleep(wait_interval)
+    car_manager.spawn_car()
     car_manager.move_cars()
     for car in car_manager.cars:
-        if player.is_collided_with(car):
+        if car.distance(player) < 20:
             game_is_on = False
             scoreboard.game_over()
-            break
         if car.xcor() < -280:
             car_manager.cars.remove(car)
             car.clear()
