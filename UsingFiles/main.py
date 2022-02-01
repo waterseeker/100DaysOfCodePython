@@ -19,6 +19,11 @@
 #     contents = file.read()
 #     print(contents)
 
-# If you try to open a file in write mode that doesn't exist, Python will create that file.
-with open("new_file.txt", mode="w") as file:
-    file.write("This file was created.")
+# # If you try to open a file in write mode that doesn't exist, Python will create that file.
+# with open("new_file.txt", mode="w") as file:
+#     file.write("This file was created.")
+
+# Using an absolute path to access a file
+with open("/Users/wayneburris/Desktop/my_file.txt") as file:
+    contents = file.read()
+    print(contents)
