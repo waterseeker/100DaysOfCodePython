@@ -23,7 +23,12 @@
 # with open("new_file.txt", mode="w") as file:
 #     file.write("This file was created.")
 
-# Using an absolute path to access a file
-with open("/Users/wayneburris/Desktop/my_file.txt") as file:
+# # Using an absolute path to access a file
+# with open("/Users/wayneburris/Desktop/my_file.txt") as file:
+#     contents = file.read()
+#     print(contents)
+
+# Using a relative path to access a file:
+with open("../../../my_file.txt") as file:
     contents = file.read()
     print(contents)
