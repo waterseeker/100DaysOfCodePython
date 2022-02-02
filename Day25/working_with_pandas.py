@@ -9,5 +9,13 @@ data = pandas.read_csv("weather_data.csv")
 
 # Pandas has a lot of methods to convert a Data Frame to other Python data types.
 # for example, a dict
-
 data_dict = data.to_dict()
+print(data_dict)
+
+# you can convert a Series to a list by doing...
+series_list = data["temp"].to_list()
+print(series_list)
+
+# Challenge:
+# Calculate the average temperature from the temp data
+
