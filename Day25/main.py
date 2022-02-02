@@ -28,4 +28,5 @@
 import pandas
 
 data = pandas.read_csv("weather_data.csv")
-print(data)
+# to do what we did using csv.reader above
+print(data["temp"])
