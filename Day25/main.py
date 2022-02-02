@@ -4,12 +4,22 @@
 #     stripped_data = [line.strip() for line in data]
 #     print(stripped_data)
 
+# # Python has a built-in library called csv that makes it easier to handle csv files
+# import csv
+#
+# with open("weather_data.csv") as data_file:
+#     data = csv.reader(data_file)
+#     for row in data:
+#         print(row)
+
+# Challenge: using the csv.reader() create a new list called temperatures that contains all of the temps in
+# weather_data.csv as ints not strings
 import csv
 
 with open("weather_data.csv") as data_file:
     data = csv.reader(data_file)
-    for row in data:
-        print(row)
-
-# Challenge: using the csv.reader() create a new list called temperatures that contains all of the temps in
-# weather_data.csv as ints not strings
+    rows = [row for row in data]
+    temperatures = []
+    for row in rows[1:]:
+        temperatures.append(int(row[1]))
+    print(temperatures)
