@@ -12,14 +12,20 @@
 #     for row in data:
 #         print(row)
 
-# Challenge: using the csv.reader() create a new list called temperatures that contains all of the temps in
-# weather_data.csv as ints not strings
-import csv
+# # Challenge: using the csv.reader() create a new list called temperatures that contains all of the temps in
+# # weather_data.csv as ints not strings
+# import csv
+#
+# with open("weather_data.csv") as data_file:
+#     data = csv.reader(data_file)
+#     rows = [row for row in data]
+#     temperatures = []
+#     for row in rows[1:]:
+#         temperatures.append(int(row[1]))
+#     print(temperatures)
 
-with open("weather_data.csv") as data_file:
-    data = csv.reader(data_file)
-    rows = [row for row in data]
-    temperatures = []
-    for row in rows[1:]:
-        temperatures.append(int(row[1]))
-    print(temperatures)
+# but this is pretty cumbersome to just access a few lines of data. Using Pandas makes it even easier.
+import pandas
+
+data = pandas.read_csv("weather_data.csv")
+print(data)
