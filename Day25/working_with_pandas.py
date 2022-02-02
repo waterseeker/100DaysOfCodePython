@@ -18,4 +18,5 @@ print(series_list)
 
 # Challenge:
 # Calculate the average temperature from the temp data
-
+average_temp = round(sum(series_list) / len(series_list), 2)
+print(f"the average temperature is: {average_temp}")
