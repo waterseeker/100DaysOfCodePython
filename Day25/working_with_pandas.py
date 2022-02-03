@@ -42,14 +42,17 @@ data = pandas.read_csv("weather_data.csv")
 # max_temp_row = data[data.temp == data.temp.max()]
 # print(max_temp_row)
 
-# Access individual data points from a row
-monday = data[data.day == "Monday"]
-# You can use dot notation
-monday_condition = monday.condition
-print(monday_condition)
-# Or you can use dict access syntax
-monday_temp = monday["temp"]
-print(monday_temp)
+# # Access individual data points from a row
+# monday = data[data.day == "Monday"]
+# # You can use dot notation
+# monday_condition = monday.condition
+# print(monday_condition)
+# # Or you can use dict access syntax
+# monday_temp = monday["temp"]
+# print(monday_temp)
 
 # Challenge:
 # Get the temp for monday, and convert it to Fahrenheit
+monday_temp = data[data.day == "Monday"].temp
+monday_temp_as_farenheit = (monday_temp * 9 / 5) + 32
+print(monday_temp_as_farenheit)
