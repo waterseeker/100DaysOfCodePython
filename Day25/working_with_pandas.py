@@ -64,3 +64,6 @@ data_dict = {
 }
 data_frame_from_scratch = pandas.DataFrame(data_dict)
 print(data_frame_from_scratch)
+
+# You can convert a DataFrame to a csv file
+data_frame_to_csv = data_frame_from_scratch.to_csv("new_data.csv")
