@@ -51,8 +51,16 @@ data = pandas.read_csv("weather_data.csv")
 # monday_temp = monday["temp"]
 # print(monday_temp)
 
-# Challenge:
-# Get the temp for monday, and convert it to Fahrenheit
-monday_temp = data[data.day == "Monday"].temp
-monday_temp_as_farenheit = (monday_temp * 9 / 5) + 32
-print(monday_temp_as_farenheit)
+# # Challenge:
+# # Get the temp for monday, and convert it to Fahrenheit
+# monday_temp = data[data.day == "Monday"].temp
+# monday_temp_as_farenheit = (monday_temp * 9 / 5) + 32
+# print(monday_temp_as_farenheit)
+
+# How to create a DataFrame from scratch
+data_dict = {
+    "students": ["Louise", "Sandy", "Freya"],
+    "scores": [84, 55, 98],
+}
+data_frame_from_scratch = pandas.DataFrame(data_dict)
+print(data_frame_from_scratch)
