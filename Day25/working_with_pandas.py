@@ -28,3 +28,7 @@ print(round(data["temp"].mean(), 2))
 # Get the maximum value from the temp column by using one of the pandas series methods
 max_value = data["temp"].max()
 print(f"Max value in the series is: {max_value}")
+
+# You can also access the data in a column by just calling data.column_name like....
+weather_conditions = data.condition
+print(weather_conditions)
