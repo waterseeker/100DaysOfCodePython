@@ -8,8 +8,15 @@ import pandas
 
 # make a dict where the fur colors are the keys and the total squirrels with that color of fur are the values
 squirrel_data = pandas.read_csv("squirrel_data.csv")
+
 # drop rows with NaN
 only_fur_colors = squirrel_data["Primary Fur Color"].dropna()
-# get only unique vales
-unique_fur_colors = only_fur_colors.unique()
-print(unique_fur_colors)
+
+# get only unique values and their counts
+counts = only_fur_colors.value_counts()
+
+# turn counts into a dataframe
+counts_data_frame = pandas.DataFrame(counts)
+
+# turn dataframe into a csv
+counts_csv = counts_data_frame.to_csv("squirrel_count.csv")
