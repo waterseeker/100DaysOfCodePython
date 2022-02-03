@@ -33,11 +33,23 @@ data = pandas.read_csv("weather_data.csv")
 # weather_conditions = data.condition
 # print(weather_conditions)
 
-# How to get data by row in a DataFrame
-monday_row = data[data.day == "Monday"]
-print(monday_row)
+# # How to get data by row in a DataFrame
+# monday_row = data[data.day == "Monday"]
+# print(monday_row)
+#
+# # Challenge:
+# # Access the row of data from the weather data where the temperature was at the maximum
+# max_temp_row = data[data.temp == data.temp.max()]
+# print(max_temp_row)
+
+# Access individual data points from a row
+monday = data[data.day == "Monday"]
+# You can use dot notation
+monday_condition = monday.condition
+print(monday_condition)
+# Or you can use dict access syntax
+monday_temp = monday["temp"]
+print(monday_temp)
 
 # Challenge:
-# Access the row of data from the weather data where the temperature was at the maximum
-max_temp_row = data[data.temp == data.temp.max()]
-print(max_temp_row)
+# Get the temp for monday, and convert it to Fahrenheit
