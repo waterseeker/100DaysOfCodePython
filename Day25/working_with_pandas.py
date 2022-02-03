@@ -20,3 +20,10 @@ print(series_list)
 # Calculate the average temperature from the temp data
 average_temp = round(sum(series_list) / len(series_list), 2)
 print(f"the average temperature is: {average_temp}")
+
+# You can do the mean calculation with a pandas method
+print(round(data["temp"].mean(), 2))
+
+# Challenge:
+# Get the maximum value from the temp column by using one of the pandas series methods
+
