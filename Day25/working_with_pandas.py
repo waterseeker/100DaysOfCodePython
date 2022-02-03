@@ -39,3 +39,5 @@ print(monday_row)
 
 # Challenge:
 # Access the row of data from the weather data where the temperature was at the maximum
+max_temp_row = data[data.temp == data.temp.max()]
+print(max_temp_row)
