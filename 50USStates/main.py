@@ -10,4 +10,5 @@ screen.addshape(image)
 
 turtle.shape(image)
 
-screen.exitonclick()
+
+answer_state = screen.textinput(title="Guess A State", prompt="What's another state's name?")
