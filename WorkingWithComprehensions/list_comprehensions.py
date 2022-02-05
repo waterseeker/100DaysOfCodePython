@@ -24,3 +24,7 @@ print(comprehension)
 names = ["Alex", "Beth", "Caroline", "Dave", "Eleanor", "Freddie"]
 new_names = [name for name in names if len(name) <= 4]
 print(new_names)
+
+# Take all names from the list of names that have at least 5 letters and make them into a new list using all caps
+cap_names = [name.upper() for name in names if len(name) > 4]
+print(cap_names)
