@@ -1,4 +1,5 @@
 # You can use comprehensions with strings too.
+# You can use them with any python Sequence (list, tuple, range, string)
 name = "Martin"
 new_list = [letter for letter in name]
 print(new_list)
