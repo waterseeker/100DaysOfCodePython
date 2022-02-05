@@ -10,5 +10,8 @@ for n in numbers:
 print(new_list)
 
 # Same thing with a list comprehension
+# the format is:
+# new_list = [new_item for item in list]
+numbers = [1, 2, 3]
 comprehension = [n + 1 for n in numbers]
 print(comprehension)
