@@ -53,5 +53,8 @@ while game_is_running:
         correct_guesses += 1
         write_state_name_on_map(answer_state, df)
         remove_correct_state(answer_state)
-
-screen.exitonclick()
+    if answer_state == "Exit":
+        state_name_dict = {"state": state_names_list}
+        df = pandas.DataFrame(state_name_dict)
+        df.to_csv("states_to_learn.csv")
+        game_is_running = False
