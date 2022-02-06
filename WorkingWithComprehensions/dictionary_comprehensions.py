@@ -28,3 +28,23 @@ sentence = "What is the Airspeed Velocity of an Unladen Swallow?"
 
 result = {word: len(word) for word in sentence.split()}
 print(result)
+
+# Using a dictionary comprehension to convert a dictionary of Celsius temperatures to Farenheit
+# example of using a function call inside a comprehension
+weather_c = {
+    "Monday": 12,
+    "Tuesday": 14,
+    "Wednesday": 15,
+    "Thursday": 14,
+    "Friday": 21,
+    "Saturday": 22,
+    "Sunday": 24,
+}
+
+
+def celsius_to_farenheit(temp):
+    return temp * 9/5 + 32
+
+
+weather_f = {day: celsius_to_farenheit(int(temp)) for (day, temp) in weather_c.items()}
+print(weather_f)
