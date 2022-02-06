@@ -28,3 +28,9 @@ print(new_names)
 # Take all names from the list of names that have at least 5 letters and make them into a new list using all caps
 cap_names = [name.upper() for name in names if len(name) > 4]
 print(cap_names)
+
+# Returning only even numbers from a list
+numbers = [1, 1, 2, 3, 5, 8, 13, 21, 34, 55]
+result = [num for num in numbers if num % 2 == 0]
+
+print(result)
