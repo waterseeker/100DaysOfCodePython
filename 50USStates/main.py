@@ -54,7 +54,6 @@ while game_is_running:
         write_state_name_on_map(answer_state, df)
         remove_correct_state(answer_state)
     if answer_state == "Exit":
-        # state_name_dict = {"state": state_names_list}
         df = pandas.DataFrame(state_names_list)
         df.to_csv("states_to_learn.csv")
         game_is_running = False
