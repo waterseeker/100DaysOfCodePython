@@ -1,27 +1,15 @@
-student_dict = {
-    "student": ["Angela", "James", "Lily"], 
-    "score": [56, 76, 98]
-}
+# TODO 1. Create a dictionary in this format: basically convert the csv into a dict
+# {"A": "Alfa", "B": "Bravo"}
+with open("nato_phonetic_alphabet.csv") as data:
+    line_list = [line.strip().split(',') for line in data.readlines()]
+    code_dictionary = {line[0]: line[1] for line in line_list[1:]}
 
-#Looping through dictionaries:
-for (key, value) in student_dict.items():
-    #Access key and value
-    pass
-
-import pandas
-student_data_frame = pandas.DataFrame(student_dict)
-
-#Loop through rows of a data frame
-for (index, row) in student_data_frame.iterrows():
-    #Access index and row
-    #Access row.student or row.score
-    pass
-
-# Keyword Method with iterrows()
-# {new_key:new_value for (index, row) in df.iterrows()}
-
-#TODO 1. Create a dictionary in this format:
-{"A": "Alfa", "B": "Bravo"}
-
-#TODO 2. Create a list of the phonetic code words from a word that the user inputs.
-
+# TODO 2. Create a list of the phonetic code words from a word that the user inputs.
+# the user gets a prompt asking them "Enter a word:"
+while True:
+    user_input = input("Enter a word:\n").upper()
+    # they get a list of the code words printed out for the word they entered
+    # ex. Enter a word: Thomas
+    # ["Tango", "Hotel", "Oscar", "Mike", "Alfa", "Sierra"]
+    nato_code_list = [code_dictionary[letter] for letter in user_input]
+    print(nato_code_list)
