@@ -32,11 +32,18 @@ button.pack()
 
 # You can attach a function call to a button by defining a function...
 def button_clicked():
-    print("I got clicked!")
+    my_label["text"] = user_input.get()
 
 
 # then setting the name of the function to the property "command" on the button
 button["command"] = button_clicked
+
+# input boxes are called Entry in tkinter
+user_input = tkinter.Entry(width=10)
+user_input.pack()
+# you can grab what's in the input box by using .get()
+user_input_value = user_input.get()
+
 # mainloop will keep the tkinter window on the screen, otherwise it is closed once there are no more instructions to
 # run. This is sort of like how the exitonclick method on a turtle Screen works.
 # The call to mainloop needs to be at the end of your program
