@@ -18,6 +18,10 @@ my_label = tkinter.Label(text="I Am a Label!", font=("Arial", 24, "bold"))
 # If you set this to True, it will center the component vertically too.
 my_label.pack()
 
+another_label = tkinter.Label(text="Some text", font=("Arial", 24, "bold"))
+another_label.pack(side="left")
+# you can change properties of the component by using dictionary syntax like...
+another_label["text"] = "Changed Text"
 
 # mainloop will keep the tkinter window on the screen, otherwise it is closed once there are no more instructions to
 # run. This is sort of like how the exitonclick method on a turtle Screen works.
