@@ -8,7 +8,7 @@ window.config(padx=20, pady=20)
 
 def miles_to_kilometers():
     miles = user_input.get()
-    kilometers = int(miles) * 1.6
+    kilometers = float(miles) * 1.609
     rounded_kilometers = round(kilometers, 2)
     output_label.config(text=rounded_kilometers)
 
