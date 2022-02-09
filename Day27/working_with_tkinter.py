@@ -25,6 +25,18 @@ another_label["text"] = "Changed Text"
 # or by using the .config() method like...
 another_label.config(text="Changed text again.")
 
+# tkinter also has buttons
+button = tkinter.Button(text="Click Me")
+button.pack()
+
+
+# You can attach a function call to a button by defining a function...
+def button_clicked():
+    print("I got clicked!")
+
+
+# then setting the name of the function to the property "command" on the button
+button["command"] = button_clicked
 # mainloop will keep the tkinter window on the screen, otherwise it is closed once there are no more instructions to
 # run. This is sort of like how the exitonclick method on a turtle Screen works.
 # The call to mainloop needs to be at the end of your program
