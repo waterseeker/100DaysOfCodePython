@@ -18,6 +18,7 @@ CHECK_MARK = "✅"
 
 # ---------------------------- COUNTDOWN MECHANISM ------------------------------- # 
 def count_down(count):
+    canvas.itemconfig(timer_text, text=count)
     if count > 0:
         window.after(1000, count_down, count - 1)
 
@@ -26,7 +27,7 @@ def count_down(count):
 window = Tk()
 window.title("Pomodoro Timer")
 window.config(padx=100, pady=50, bg=YELLOW)
-count_down(5)
+
 canvas = Canvas(width=200, height=224, bg=YELLOW, highlightthickness=0)
 tomato_img = PhotoImage(
     file="tomato.png")  # canvas.create_image expects a PhotoImage, so you have to load the png like this first
@@ -34,8 +35,9 @@ canvas.create_image(100, 112, image=tomato_img)
 canvas.grid(column=1, row=1)
 
 timer_text = canvas.create_text(100, 130, text="00:00", fill="white", font=(FONT_NAME, 35, "bold"))
-# you set the color of a label by using fg=blah instead of bg=blah
+count_down(5)
 
+# you set the color of a label by using fg=blah instead of bg=blah
 timer_label = Label(text="Timer", fg=GREEN, font=(FONT_NAME, 45), bg=YELLOW)
 timer_label.grid(column=1, row=0)
 
