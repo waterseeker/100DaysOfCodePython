@@ -1,8 +1,13 @@
 from tkinter import *
 
+# ---------------------------- PASSWORD GENERATOR ------------------------------- #
+
+# ---------------------------- SAVE PASSWORD ------------------------------- #
+
+# ---------------------------- UI SETUP ------------------------------- #
 window = Tk()
 window.title("Password Manager")
-window.config(padx=20, pady=20)
+window.config(padx=50, pady=50)
 canvas = Canvas(width=200, height=200, highlightthickness=0)
 logo = PhotoImage(
     file="logo.png")  # canvas.create_image expects a PhotoImage, so you have to load the png like this first
@@ -12,7 +17,7 @@ canvas.grid(column=1, row=0)
 website_label = Label(text="Website:")
 website_label.grid(column=0, row=1)
 website_input = Entry(width=35)
-website_input.grid(column=1, row=1, columnspan=2)
+website_input.grid(column=1, row=1, columnspan=2)  # columnspan will let you make an element span more than 1 column
 
 email_username_label = Label(text="Email/Username:")
 email_username_label.grid(column=0, row=2)
@@ -28,13 +33,5 @@ generate_button.grid(column=2, row=3)
 
 add_button = Button(text="Add", width=36)
 add_button.grid(column=1, row=4, columnspan=2)
-
-# columnspan= will let you make an element span more than one column
-# ---------------------------- PASSWORD GENERATOR ------------------------------- #
-
-# ---------------------------- SAVE PASSWORD ------------------------------- #
-
-# ---------------------------- UI SETUP ------------------------------- #
-
 
 window.mainloop()
