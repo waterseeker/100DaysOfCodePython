@@ -13,16 +13,11 @@ nr_letters = random.randint(8, 10)
 nr_symbols = random.randint(2, 4)
 nr_numbers = random.randint(2, 4)
 
-password_list = []
-
 random_letters = [random.choice(letters) for letter in range(nr_letters)]
-password_list += random_letters
-
 random_symbols = [random.choice(symbols) for symbol in range(nr_symbols)]
-password_list += random_symbols
-
 random_numbers = [random.choice(numbers) for number in range(nr_numbers)]
-password_list += random_numbers
+
+password_list = random_letters + random_symbols + random_numbers
 
 random.shuffle(password_list)
 
