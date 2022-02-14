@@ -11,21 +11,26 @@ def save():
     username = email_username_input.get()
     password = password_input.get()
 
-    # confirm user entered info is correct:
-    is_ok = messagebox.askokcancel(title=website,
-                                   message=f"These are the details entered:\nUsername: {username}\nPassword: {password}\nIs it ok to save?")
-    if is_ok:
-        # save user info
-        entry = f"{website} | {username} | {password}\n"
-        with open("data.txt", 'a') as data:
-            data.write(entry)
+    # show error box if any field is left blank
+    if len(website) == 0 or len(username) == 0 or len(password) == 0:
+        messagebox.showerror("Error", "Please don't leave any fields blank.")
+    else:
+        # confirm user entered info is correct:
+        is_ok = messagebox.askokcancel(title=website,
+                                       message=f"These are the details entered:\nUsername: {username}\n" +
+                                               f"Password: {password}\nIs it ok to save?")
+        if is_ok:
+            # save user info
+            entry = f"{website} | {username} | {password}\n"
+            with open("data.txt", 'a') as data:
+                data.write(entry)
 
-    # clear input fields
-    website_input.delete(0, END)
-    password_input.delete(0, END)
+            # clear input fields
+            website_input.delete(0, END)
+            password_input.delete(0, END)
 
-    # reset focus
-    website_input.focus()
+            # reset focus
+            website_input.focus()
 
 
 # ---------------------------- UI SETUP ------------------------------- #
