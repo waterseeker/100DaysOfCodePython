@@ -1,6 +1,5 @@
 from tkinter import *
-
-user_data = []
+from tkinter import messagebox
 
 
 # ---------------------------- PASSWORD GENERATOR ------------------------------- #
@@ -8,23 +7,25 @@ user_data = []
 # ---------------------------- SAVE PASSWORD ------------------------------- #
 
 def save():
-    global user_data
     website = website_input.get()
     username = email_username_input.get()
     password = password_input.get()
 
-    # save user info
-    user_data.append(f"{website} | {username} | {password}\n")
-    with open("data.txt", 'w') as data:
-        for line in user_data:
-            data.write(line)
+    # confirm user entered info is correct:
+    is_ok = messagebox.askokcancel(title=website,
+                                   message=f"These are the details entered:\nUsername: {username}\nPassword: {password}\nIs it ok to save?")
+    if is_ok:
+        # save user info
+        entry = f"{website} | {username} | {password}\n"
+        with open("data.txt", 'a') as data:
+            data.write(entry)
+
     # clear input fields
     website_input.delete(0, END)
-    email_username_input.delete(0, END)
     password_input.delete(0, END)
-    # reset focus and repopulate email
+
+    # reset focus
     website_input.focus()
-    email_username_input.insert(0, "test@test.com")
 
 
 # ---------------------------- UI SETUP ------------------------------- #
