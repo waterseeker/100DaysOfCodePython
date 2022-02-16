@@ -60,6 +60,7 @@ def save():
             password_entry.delete(0, END)
 
 
+# ---------------------------- SEARCH FOR PASSWORD ------------------------------- #
 def search_for_password():
     website = website = website_entry.get()
     if len(website) == 0:
