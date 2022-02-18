@@ -12,15 +12,16 @@ front_img = PhotoImage(file="images/card_front.png")
 back_img = PhotoImage(file="images/card_back.png")
 canvas.create_image(400, 263, image=front_img)
 canvas.grid(row=0, column=0, columnspan=2)
+canvas.config(background=BACKGROUND_COLOR, highlightthickness=0)
 # Language text
 canvas.create_text(
     400, 150,
-    font="Ariel 40 italic",
+    font=("Ariel", 40, "italic"),
     text="Finnish")
 # Word text
 canvas.create_text(
     400, 263,
-    font="Ariel 60 bold",
+    font=("Ariel", 40, "bold"),
     text="on")
 incorrect_image = PhotoImage(file="images/wrong.png")
 incorrect_button = Button(image=incorrect_image, highlightthickness=0)
