@@ -16,11 +16,13 @@ canvas.config(background=BACKGROUND_COLOR, highlightthickness=0)
 # Language text
 canvas.create_text(
     400, 150,
+    fill="black",
     font=("Ariel", 40, "italic"),
     text="Finnish")
 # Word text
 canvas.create_text(
     400, 263,
+    fill="black",
     font=("Ariel", 40, "bold"),
     text="on")
 incorrect_image = PhotoImage(file="images/wrong.png")
