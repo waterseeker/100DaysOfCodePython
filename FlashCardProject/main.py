@@ -1,4 +1,6 @@
+import random
 from tkinter import *
+from functions import get_word_list
 
 BACKGROUND_COLOR = "#B1DDC6"
 
@@ -31,5 +33,8 @@ incorrect_button.grid(row=1, column=0)
 correct_image = PhotoImage(file="images/right.png")
 correct_button = Button(image=correct_image, highlightthickness=0)
 correct_button.grid(row=1, column=1)
+
+words_df = get_word_list(50)
+random_word_row = words_df.sample()
 
 window.mainloop()
