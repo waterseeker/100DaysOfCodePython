@@ -1,8 +1,11 @@
 import random
 from tkinter import *
 from functions import get_word_list, get_random_word
+import pandas as pd
 
 BACKGROUND_COLOR = "#B1DDC6"
+data = pd.read_csv("data/finnish_words.csv")
+print(data.head(10))
 words_dict = get_word_list(50)
 
 # UI SETUP
@@ -25,7 +28,7 @@ language_text = canvas.create_text(
 
 
 # Word text
-def set_word_text():
+def get_next_card():
     global canvas
     random_word_entry = get_random_word(words_dict)
     canvas.delete("word_text")
@@ -37,11 +40,10 @@ def set_word_text():
 
 
 incorrect_image = PhotoImage(file="images/wrong.png")
-incorrect_button = Button(image=incorrect_image, highlightthickness=0, command=set_word_text)
+incorrect_button = Button(image=incorrect_image, highlightthickness=0, command=get_next_card)
 incorrect_button.grid(row=1, column=0)
 correct_image = PhotoImage(file="images/right.png")
-correct_button = Button(image=correct_image, highlightthickness=0, command=set_word_text)
+correct_button = Button(image=correct_image, highlightthickness=0, command=get_next_card)
 correct_button.grid(row=1, column=1)
-set_word_text()
 
 window.mainloop()
