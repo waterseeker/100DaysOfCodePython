@@ -4,11 +4,8 @@ from functions import get_word_list, get_random_word
 import pandas as pd
 
 BACKGROUND_COLOR = "#B1DDC6"
-try:
-    data = pd.read_csv("data/words_to_learn.csv")
-except FileNotFoundError:
-    data = pd.read_csv("data/finnish_words.csv")
 words_dict = get_word_list(3)
+print(words_dict)
 current_card = {}
 
 
