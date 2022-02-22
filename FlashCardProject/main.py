@@ -3,8 +3,20 @@ from tkinter import *
 from functions import get_word_list, get_random_word
 import pandas as pd
 
+# TODO
+# set length of get_word_list to user input
+# use spaced repetition to select words to study
+# add sounds for:
+#   card flipping
+#   correct button push
+#   incorrect button push
+#   end of session
+# make user type in the answer and automatically check the answer
+#   remove correct and incorrect buttons
+#   replace correct button with "Next" button that shows a new card
+
 BACKGROUND_COLOR = "#B1DDC6"
-words_dict = get_word_list(3)
+words_dict = get_word_list(10)
 print(words_dict)
 current_card = {}
 
@@ -30,7 +42,7 @@ def word_known():
     words_dict.remove(current_card)
     # create / overwrite words_to_learn.csv from the remaining words
     df = pd.DataFrame(words_dict)
-    df.to_csv("data/words_to_learn.csv")
+    df.to_csv("data/words_to_learn.csv", index=False)
     # get a new card
     get_next_card()
 
