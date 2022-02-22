@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 my_email = os.getenv("MY_EMAIL")
-my_email_2 =os.getenv("MY_EMAIL_2")
+my_email_2 = os.getenv("MY_EMAIL_2")
 password = os.getenv("EMAIL_PASSWORD")
 receiving_email = os.getenv("RECEIVING_EMAIL")
 smtp_address = os.getenv("SMTP_ADDRESS")
