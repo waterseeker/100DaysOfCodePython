@@ -16,5 +16,7 @@ response.raise_for_status()
 data = response.json()
 # you can manipulate this like any python dictionary
 # access a specific key
-latitude = data["iss_position"]["latitude"]
 longitude = data["iss_position"]["longitude"]
+latitude = data["iss_position"]["latitude"]
+
+iss_position = {longitude, latitude}
