@@ -12,7 +12,7 @@ iss_latitude = float(data["iss_position"]["latitude"])
 iss_longitude = float(data["iss_position"]["longitude"])
 
 # Your position is within +5 or -5 degrees of the ISS position.
-
+# code a method that returns True if your position is wint 5 degrees of the iss and false if it isn't
 
 parameters = {
     "lat": MY_LAT,
