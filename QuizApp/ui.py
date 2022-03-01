@@ -1,3 +1,4 @@
+import time
 from tkinter import *
 from quiz_brain import QuizBrain
 
@@ -24,15 +25,36 @@ class QuizInterface:
             text="Test Question"
         )
         true_image = PhotoImage(file="images/true.png")
-        self.true_button = Button(image=true_image, highlightthickness=0, command="")
+        self.true_button = Button(image=true_image, highlightthickness=0, command=self.user_chooses_true)
         self.true_button.grid(row=2, column=0)
         false_image = PhotoImage(file="images/false.png")
-        self.false_button = Button(image=false_image, highlightthickness=0, command="")
+        self.false_button = Button(image=false_image, highlightthickness=0, command=self.user_chooses_false)
         self.false_button.grid(row=2, column=1)
         self.get_next_question()
 
         self.window.mainloop()
 
     def get_next_question(self):
-        q_text = self.quiz.next_question()
-        self.canvas.itemconfig(self.question_text, text=q_text)
+        self.canvas.config(background="black")
+        if self.quiz.still_has_questions():
+            self.score_text.config(text=f"Score: {self.quiz.score}")
+            q_text = self.quiz.next_question()
+            self.canvas.itemconfig(self.question_text, text=q_text)
+        else:
+            self.canvas.itemconfig(self.question_text, text="You've reached the end of the quiz.")
+            self.true_button.config(state="disabled")
+            self.false_button.config(state="disabled")
+
+    def user_chooses_false(self):
+        self.give_feedback(self.quiz.check_answer("false"))
+
+    def user_chooses_true(self):
+        self.give_feedback(self.quiz.check_answer("true"))
+
+    def give_feedback(self, is_right):
+        if is_right:
+            background_color = "green"
+        else:
+            background_color = "red"
+        self.canvas.config(background=background_color)
+        self.window.after(500, self.get_next_question)
