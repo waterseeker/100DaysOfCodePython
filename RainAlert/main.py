@@ -9,8 +9,10 @@ MY_LONGITUDE = os.getenv('MY_LONGITUDE')
 parameters = {
     "lat": MY_LATITUDE,
     "lon": MY_LONGITUDE,
-    "exclude": ,
     "appid": API_KEY
 }
+
 request = requests.get("https://api.openweathermap.org/data/2.5/onecall", params=parameters)
-f"https://api.openweathermap.org/data/2.5/onecall?lat={MY_LATITUDE}&lon={MY_LONGITUDE}&exclude={part}&appid={API_KEY}"
+request.raise_for_status()
+request_json = request.json()
+hourly_forecasts = request_json["hourly"]
