@@ -17,13 +17,18 @@ parameters = {
 
 response = requests.get(OPEN_WEATHER_ENDPOINT, params=parameters)
 response.raise_for_status()
-response_json = response.json()
-hourly_forecasts = response_json["hourly"]
+weather_data = response.json()
+hourly_forecasts = weather_data["hourly"]
 average_temp_48_hour = sum([x["temp"] for x in hourly_forecasts]) / len(hourly_forecasts)
 conditions = (day["weather"][0]["description"] for day in hourly_forecasts)
 counter = Counter(conditions)
 most_common_condition = counter.most_common(1)[0][0]
-
+# check if weather code is less than 700 in the next 12 hours, if so, alert the user they need to bring an umbrella
+next_12_hours = [hour["weather"][0]["id"] for hour in hourly_forecasts[:11]]
+for weather_id in next_12_hours:
+    if weather_id < 800:
+        print("You'll need to bring an umbrella")
+        continue
 print(f"Response status code: {response.status_code}")
 print(f"48 hour average temp will be: {average_temp_48_hour}")
 print(f"The most common weather condition for the next 48 hours will be: {most_common_condition}")
