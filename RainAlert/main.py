@@ -23,5 +23,6 @@ conditions = (day["weather"][0]["description"] for day in hourly_forecasts)
 counter = Counter(conditions)
 most_common_condition = counter.most_common(1)[0][0]
 
-print(f"48 hour average temp : {average_temp_48_hour}")
-print(f"The most common weather condition for the past 48 hours was: {most_common_condition}")
+print(f"Response status code: {response.status_code}")
+print(f"48 hour average temp will be: {average_temp_48_hour}")
+print(f"The most common weather condition for the next 48 hours will be: {most_common_condition}")
