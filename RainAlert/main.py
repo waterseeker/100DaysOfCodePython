@@ -14,10 +14,10 @@ parameters = {
     "appid": API_KEY
 }
 
-request = requests.get(OPEN_WEATHER_ENDPOINT, params=parameters)
-request.raise_for_status()
-request_json = request.json()
-hourly_forecasts = request_json["hourly"]
+response = requests.get(OPEN_WEATHER_ENDPOINT, params=parameters)
+response.raise_for_status()
+response_json = response.json()
+hourly_forecasts = response_json["hourly"]
 average_temp_48_hour = sum([x["temp"] for x in hourly_forecasts]) / len(hourly_forecasts)
 conditions = (day["weather"][0]["description"] for day in hourly_forecasts)
 counter = Counter(conditions)
