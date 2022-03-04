@@ -11,7 +11,8 @@ OPEN_WEATHER_ENDPOINT = "https://api.openweathermap.org/data/2.5/onecall"
 parameters = {
     "lat": MY_LATITUDE,
     "lon": MY_LONGITUDE,
-    "appid": API_KEY
+    "appid": API_KEY,
+    "exclude": "current,minutely,daily",
 }
 
 response = requests.get(OPEN_WEATHER_ENDPOINT, params=parameters)
