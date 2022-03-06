@@ -26,7 +26,7 @@ most_common_condition = counter.most_common(1)[0][0]
 # check if weather code is less than 700 in the next 12 hours, if so, alert the user they need to bring an umbrella
 next_12_hours = [hour["weather"][0]["id"] for hour in hourly_forecasts[:11]]
 for weather_id in next_12_hours:
-    if weather_id < 800:
+    if weather_id < 700:
         print("You'll need to bring an umbrella")
         continue
 print(f"Response status code: {response.status_code}")
