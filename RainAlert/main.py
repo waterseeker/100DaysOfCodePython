@@ -2,12 +2,19 @@ import os
 from dotenv import load_dotenv
 import requests
 from collections import Counter
+from twilio.rest import Client
 
 load_dotenv()
 API_KEY = os.getenv('API_KEY')
 MY_LATITUDE = os.getenv('MY_LATITUDE')
 MY_LONGITUDE = os.getenv('MY_LONGITUDE')
+TWILIO_SID = os.getenv('TWILIO_ACCOUNT_SID')
+TWILIO_AUTH_TOKEN = os.getenv('TWILIO_AUTH_TOKEN')
+TWILIO_PHONE_NUMBER = os.getenv('TWILIO_PHONE_NUMBER')
+RECEIVING_PHONE_NUMBER = os.getenv('RECEIVING_PHONE_NUMBER')
 OPEN_WEATHER_ENDPOINT = "https://api.openweathermap.org/data/2.5/onecall"
+client = Client(TWILIO_SID, TWILIO_AUTH_TOKEN)
+
 parameters = {
     "lat": MY_LATITUDE,
     "lon": MY_LONGITUDE,
@@ -29,8 +36,17 @@ will_rain = False
 for weather_id in next_12_hours:
     if int(weather_id) < 700:
         will_rain = True
+
+message_body = "Good morning! You won't need an umbrella today."
 if will_rain:
-    print("You'll need to bring an umbrella")
+    message_body = "Good morning! You should bring an umbrella with you today."
+client.messages.create(
+    body=message_body,
+    from_=TWILIO_PHONE_NUMBER,
+    to=RECEIVING_PHONE_NUMBER
+)
+
 print(f"Response status code: {response.status_code}")
 print(f"48 hour average temp will be: {average_temp_48_hour}")
 print(f"The most common weather condition for the next 48 hours will be: {most_common_condition}")
+
