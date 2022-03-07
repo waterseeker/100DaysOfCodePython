@@ -40,11 +40,12 @@ for weather_id in next_12_hours:
 message_body = "Good morning! You won't need an umbrella today."
 if will_rain:
     message_body = "Good morning! You should bring an umbrella with you today."
-client.messages.create(
+message = client.messages.create(
     body=message_body,
     from_=TWILIO_PHONE_NUMBER,
     to=RECEIVING_PHONE_NUMBER
 )
+print(message.status)
 
 print(f"Response status code: {response.status_code}")
 print(f"48 hour average temp will be: {average_temp_48_hour}")
