@@ -27,27 +27,29 @@ alphavantage_response = requests.get(ALPHAVANTAGE_BASE_URL, params=parameters)
 alphavantage_response.raise_for_status()
 stock_data = alphavantage_response.json()
 
-days = {day: day_info for day, day_info in stock_data["Time Series (Daily)"].items()}
-print(days)
+day_prices = {day: day_info for day, day_info in stock_data["Time Series (Daily)"].items()}
 
 today = datetime.now()
 yesterday = str(today - timedelta(days=1)).split()[0]
 day_before_yesterday = str(today - timedelta(days=2)).split()[0]
 
-yesterdays_close_price = days[yesterday]["4. close"]
-day_before_yesterdays_close_price = days[day_before_yesterday]["4. close"]
-print(yesterdays_close_price)
-print(day_before_yesterdays_close_price)
+yesterdays_close_price = float(day_prices[yesterday]["4. close"])
+day_before_yesterdays_close_price = float(day_prices[day_before_yesterday]["4. close"])
+difference_in_prices = (yesterdays_close_price - day_before_yesterdays_close_price)
+percentage_difference = (difference_in_prices / day_before_yesterdays_close_price) * 100
+
+if percentage_difference > 5 or percentage_difference < -5:
+    print("Get News")
 
 # ## STEP 2: Use https://newsapi.org
+
 # Instead of printing ("Get News"), actually get the first 3 news pieces for the COMPANY_NAME. 
 
 # ## STEP 3: Use https://www.twilio.com
 # Send a separate message with the percentage change and each article's title and description to your phone number.
-# change_percentage = 0
-# change_direction_image = "🔻"
-# if change_percentage > 0:
-#     change_direction_image = "🔺"
+change_direction_image = "🔻"
+if percentage_difference > 0:
+    change_direction_image = "🔺"
 # headline = "test headline"
 # brief = "test brief"
 # message_body = f"{STOCK_SYMBOL}: {change_direction_image}{change_percentage}%\nHeadline: {headline}\nBrief: {brief}"
