@@ -14,8 +14,9 @@ STOCK_SYMBOL = os.getenv('STOCK_SYMBOL')
 COMPANY_NAME = os.getenv('COMPANY_NAME')
 ALPHAVANTAGE_API_KEY = os.getenv('ALPHAVANTAGE_API_KEY')
 ALPHAVANTAGE_BASE_URL = "https://www.alphavantage.co/query"
-# # client = Client(TWILIO_SID, TWILIO_AUTH_TOKEN)
-#
+NEWS_API_KEY = os.getenv('NEWS_API_KEY')
+client = Client(TWILIO_SID, TWILIO_AUTH_TOKEN)
+
 # # ## STEP 1: Use https://www.alphavantage.co
 # # When STOCK price increase/decreases by 5% between yesterday and the day before yesterday then print("Get News").
 parameters = {
@@ -37,27 +38,38 @@ yesterdays_close_price = float(day_prices[yesterday]["4. close"])
 day_before_yesterdays_close_price = float(day_prices[day_before_yesterday]["4. close"])
 difference_in_prices = (yesterdays_close_price - day_before_yesterdays_close_price)
 percentage_difference = (difference_in_prices / day_before_yesterdays_close_price) * 100
+rounded_percentage_difference = round(percentage_difference, 2)
 
 if percentage_difference > 5 or percentage_difference < -5:
-    print("Get News")
+    # ## STEP 2: Use https://newsapi.org
+    # Instead of printing ("Get News"), actually get the first 3 news pieces for the COMPANY_NAME.
+    NEWS_API_ENDPOINT = "https://newsapi.org/v2/everything"
+    news_parameters = {
+        "q": COMPANY_NAME,
+        "searchin": "title",
+        "from": day_before_yesterday,
+        "language": "en",
+        "sortBy": "popularity",
+        "apiKey": NEWS_API_KEY,
+    }
+    news_api_response = requests.get(NEWS_API_ENDPOINT, params=news_parameters)
+    news_api_response.raise_for_status()
+    first_3_articles = news_api_response.json()["articles"][:3]
 
-# ## STEP 2: Use https://newsapi.org
-
-# Instead of printing ("Get News"), actually get the first 3 news pieces for the COMPANY_NAME. 
-
-# ## STEP 3: Use https://www.twilio.com
-# Send a separate message with the percentage change and each article's title and description to your phone number.
-change_direction_image = "🔻"
-if percentage_difference > 0:
-    change_direction_image = "🔺"
-# headline = "test headline"
-# brief = "test brief"
-# message_body = f"{STOCK_SYMBOL}: {change_direction_image}{change_percentage}%\nHeadline: {headline}\nBrief: {brief}"
-# message = client.messages.create(
-#     body=message_body,
-#     from_=TWILIO_PHONE_NUMBER,
-#     to=RECEIVING_PHONE_NUMBER
-# )
+    # ## STEP 3: Use https://www.twilio.com
+    # Send a separate message with the percentage change and each article's title and description to your phone number.
+    for article in first_3_articles:
+        change_direction_image = "🔻"
+        if percentage_difference > 0:
+            change_direction_image = "🔺"
+        headline = article["title"]
+        brief = article["description"]
+        message_body = f"{STOCK_SYMBOL}: {change_direction_image}{percentage_difference}%\nHeadline: {headline}\nBrief: {brief}"
+        message = client.messages.create(
+            body=message_body,
+            from_=TWILIO_PHONE_NUMBER,
+            to=RECEIVING_PHONE_NUMBER
+        )
 
 # Optional: Format the SMS message like this:
 """
