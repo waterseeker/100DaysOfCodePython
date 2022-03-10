@@ -22,7 +22,7 @@ client = Client(TWILIO_SID, TWILIO_AUTH_TOKEN)
 parameters = {
     "function": "TIME_SERIES_DAILY",
     "symbol": STOCK_SYMBOL,
-    "apikey": ALPHAVANTAGE_API_KEY
+    "apikey": ALPHAVANTAGE_API_KEY,
 }
 alphavantage_response = requests.get(ALPHAVANTAGE_BASE_URL, params=parameters)
 alphavantage_response.raise_for_status()
@@ -42,7 +42,7 @@ rounded_percentage_difference = round(percentage_difference, 2)
 
 if percentage_difference > 5 or percentage_difference < -5:
     # ## STEP 2: Use https://newsapi.org
-    # Instead of printing ("Get News"), actually get the first 3 news pieces for the COMPANY_NAME.
+    # Get the first 3 news pieces for the COMPANY_NAME.
     NEWS_API_ENDPOINT = "https://newsapi.org/v2/everything"
     news_parameters = {
         "q": COMPANY_NAME,
@@ -70,18 +70,3 @@ if percentage_difference > 5 or percentage_difference < -5:
             from_=TWILIO_PHONE_NUMBER,
             to=RECEIVING_PHONE_NUMBER
         )
-
-# Optional: Format the SMS message like this:
-"""
-TSLA: 🔺2%
-Headline: Were Hedge Funds Right About Piling Into Tesla Inc. (TSLA)?. 
-Brief: We at Insider Monkey have gone over 821 13F filings that hedge funds and prominent investors are required to
-file by the SEC The 13F filings show the funds' and investors' portfolio positions as of March 31st, near the height
-of the coronavirus market crash.
-or
-"TSLA: 🔻5%
-Headline: Were Hedge Funds Right About Piling Into Tesla Inc. (TSLA)?.
-Brief: We at Insider Monkey have gone over 821 13F filings that hedge funds and prominent investors are required to
-file by the SEC The 13F filings show the funds' and investors' portfolio positions as of March 31st, near the height
-of the coronavirus market crash.
-"""
