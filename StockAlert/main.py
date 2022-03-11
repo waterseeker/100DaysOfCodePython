@@ -65,7 +65,7 @@ if percentage_difference > 5 or percentage_difference < -5:
             change_direction_image = "🔻"
         headline = article["title"]
         brief = article["description"]
-        message_body = f"{STOCK_SYMBOL}: {change_direction_image}{percentage_difference}%\nHeadline: {headline}\nBrief: {brief}"
+        message_body = f"{STOCK_SYMBOL}: {change_direction_image}{rounded_percentage_difference}%\nHeadline: {headline}\nBrief: {brief}"
         message = client.messages.create(
             body=message_body,
             from_=TWILIO_PHONE_NUMBER,
