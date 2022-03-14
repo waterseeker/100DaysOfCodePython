@@ -1,3 +1,4 @@
+import datetime
 import os
 from dotenv import load_dotenv
 import requests
@@ -20,16 +21,26 @@ create_user_parameters = {
 
 # create a graph
 graph_endpoint = f"{PIXELA_CREATE_USER_ENDPOINT}/{PIXELA_USERNAME}/graphs"
-graph_configuration = {
-    "id": "graph1",
-    "name": "Finnish Practice Graph",
-    "unit": "Days",
-    "type": "int",
-    "color": "shibafu",
-}
+# graph_configuration = {
+#     "id": "graph1",
+#     "name": "Finnish Practice Graph",
+#     "unit": "Days",
+#     "type": "int",
+#     "color": "shibafu",
+# }
 headers = {
     "X-USER-TOKEN": PIXELA_AUTH_TOKEN,
 }
 
-response = requests.post(url=graph_endpoint, json=graph_configuration, headers=headers)
+# response = requests.post(url=graph_endpoint, json=graph_configuration, headers=headers)
+# print(response.text)
+
+# post data to the graph
+today = datetime.datetime.today().strftime('%Y%m%d')
+add_pixel_endpoint = f"{graph_endpoint}/graph1"
+post_data = {
+    "date": today,
+    "quantity": "1",
+}
+response = requests.post(url=add_pixel_endpoint, json=post_data, headers=headers)
 print(response.text)
