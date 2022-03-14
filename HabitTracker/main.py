@@ -44,5 +44,13 @@ post_data = {
     "date": today.strftime('%Y%m%d'),
     "quantity": "9",
 }
-response = requests.post(url=add_pixel_endpoint, json=post_data, headers=headers)
+# response = requests.post(url=add_pixel_endpoint, json=post_data, headers=headers)
+# print(response.text)
+
+# update a pixel
+put_pixel_endpoint = f"{add_pixel_endpoint}/{today.strftime('%Y%m%d')}"
+put_data = {
+    "quantity": "90",
+}
+response = requests.put(url=put_pixel_endpoint, json=put_data, headers=headers)
 print(response.text)
