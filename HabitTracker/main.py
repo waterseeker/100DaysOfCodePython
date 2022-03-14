@@ -7,6 +7,7 @@ load_dotenv()
 PIXELA_AUTH_TOKEN = os.getenv("PIXELA_AUTH_TOKEN")
 PIXELA_USERNAME = os.getenv("PIXELA_USERNAME")
 PIXELA_CREATE_USER_ENDPOINT = "https://pixe.la/v1/users"
+GRAPH_ID = os.getenv("GRAPH_ID")
 
 create_user_parameters = {
     "token": PIXELA_AUTH_TOKEN,
@@ -22,7 +23,7 @@ create_user_parameters = {
 # create a graph
 graph_endpoint = f"{PIXELA_CREATE_USER_ENDPOINT}/{PIXELA_USERNAME}/graphs"
 # graph_configuration = {
-#     "id": "graph1",
+#     "id": GRAPH_ID,
 #     "name": "Finnish Practice Graph",
 #     "unit": "Days",
 #     "type": "int",
@@ -36,11 +37,12 @@ headers = {
 # print(response.text)
 
 # post data to the graph
-today = datetime.datetime.today().strftime('%Y%m%d')
-add_pixel_endpoint = f"{graph_endpoint}/graph1"
+today = datetime.datetime.today()
+add_pixel_endpoint = f"{graph_endpoint}/{GRAPH_ID}"
+
 post_data = {
-    "date": today,
-    "quantity": "1",
+    "date": today.strftime('%Y%m%d'),
+    "quantity": "9",
 }
 response = requests.post(url=add_pixel_endpoint, json=post_data, headers=headers)
 print(response.text)
