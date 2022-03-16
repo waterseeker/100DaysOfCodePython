@@ -12,9 +12,10 @@ USER_WEIGHT_KG = os.getenv("USER_WEIGHT_KG")
 USER_HEIGHT_CM = os.getenv("USER_HEIGHT_CM")
 USER_AGE = os.getenv("USER_AGE")
 SHEETY_POST_ENDPOINT = os.getenv("SHEETY_POST_ENDPOINT")
+SHEETY_AUTH_TOKEN = os.getenv("SHEETY_AUTH_TOKEN")
 
 # user_input = input("Please input what you did today:\n")
-user_input = "ran 3 miles"
+user_input = "swam 3 miles"
 
 nutritionix_headers = {
     "x-app-id": NUTRITIONIX_APP_ID,
@@ -44,6 +45,10 @@ now = datetime.datetime.now()
 current_date = now.strftime("%m/%d/%Y")
 current_time = now.strftime("%H:%M:%S")
 
+sheety_headers = {
+    "Authorization": f"Bearer {SHEETY_AUTH_TOKEN}",
+}
+
 for exercise in nutritionix_result["exercises"]:
     sheety_body = {
         "workout": {
@@ -55,4 +60,4 @@ for exercise in nutritionix_result["exercises"]:
         }
     }
 
-    sheety_response = requests.post(url=SHEETY_POST_ENDPOINT, json=sheety_body)
+    sheety_response = requests.post(url=SHEETY_POST_ENDPOINT, json=sheety_body, headers=sheety_headers)
