@@ -44,14 +44,15 @@ now = datetime.datetime.now()
 current_date = now.strftime("%m/%d/%Y")
 current_time = now.strftime("%H:%M:%S")
 
-sheety_body = {
-    "workout": {
-        "date": current_date,
-        "time": current_time,
-        "exercise": nutritionix_result["exercises"][0]["name"].title(),
-        "duration": round(nutritionix_result["exercises"][0]["duration_min"]),
-        "calories": round(nutritionix_result["exercises"][0]["nf_calories"]),
+for exercise in nutritionix_result["exercises"]:
+    sheety_body = {
+        "workout": {
+            "date": current_date,
+            "time": current_time,
+            "exercise": exercise["name"].title(),
+            "duration": round(exercise["duration_min"]),
+            "calories": round(exercise["nf_calories"]),
+        }
     }
-}
 
-sheety_response = requests.post(url=SHEETY_POST_ENDPOINT, json=sheety_body)
+    sheety_response = requests.post(url=SHEETY_POST_ENDPOINT, json=sheety_body)
