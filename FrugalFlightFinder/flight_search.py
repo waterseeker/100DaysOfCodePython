@@ -2,9 +2,12 @@ import requests
 import os
 from dotenv import load_dotenv
 
+# TODO create a method that consumes a list of dictionaries representing the lines from the google sheet and uses
+#  that info to search for any deals for the listed cities that are better than their listed lowest prices
 load_dotenv()
 COMPARE_FLIGHT_PRICES_KEY = os.getenv("COMPARE_FLIGHT_PRICES_KEY")
 HOME_CITY_IATA_CODE = os.getenv("HOME_CITY_IATA_CODE")
+
 
 class FlightSearch:
     """This class is responsible for talking to the Flight Search API."""
