@@ -6,7 +6,7 @@ from datetime import datetime, timedelta
 
 load_dotenv()
 
-TWILIO_SID = os.getenv('TWILIO_ACCOUNT_SID')
+TWILIO_ACCOUNT_SID = os.getenv('TWILIO_ACCOUNT_SID')
 TWILIO_AUTH_TOKEN = os.getenv('TWILIO_AUTH_TOKEN')
 TWILIO_PHONE_NUMBER = os.getenv('TWILIO_PHONE_NUMBER')
 RECEIVING_PHONE_NUMBER = os.getenv('RECEIVING_PHONE_NUMBER')
@@ -15,7 +15,7 @@ COMPANY_NAME = os.getenv('COMPANY_NAME')
 ALPHAVANTAGE_API_KEY = os.getenv('ALPHAVANTAGE_API_KEY')
 ALPHAVANTAGE_BASE_URL = "https://www.alphavantage.co/query"
 NEWS_API_KEY = os.getenv('NEWS_API_KEY')
-client = Client(TWILIO_SID, TWILIO_AUTH_TOKEN)
+client = Client(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN)
 
 # # ## STEP 1: Use https://www.alphavantage.co
 # # When STOCK price increase/decreases by 5% between yesterday and the day before yesterday then print("Get News").
