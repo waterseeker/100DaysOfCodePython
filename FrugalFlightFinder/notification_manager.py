@@ -13,6 +13,7 @@ RECEIVING_PHONE_NUMBER = os.getenv("RECEIVING_PHONE_NUMBER")
 
 client = Client(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN)
 
+
 class NotificationManager:
     # This class is responsible for sending notifications with the deal flight details.
     pass
