@@ -1,4 +1,3 @@
-# TODO create a client with .env variables
 # TODO create format for message
 # TODO create send message method
 
