@@ -3,6 +3,8 @@ from flight_data import FlightData
 from flight_search import FlightSearch
 from notification_manager import NotificationManager
 
+# TODO add a country column to google sheet to help with search by city name
+
 ticket_list = []
 
 data_manager = DataManager()
