@@ -21,8 +21,11 @@ class DataManager:
         self.sheety_json = sheety_response.json()
 
     def put_missing_iata_codes(self):
-        missing_iata_codes = [{entry['city'], entry['id']} for entry in self.sheety_json['prices'] if
+        # missing_iata_codes = [{entry['city'], entry['country']} for entry in self.sheety_json['prices'] if
+        #                       entry['iataCode'] == '']
+        missing_iata_codes = [{entry['city'], entry['country']} for entry in example_response['prices'] if
                               entry['iataCode'] == '']
+        print(missing_iata_codes)
 
 
 # TODO create a method to consume cities missing IATA codes list and write IATA codes to their lines
@@ -32,14 +35,17 @@ class DataManager:
 # TODO create a method to delete a line
 # TODO create a method that will return a list of dictionaries containing all the info in the sheet
 
-example_response = {'prices': [{'city': 'Paris', 'iataCode': '', 'lowestPrice': 54, 'id': 2},
-                               {'city': 'Berlin', 'iataCode': '', 'lowestPrice': 42, 'id': 3},
-                               {'city': 'Tokyo', 'iataCode': '', 'lowestPrice': 485, 'id': 4},
-                               {'city': 'Sydney', 'iataCode': '', 'lowestPrice': 551, 'id': 5},
-                               {'city': 'Istanbul', 'iataCode': '', 'lowestPrice': 95, 'id': 6},
-                               {'city': 'Kuala Lumpur', 'iataCode': '', 'lowestPrice': 414, 'id': 7},
-                               {'city': 'New York', 'iataCode': '', 'lowestPrice': 240, 'id': 8},
-                               {'city': 'San Francisco', 'iataCode': '', 'lowestPrice': 260, 'id': 9},
-                               {'city': 'Cape Town', 'iataCode': '', 'lowestPrice': 378, 'id': 10}]}
+example_response = {'prices': [{'city': 'Paris', 'iataCode': '', 'targetPrice': 54, 'country': 'FR', 'id': 2},
+                               {'city': 'Berlin', 'iataCode': '', 'targetPrice': 42, 'country': 'DE', 'id': 3},
+                               {'city': 'Tokyo', 'iataCode': '', 'targetPrice': 485, 'country': 'JP', 'id': 4},
+                               {'city': 'Sydney', 'iataCode': '', 'targetPrice': 551, 'country': 'AU', 'id': 5},
+                               {'city': 'Istanbul', 'iataCode': '', 'targetPrice': 95, 'country': 'TR', 'id': 6},
+                               {'city': 'Kuala Lumpur', 'iataCode': '', 'targetPrice': 414, 'country': 'MY', 'id': 7},
+                               {'city': 'New York', 'iataCode': '', 'targetPrice': 240, 'country': 'US', 'id': 8},
+                               {'city': 'San Francisco', 'iataCode': '', 'targetPrice': 260, 'country': 'US', 'id': 9},
+                               {'city': 'Cape Town', 'iataCode': '', 'targetPrice': 378, 'country': 'ZA', 'id': 10}]}
 
-print(missing_iata_codes)
+e = DataManager()
+e.put_missing_iata_codes()
+example_missing_codes = [{'Paris', 'FR'}, {'Berlin', 'DE'}, {'Tokyo', 'JP'}, {'AU', 'Sydney'}, {'Istanbul', 'TR'},
+                         {'Kuala Lumpur', 'MY'}, {'New York', 'US'}, {'San Francisco', 'US'}, {'Cape Town', 'ZA'}]
