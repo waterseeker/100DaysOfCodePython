@@ -34,15 +34,15 @@ class DataManager:
         cleaned_csv_data = [{"city": entry[3].strip(), "country": entry[2].strip(), "iata_code": entry[4].strip()} for
                             entry in
                             csv_data]
-        missing_iata_codes = [{"city": destination['city'], "country": destination['country'], "id": destination["id"]}
+        missing_iata_codes = [{"city": destination['city'], "country": destination['country'], "id": destination["id"],
+                               "targetPrice": destination["targetPrice"]}
                               for destination in
                               self.sheety_json['prices'] if
                               destination['iataCode'] == '']
         for destination in missing_iata_codes:
             airport_iata_code = [airport for airport in cleaned_csv_data if
                                  destination["city"] in airport["city"] and airport["country"] == destination[
-                                     "country"]][0][
-                "iataCode"]
+                                     "country"]][0]["iata_code"]
             line_id = destination["id"]
             sheety_body = {
                 "price": {
@@ -59,12 +59,8 @@ class DataManager:
             print(sheety_response.status_code)
 
 
-# TODO create a method to consume cities missing IATA codes list and write IATA codes to their lines
 # TODO create a method to change the lowest price for a city
-# TODO create a method to add a line
-# TODO create a method to edit a line
 # TODO create a method to delete a line
-# TODO create a method that will return a list of dictionaries containing all the info in the sheet
 
 e = DataManager()
 e.get_all_lines()
