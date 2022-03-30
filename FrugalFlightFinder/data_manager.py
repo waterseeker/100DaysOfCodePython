@@ -57,11 +57,3 @@ class DataManager:
             sheety_response = requests.put(url=sheety_put_endpoint, json=sheety_body, headers=sheety_headers)
             sheety_response.raise_for_status()
             print(sheety_response.status_code)
-
-
-# TODO create a method to change the lowest price for a city
-# TODO create a method to delete a line
-
-e = DataManager()
-e.get_all_lines()
-e.put_missing_iata_codes()

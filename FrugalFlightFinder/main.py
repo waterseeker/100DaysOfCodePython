@@ -8,6 +8,8 @@ from notification_manager import NotificationManager
 ticket_list = []
 
 data_manager = DataManager()
+data_manager.get_all_lines()
+data_manager.put_missing_iata_codes()
 flight_data = FlightData()
 flight_search = FlightSearch()
 if len(ticket_list) > 0:
