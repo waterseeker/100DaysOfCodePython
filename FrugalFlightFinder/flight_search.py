@@ -2,8 +2,6 @@ import requests
 import os
 from dotenv import load_dotenv
 
-# TODO create a method that consumes a list of dictionaries representing the lines from the google sheet and uses
-#  that info to search for any deals for the listed cities that are better than their listed lowest prices
 load_dotenv()
 COMPARE_FLIGHT_PRICES_KEY = os.getenv("COMPARE_FLIGHT_PRICES_KEY")
 HOME_CITY_IATA_CODE = os.getenv("HOME_CITY_IATA_CODE")
@@ -21,6 +19,14 @@ class FlightSearch:
         self.flight_search_endpoint = "https://compare-flight-prices.p.rapidapi.com/GetPricesAPI/GetPrices.aspx"
 
     def start_flight_search(self, cities):
+        # TODO make this consume a list of dicts like
+        #   {
+        #       "city": "Example City",
+        #         "iata_code": "example iata code",
+        #         "target_price": "price from spreadsheet",
+        #   }
+        # TODO make dates dynamic according to current date, should look 6 months out from current date in the format:
+        #   "2021-01-01"
         for city in cities:
             querystring = {f"lapinfant": "0", "child": "0", "city2": {city["iata_code"]}, "date1": "2021-01-01",
                            "youth": "0", "flightType": "2", "adults": "1", "cabin": "3",
