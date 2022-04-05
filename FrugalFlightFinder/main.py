@@ -8,8 +8,16 @@ from notification_manager import NotificationManager
 ticket_list = []
 
 data_manager = DataManager()
+
+# read sheety data
 data_manager.get_all_lines()
+
+# add missing iata codes in sheety data
 data_manager.put_missing_iata_codes()
+
+# update data manager with new sheety info after any missing iata codes are added
+data_manager.get_all_lines()
+
 flight_data = FlightData()
 flight_search = FlightSearch()
 if len(ticket_list) > 0:

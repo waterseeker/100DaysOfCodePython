@@ -57,3 +57,15 @@ class DataManager:
             sheety_response = requests.put(url=sheety_put_endpoint, json=sheety_body, headers=sheety_headers)
             sheety_response.raise_for_status()
             print(sheety_response.status_code)
+
+
+example_return_from_sheety_json = {
+    'prices': [{'city': 'Paris', 'iataCode': 'LTQ', 'targetPrice': 54, 'country': 'FR', 'id': 2},
+               {'city': 'Berlin', 'iataCode': 'SXF', 'targetPrice': 42, 'country': 'DE', 'id': 3},
+               {'city': 'Tokyo', 'iataCode': 'NRT', 'targetPrice': 485, 'country': 'JP', 'id': 4},
+               {'city': 'Sydney', 'iataCode': 'BWU', 'targetPrice': 551, 'country': 'AU', 'id': 5},
+               {'city': 'Istanbul', 'iataCode': 'ISL', 'targetPrice': 95, 'country': 'TR', 'id': 6},
+               {'city': 'Kuala Lumpur', 'iataCode': 'KUL', 'targetPrice': 414, 'country': 'MY', 'id': 7},
+               {'city': 'New York', 'iataCode': 'JFK', 'targetPrice': 240, 'country': 'US', 'id': 8},
+               {'city': 'San Francisco', 'iataCode': 'SFO', 'targetPrice': 260, 'country': 'US', 'id': 9},
+               {'city': 'Cape Town', 'iataCode': 'CPT', 'targetPrice': 378, 'country': 'ZA', 'id': 10}]}
