@@ -20,5 +20,6 @@ data_manager.get_all_lines()
 
 flight_data = FlightData()
 flight_search = FlightSearch()
+
 if len(ticket_list) > 0:
     notification_manager = NotificationManager(ticket_list)
